@@ -25,8 +25,8 @@ function updateUserFavorites(user,media) {
 function updateMediaFavorites(user,media) {
   const favorites = media.favorites ? media.favorites : [];
   media.favorites = media.isFavorited ? favorites.filter((fav) => fav != user.id) : union(favorites,[user.id]) ;
+  media.unFavorited = media.isFavorited ? true : false;
   media.isFavorited = !media.isFavorited;
-  media.unFavorited = media.isFavorited ? false : true;
   const normalized = normalize(media,Schemas.MEDIA);
   return {
     type: MEDIA_FAVORITES_SUCCESS,
@@ -97,14 +97,12 @@ export function fetchMediaFavorites() {
     dispatch(mediaFavoritesRequest());
     return getUserToken().then((token) => {
       const url = API_ROOT + `/medias/${mediaID}/favorites?api_token=${token}`;
-      console.log('url');
       return fetch(url)
         .then(response => response.json())
         .then(json => {
           if(json.success) {
             dispatch(mediaFavoritesSuccess(json));
           } else {
-            console.log('rejected');
             Promise.reject(new Error(json.message))
           }
         })

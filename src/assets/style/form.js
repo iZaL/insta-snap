@@ -1,6 +1,3 @@
-/*
- a bootstrap like style
- */
 'use strict';
 
 var LABEL_COLOR = '#888888';

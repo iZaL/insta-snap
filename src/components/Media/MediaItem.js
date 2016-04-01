@@ -6,6 +6,10 @@ import Video from 'react-native-video';
 
 export default class MediaItem extends Component {
 
+  static PropTypes = {
+    media:PropTypes.object.isRequired
+  };
+
   renderContent(media) {
     const {caption,medium_url,type} = media;
     return (
@@ -30,9 +34,7 @@ export default class MediaItem extends Component {
   }
 
   render() {
-
     const {media} = this.props;
-
     if (media.id && media.id > 0) {
       return this.renderContent(media);
     }

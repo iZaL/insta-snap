@@ -6,6 +6,10 @@ const Lightbox = require('react-native-lightbox');
 
 export default class Master extends Component {
 
+  static propTypes = {
+    medias:PropTypes.array.isRequired,
+  };
+
   renderImage = (url) => {
     console.log('url',url);
     return (

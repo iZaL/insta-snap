@@ -1,14 +1,21 @@
-'use strict'
-import React from 'react';
-import { Component, StyleSheet, Text, View, Image, TouchableHighlight, TextInput } from 'react-native';
-import { assets } from './../../utils/assets';
+import React, { Component, Proptypes } from 'react';
+import { StyleSheet, Text, View, Image, TouchableHighlight, TextInput } from 'react-native';
 import FormButton from './../FormButton';
-import stylesheet from './../../assets/style/form';
 import LoadingIndicator from './../../components/LoadingIndicator';
 import t from 'tcomb-form-native/lib';
+import stylesheet from './../../assets/style/form';
 const Form = t.form.Form;
 
 export default class LoginScene extends Component {
+
+  static propTypes = {
+    handleLogin:Proptypes.func.isRequired,
+    onForgotPasswordRoutePress:Proptypes.func.isRequired,
+    onRegisterRoutePress:Proptypes.func.isRequired,
+    login:Proptypes.object.isRequired,
+    onChange:Proptypes.func.isRequired,
+    credentials:Proptypes.object.isRequired
+  };
 
   handleLogin() {
     this.props.onLoginPress();

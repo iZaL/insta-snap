@@ -1,14 +1,15 @@
 import React, { PropTypes, Component } from 'react';
 import { StyleSheet,View,Text,Image } from 'react-native';
 import { assets } from './../utils/assets';
-import Button from 'apsl-react-native-button';
 import { Actions } from 'react-native-router-flux';
+import Button from 'apsl-react-native-button';
 
 export default class LoginDialog extends Component {
 
-  componentWillReceiveProps(nextProps) {
-    console.log('next props ',nextProps);
-  }
+  static propTypes = {
+    dialogText:PropTypes.string.isRequired
+
+  };
 
   render() {
     return (
@@ -41,10 +42,6 @@ export default class LoginDialog extends Component {
     );
   }
 }
-
-LoginDialog.propTypes = ({
-  dialogText:PropTypes.string.isRequired
-});
 
 const styles = StyleSheet.create({
   container: {

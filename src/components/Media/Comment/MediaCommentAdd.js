@@ -1,6 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { View, Text, TextInput, TouchableHighlight, StyleSheet } from 'react-native';
+
 export default class MediaCommentAdd extends Component {
+
+  static propTypes = {
+    commentMedia:PropTypes.func.isRequired,
+    commentMedia:PropTypes.func.isRequired,
+  };
 
   constructor(props) {
     super(props);
@@ -22,7 +28,6 @@ export default class MediaCommentAdd extends Component {
   };
 
   submitComment() {
-    console.log('com',this.state.comment);
     this.props.commentMedia(this.state.comment);
     this.setState({
       'comment':''

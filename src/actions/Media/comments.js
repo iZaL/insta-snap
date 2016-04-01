@@ -8,7 +8,8 @@ import {
   COMMENTS_SUCCESS,
   COMMENTS_FAILURE,
   COMMENT_SAVING,
-  COMMENT_SAVED
+  COMMENT_SAVED,
+  COMMENT_SAVING_FAILURE
 } from '../../constants/actiontypes';
 
 function commentsSuccess(payload) {
@@ -64,10 +65,13 @@ export function commentMedia(comment) {
         .then(response => response.json())
         .then(json => {
           if(json.success) {
+            dispatch({type:COMMENT_SAVED});
             dispatch(fetchComments())
           }
         })
-    }).catch((err)=> console.log('error', err))
+    }).catch((err)=> {
+      dispatch({type:COMMENT_SAVING_FAILURE, error:err});
+    })
 
   }
 }

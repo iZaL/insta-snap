@@ -25,7 +25,6 @@ class Register extends Component {
     };
   }
 
-
   onFieldChange(value, field) {
     let changedField = field[0];
     const { dispatch } = this.props;

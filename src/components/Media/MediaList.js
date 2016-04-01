@@ -7,6 +7,11 @@ const Lightbox = require('react-native-lightbox');
 
 export default class MediaList extends Component {
 
+  static propTypes = {
+    media:PropTypes.array.isRequired,
+    loadMedia:PropTypes.func.isRequired
+  };
+
   renderVideoContent(url) {
     return (
       <VideoPlayer uri={url} />

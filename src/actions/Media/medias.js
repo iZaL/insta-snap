@@ -1,8 +1,8 @@
 import { API_ROOT } from './../../constants/config';
-import { MEDIAS_SUCCESS,MEDIAS_REQUEST,MEDIAS_FAILURE } from '../../constants/actiontypes';
 import { normalize, Schema, arrayOf } from 'normalizr';
 import { Schemas } from './../../utils/schema';
 import { getUserToken } from './../../utils/storage';
+import { MEDIAS_SUCCESS, MEDIAS_REQUEST, MEDIAS_FAILURE } from '../../constants/actiontypes';
 
 function mediasSuccess(payload) {
   const normalized = normalize(payload.data, arrayOf(Schemas.MEDIA_ARRAY));
@@ -13,7 +13,6 @@ function mediasSuccess(payload) {
 }
 
 export function fetchMedias() {
-  const url = API_ROOT + '/medias';
   return (dispatch) => {
     dispatch({type:MEDIAS_REQUEST});
     return getUserToken().then((token) => {

@@ -2,7 +2,6 @@ import { API_ROOT } from './../../constants/config';
 import { normalize, Schema, arrayOf } from 'normalizr';
 import { Schemas } from './../../utils/schema';
 import { getUserToken } from './../../utils/storage';
-import { getExtension, getMediaName } from './../../utils/functions';
 
 import {
   MEDIA_SUCCESS,
@@ -11,7 +10,6 @@ import {
   MEDIA_SAVE_SUCCESS,
   MEDIA_SAVE_REQUEST,
   MEDIA_SAVE_FAILURE,
-
   SET_CURRENT_MEDIA
 } from '../../constants/actiontypes';
 
@@ -35,10 +33,6 @@ export function fetchMedia() {
   return (dispatch,state) => {
 
     const mediaID = state().mediaReducer.current;
-
-    //if(state().entities.medias[mediaID]) {
-    //  return;
-    //}
 
     dispatch({type:MEDIA_REQUEST});
 
@@ -78,16 +72,9 @@ export function saveMedia(uri) {
 
       if (xhr.status === 200) {
         var json = JSON.parse(xhr.responseText);
-        console.log('j',json);
         dispatch(mediaSaveSuccess(json));
       } else {
-        console.log('error',xhr.response);
-        //var json = JSON.parse(xhr.responseText);
-        //
-        //console.log('json',json);
-        ////var json = JSON.parse(xhr.response);
-        //
-        //dispatch({type: MEDIA_SAVE_FAILURE, error: json});
+        dispatch({type: MEDIA_SAVE_FAILURE, error: xhr.response});
       }
     };
 
@@ -105,25 +92,6 @@ export function saveMedia(uri) {
       xhr.open('POST', url);
       xhr.send(body);
       return true;
-
-      //return fetch(url,{
-      //  method:'POST',
-      //  body: data
-      //})
-      //  .then(response => response.json())
-      //  .then(json => {
-      //    console.log('json',json);
-      //    if(!json.success) {
-      //      return Promise.reject(new Error(json.message));
-      //    }
-      //    json.user = state().entities.users[state().userReducer.current];
-      //    dispatch(mediaSaveSuccess())
-      //      .then(()=>dispatch(mediaSuccess(json)))
-      //      .then(()=>dispatch(setCurrentMedia(json.data.id)));
-      //  })
-      //  .catch((err)=> {
-      //    dispatch({type: MEDIA_SAVE_FAILURE, error: err});
-      //  })
     })
   }
 }

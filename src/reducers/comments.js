@@ -5,7 +5,8 @@ import {
   COMMENTS_FAILURE,
   COMMENTS_SUCCESS,
   COMMENT_SAVING,
-  COMMENT_SAVED
+  COMMENT_SAVED,
+  COMMENT_SAVING_FAILURE
 } from '../constants/actiontypes'
 
 const InitialState = Record({

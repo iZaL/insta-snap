@@ -1,8 +1,12 @@
-import React, {PropTypes} from 'react';
-import { Component,ListView,ScrollView, TouchableHighlight, StyleSheet, Text, View,AlertIOS } from 'react-native';
+import React, { PropTypes, Component } from 'react';
+import { ListView, ScrollView, TouchableHighlight, StyleSheet, Text, View, AlertIOS } from 'react-native';
 import { Icon } from 'react-native-icons';
 
 export default class SettingScene extends Component {
+
+  static propTypes = {
+    logout: PropTypes.func.isRequired
+  };
 
   render() {
     return (

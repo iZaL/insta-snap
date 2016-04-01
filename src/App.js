@@ -4,7 +4,6 @@ import { Router, Route, Schema, Animations, TabBar } from 'react-native-router-f
 import { connect } from 'react-redux';
 import { loginUserByToken } from './actions/Auth/login';
 import { Actions } from 'react-native-router-flux';
-import { fetchAuthUser } from './actions/User/user';
 import Home from './containers/Home';
 import Login from './containers/Auth/Login';
 import Register from './containers/Auth/Register';
@@ -39,6 +38,7 @@ class App extends Component {
   }
 
   render() {
+
     return (
       <Router hideNavBar={true} name="root">
         <Schema name="modal" sceneConfig={Navigator.SceneConfigs.FloatFromBottom}/>
@@ -50,11 +50,14 @@ class App extends Component {
         <Schema name="withoutAnimation"/>
         <Schema name="tab" type="switch" icon={TabIcon} />
 
-        <Route name="tabBar">
+        <Route initial={true} name="tabBar">
           <Router footer={TabBar} hideNavBar={true} tabBarStyle={{backgroundColor:'#343459', justifyContent:'center', alignItems:'center', alignSelf:'center', height:40, paddingTop:10}}>
-            <Route name="settingsScene" schema="tab" component={Settings} selectedTabIcon="ion|ios-gear" tabIcon="ion|ios-gear-outline"  />
-            <Route name="userDownloadsScene" schema="tab" component={UserDownloads}  selectedTabIcon="ion|android-star" tabIcon="ion|android-star-outline"   />
-            <Route name="userFavoritesScene" schema="tab" component={UserFavorites}  selectedTabIcon="ion|android-favorite" tabIcon="ion|android-favorite-outline"   />
+            <Route name="home" hideNavBar={true}  schema="tab"  selectedTabIcon="ion|ios-home" tabIcon="ion|ios-home-outline">
+              <Router name="homeRouter">
+                <Route name="homeScene" component={Home}/>
+              </Router>
+            </Route>
+
             <Route name="mediaTab" initial={true}  schema="tab" selectedTabIcon="ion|briefcase" tabIcon="ion|briefcase" >
               <Router name="mediaRoutes" >
                 <Route name="mediasScene" component={Medias} rightTitle="+" rightButtonTextStyle={{ fontSize:25, fontWeight:'700'}} onRight={()=>Actions.mediaCapture()} />
@@ -68,22 +71,18 @@ class App extends Component {
                 <Route name="userScene" component={User} />
               </Router>
             </Route>
-            <Route name="home" hideNavBar={true}  schema="tab"  selectedTabIcon="ion|ios-home" tabIcon="ion|ios-home-outline">
-              <Router name="homeRouter">
-                <Route name="homeScene" component={Home}/>
-              </Router>
-            </Route>
+            <Route name="userDownloadsScene" schema="tab" component={UserDownloads}  selectedTabIcon="ion|android-star" tabIcon="ion|android-star-outline"   />
+            <Route name="userFavoritesScene" schema="tab" component={UserFavorites}  selectedTabIcon="ion|android-favorite" tabIcon="ion|android-favorite-outline"   />
+            <Route name="settingsScene" schema="tab" component={Settings} selectedTabIcon="ion|ios-gear" tabIcon="ion|ios-gear-outline"  />
           </Router>
         </Route>
-
-        <Route initial={true} name="login" component={Login}  />
+        <Route  name="login" component={Login}  />
         <Route name="register" component={Register} title="تسجيل الدخول"   />
         <Route name="mediaCapture" hideTabBar={true} hideNavBar={true} component={MediaCapture}  />
         <Route name="loginDialog" schema="modal" hideNavBar={true}  component={LoginDialog} />
 
       </Router>
     );
-
   }
 }
 

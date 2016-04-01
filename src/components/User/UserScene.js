@@ -4,17 +4,18 @@ import { Icon } from 'react-native-icons';
 
 export default class UserScene extends Component {
 
-
   static propTypes = {
     authUserID : PropTypes.number.isRequired,
     user:PropTypes.object.isRequired,
-    followUser:PropTypes.func.isRequired
+    followUser:PropTypes.func.isRequired,
+    loadFollowers:PropTypes.func.isRequired,
+    loadUserMedias:PropTypes.func.isRequired,
+    loadFollowings:PropTypes.func.isRequired,
   }
+
   render() {
     const {user} = this.props;
-    //console.log('user',user);
-    //console.log('following',user.isFollowing);
-    //console.log('follower',user.isFollower);
+
     return (
       <View style={styles.container}>
         <View style={styles.infoColumnWrapper}>

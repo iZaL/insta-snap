@@ -31,7 +31,7 @@ export default class Scenes extends Component {
     return (
       <Scene key="modal" component={Modal} >
 
-        <Scene key="root" hideNavBar={true} >
+        <Scene key="root" hideNavBar={true} component={Modal}>
 
           <Scene key="tabBar" component={TabBar} tabs={true}
                  tabBarStyle={{backgroundColor:'#343459', justifyContent:'center', alignItems:'center', alignSelf:'center', height:40, paddingTop:10}}
