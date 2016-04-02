@@ -2,6 +2,7 @@ import { API_ROOT } from './../../constants/config';
 import { normalize, Schema, arrayOf } from 'normalizr';
 import { Schemas } from './../../utils/schema';
 import { getUserToken } from './../../utils/storage';
+import { getExtension, getMediaName } from './../../utils/functions';
 
 import {
   MEDIA_SUCCESS,
