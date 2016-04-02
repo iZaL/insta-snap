@@ -3,11 +3,12 @@ import { Image, StyleSheet, Text, TouchableHighlight, View, ListView } from 'rea
 import { connect } from 'react-redux';
 import VideoPlayer from './Video';
 const Lightbox = require('react-native-lightbox');
+//import Lightbox from './../utils/react-native-lightbox';
 
 export default class Master extends Component {
 
   static propTypes = {
-    medias:PropTypes.array.isRequired,
+    medias:PropTypes.object.isRequired,
   };
 
   renderImage = (url) => {
@@ -23,16 +24,25 @@ export default class Master extends Component {
     );
   };
 
+  renderVideoContent(url) {
+    console.log('url',url);
+    return (
+      <VideoPlayer uri={url} />
+    );
+  }
+
   renderRow(media) {
     return (
       <View style={styles.row}>
         {media.type == 'video' ?
           <Lightbox underlayColor="transparent" springConfig={{ tension: 30, friction: 7 }} swipeToDismiss={true} renderContent={()=> this.renderVideoContent()}  >
-            <Image
-              style={styles.thumbnail}
-              resizeMode="stretch"
-              source={{ uri: media.medium_url }}
-            />
+            <View>
+              <Image
+                style={styles.thumbnail}
+                resizeMode="stretch"
+                source={{ uri: media.medium_url }}
+              />
+            </View>
           </Lightbox>
           :
           <Lightbox underlayColor="transparent" springConfig={{ tension: 30, friction: 7 }} swipeToDismiss={true} renderContent={()=> this.renderImage(media.large_url)} >
@@ -47,11 +57,7 @@ export default class Master extends Component {
     )
   }
 
-  renderVideoContent(url) {
-    return (
-      <VideoPlayer uri={url} />
-    );
-  }
+
 
   render() {
     const {medias} = this.props;

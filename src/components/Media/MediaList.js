@@ -8,7 +8,7 @@ const Lightbox = require('react-native-lightbox');
 export default class MediaList extends Component {
 
   static propTypes = {
-    media:PropTypes.array.isRequired,
+    medias:PropTypes.object.isRequired,
     loadMedia:PropTypes.func.isRequired
   };
 

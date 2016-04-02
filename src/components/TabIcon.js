@@ -5,7 +5,6 @@ import { Icon } from 'react-native-icons';
 export default class TabIcon extends Component {
 
   static propTypes = {
-    selected:PropTypes.string.isRequired,
     selectedTabIcon:PropTypes.string.isRequired,
     tabIcon:PropTypes.string.isRequired
   }

@@ -1,4 +1,4 @@
-import React, { Component, Proptypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { StyleSheet, Text, View, Image, TouchableHighlight, TextInput } from 'react-native';
 import FormButton from './../FormButton';
 import LoadingIndicator from './../../components/LoadingIndicator';
@@ -9,12 +9,12 @@ const Form = t.form.Form;
 export default class LoginScene extends Component {
 
   static propTypes = {
-    handleLogin:Proptypes.func.isRequired,
-    onForgotPasswordRoutePress:Proptypes.func.isRequired,
-    onRegisterRoutePress:Proptypes.func.isRequired,
-    login:Proptypes.object.isRequired,
-    onChange:Proptypes.func.isRequired,
-    credentials:Proptypes.object.isRequired
+    handleLogin:PropTypes.func.isRequired,
+    onForgotPasswordRoutePress:PropTypes.func.isRequired,
+    onRegisterRoutePress:PropTypes.func.isRequired,
+    login:PropTypes.object.isRequired,
+    onChange:PropTypes.func.isRequired,
+    credentials:PropTypes.object.isRequired
   };
 
   handleLogin() {

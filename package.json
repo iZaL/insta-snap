@@ -11,7 +11,7 @@
     "lodash": "^4.6.1",
     "normalizr": "^2.0.1",
     "react": "^0.14.8",
-    "react-native": "^0.22.2",
+    "react-native": "^0.23.0-rc4",
     "react-native-camera": "git://github.com/lwansbrough/react-native-camera.git#master",
     "react-native-icons": "^0.7.1",
     "react-native-lightbox": "^0.5.0",
