@@ -49,7 +49,7 @@ class Medias extends Component {
 function mapStateToProps(state) {
   const {entities,mediasReducer,userReducer } = state;
   return {
-    medias:entities.medias ? entities.medias : [],
+    medias:entities.medias ? entities.medias.filter((media) => media != undefined ) : [],
     mediasReducer,
     userReducer
   }

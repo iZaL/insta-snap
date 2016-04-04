@@ -18,7 +18,7 @@ export default class LoginScene extends Component {
   };
 
   handleLogin() {
-    this.props.onLoginPress();
+    this.props.handleLogin();
   }
 
   handleForgotPasswordRoutePress() {

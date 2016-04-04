@@ -34,7 +34,6 @@ function loginFailure(message) {
 
 export function login(credentials) {
   const url = API_ROOT + '/auth/login';
-  console.log('auth credentials',credentials);
   return dispatch => {
     dispatch(loginRequest());
     return fetch(url, {

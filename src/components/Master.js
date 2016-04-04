@@ -11,7 +11,6 @@ export default class Master extends Component {
   };
 
   renderImage = (url) => {
-    console.log('url',url);
     return (
       <View style={{flex: 1}}>
         <Image
@@ -24,7 +23,6 @@ export default class Master extends Component {
   };
 
   renderVideoContent(url) {
-    console.log('url',url);
     return (
       <VideoPlayer uri={url} />
     );
@@ -33,7 +31,7 @@ export default class Master extends Component {
   renderRow(media) {
     return (
       <View style={styles.row}>
-        {media.type == 'video' ?
+        { media.type == 'video' ?
           <Lightbox underlayColor="transparent" springConfig={{ tension: 30, friction: 7 }} swipeToDismiss={true} renderContent={()=> this.renderVideoContent()}  >
             <View>
               <Image

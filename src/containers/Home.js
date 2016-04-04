@@ -50,7 +50,7 @@ function mapStateToProps(state) {
   return {
     ...state,
     mediasReducer,
-    medias:entities.medias
+    medias:entities.medias.filter((media) => media != undefined )
   }
 }
 

@@ -61,7 +61,7 @@ export default class Login extends Component {
         <LoginScene
           login={login}
           credentials={this.state.credentials}
-          onLoginPress={this.handleLogin.bind(this)}
+          handleLogin={this.handleLogin.bind(this)}
           onRegisterRoutePress={this.handleRegisterRoute.bind(this)}
           onForgotPasswordRoutePress={this.handleForgotPasswordRoute.bind(this)}
           onChange={this.onFieldChange.bind(this)}
