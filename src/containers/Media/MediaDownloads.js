@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { ScrollView } from 'react-native';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 import { fetchMediaDownloads } from './../../actions/Media/downloads';
 import { setCurrentUser,followUser } from './../../actions/User/user';
 import UserList from './../../components/User/UserList';
 import LoadingIndicator from './../../components/LoadingIndicator';
-import { Actions } from 'react-native-router-flux';
 
 class MediaDownloads extends Component {
 
@@ -25,7 +25,6 @@ class MediaDownloads extends Component {
   }
 
   followUser(user) {
-    console.log('followed');
     this.props.dispatch(followUser(user.id));
   }
 

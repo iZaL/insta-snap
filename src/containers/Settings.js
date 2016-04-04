@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { ListView, ScrollView, TouchableHighlight, StyleSheet, Text, View,AlertIOS } from 'react-native';
 import { logoutUser } from './../actions/Auth/login';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 import SettingScene from './../components/SettingScene';
-const Actions = require('react-native-router-flux').Actions;
 
 class Settings extends Component {
 

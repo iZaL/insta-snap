@@ -17,7 +17,6 @@ export default class MediaCaptureScene extends Component {
   _captureMedia() {
     this.camera.capture()
       .then((data) => {
-        //console.log('data',data);
         this.props.onCapture(data)
       })
       .catch(err => console.error(err));
@@ -29,14 +28,12 @@ export default class MediaCaptureScene extends Component {
   }
 
   startVideoRecording() {
-    //console.log('started video recording');
     this.camera.stopCapture();
     this.props.startRecording();
     this._captureMedia();
   }
 
   pauseVideoRecording() {
-    //console.log('stoped video recording');
     this.props.pauseRecording();
     this.camera.stopCapture();
   }

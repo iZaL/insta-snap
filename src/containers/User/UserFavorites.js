@@ -1,12 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { ScrollView, View } from 'react-native';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 import { fetchUserFavorites } from './../../actions/User/favorites';
 import { setCurrentMedia } from './../../actions/Media/media';
-import { Actions } from 'react-native-router-flux';
 import MediaList from './../../components/Media/MediaList';
 import LoadingIndicator from './../../components/LoadingIndicator';
-import merge from 'lodash/merge';
 
 class UserFavorites extends Component {
 

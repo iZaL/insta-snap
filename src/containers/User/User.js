@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { View, ScrollView  } from 'react-native';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 import { fetchUser } from './../../actions/User/user';
 import { setCurrentMedia } from './../../actions/Media/media';
 import { setCurrentUser,followUser } from './../../actions/User/user';
 import { Icon } from 'react-native-icons';
-import { Actions } from 'react-native-router-flux';
 import UserScene from './../../components/User/UserScene';
 import LoadingIndicator from './../../components/LoadingIndicator';
 import MediaList from './../../components/Media/MediaList';
@@ -50,17 +50,12 @@ class User extends Component {
   }
 
   followUser(user) {
-    //console.log('followed');
     this.props.dispatch(followUser(user.id));
   }
 
   render() {
 
     const {userReducer,user, medias} = this.props;
-
-    //if (userReducer.isFetching) {
-    //  return <LoadingIndicator />;
-    //}
 
     return (
       <ScrollView style={{paddingTop:64}} contentInset={{bottom:49}}>

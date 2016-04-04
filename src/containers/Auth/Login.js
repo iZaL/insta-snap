@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { ScrollView, View, Image } from 'react-native';
 import { connect } from 'react-redux';
-import { login, onLoginFormFieldChange } from './../../actions/Auth/login';
 import { Actions } from 'react-native-router-flux';
+import { login, onLoginFormFieldChange } from './../../actions/Auth/login';
 import LoginScene from './../../components/Auth/LoginScene';
 
 export default class Login extends Component {

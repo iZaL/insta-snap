@@ -25,7 +25,6 @@ class MediaFavorites extends Component {
   }
 
   followUser(user) {
-    console.log('followed');
     this.props.dispatch(followUser(user.id));
   }
 

@@ -35,7 +35,6 @@ class Register extends Component {
   handleRegister() {
     const {dispatch} = this.props;
     const fields = this.state.fields;
-    console.log('fields', JSON.stringify(fields));
     dispatch(register(fields, (cb)=> {
       Actions.login();
     }));

@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { ScrollView, View } from 'react-native';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 import { fetchUserFollowers,fetchUserFollowings,fetchUserMedias } from './../../actions/User/user';
 import { setCurrentMedia } from './../../actions/Media/media';
 import { setCurrentUser } from './../../actions/User/user';
 import { followUser } from './../../actions/User/user';
-import { Actions } from 'react-native-router-flux';
 import MediaList from './../../components/Media/MediaList';
 import UserList from './../../components/User/UserList';
 import LoadingIndicator from './../../components/LoadingIndicator';
