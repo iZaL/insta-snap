@@ -3,12 +3,11 @@ import { Image, StyleSheet, Text, TouchableHighlight, View, ListView } from 'rea
 import { connect } from 'react-redux';
 import VideoPlayer from './Video';
 const Lightbox = require('react-native-lightbox');
-//import Lightbox from './../utils/react-native-lightbox';
 
 export default class Master extends Component {
 
   static propTypes = {
-    medias:PropTypes.object.isRequired,
+    medias:PropTypes.array.isRequired,
   };
 
   renderImage = (url) => {
