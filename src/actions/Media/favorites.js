@@ -80,7 +80,6 @@ export function favoriteMedia() {
       })
         .then(response => response.json())
         .then(json => {
-          //dispatch(fetchFavorites());
         }).catch((err)=> console.log(err))
     })
   }
