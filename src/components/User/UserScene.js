@@ -47,26 +47,26 @@ export default class UserScene extends Component {
           { user.id == this.props.authUserID ? <View/> :
             <TouchableHighlight onPress={()=>this.props.followUser(user)} underlayColor="transparent">
                 { user.isFollowing ?
-                  <View style={styles.followingWrapperFollowing}>
-                    <Icon
-                      name='ion|android-done'
-                      size={18}
-                      color='white'
-                      style={styles.checked}
-                    />
-                    <Text style={[styles.following]}> Following </Text>
-                  </View>
-                  :
-                  <View style={styles.followingWrapperFollow}>
-                    <Icon
-                      name='ion|plus'
-                      size={18}
-                      color='white'
-                      style={styles.checked}
-                    />
-                    <Text style={[styles.following]}> Follow </Text>
-                  </View>
-                }
+              <View style={styles.followingWrapperFollowing}>
+                <Icon
+                  name='ion|android-done'
+                  size={18}
+                  color='white'
+                  style={styles.checked}
+                />
+                <Text style={[styles.following]}> Following </Text>
+              </View>
+              :
+              <View style={styles.followingWrapperFollow}>
+                <Icon
+                  name='ion|plus'
+                  size={18}
+                  color='white'
+                  style={styles.checked}
+                />
+                <Text style={[styles.following]}> Follow </Text>
+              </View>
+            }
             </TouchableHighlight>
           }
 
@@ -129,7 +129,6 @@ var styles = StyleSheet.create({
     alignItems:'center',
     marginTop:10,
     borderColor:'gray',
-    borderWidth:0.5,
     padding:5,
     backgroundColor:'blue'
   },
@@ -150,7 +149,6 @@ var styles = StyleSheet.create({
     color:'#5BC3BE'
   },
   following: {
-    color:'white'
   },
   add :{
     color:'#5BC3BE',
@@ -158,7 +156,6 @@ var styles = StyleSheet.create({
     height:20,
   },
   checked: {
-    color:'white',
     width:20,
     height:20
   }

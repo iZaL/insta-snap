@@ -59,9 +59,10 @@ function userFollowersSuccess(payload) {
 //}
 
 export function fetchUser(userID) {
+  console.log('userID',userID);
   return (dispatch,state) => {
     //const currentID = id ? id : state().userReducer.current;
-    if(state().entities.users[userID].followers) {
+    if(state().entities.users[userID] && state().entities.users[userID].followers) {
       return;
     }
     dispatch({type:USER_REQUEST});
@@ -80,9 +81,8 @@ export function fetchUser(userID) {
 }
 
 export function fetchUserMedias(userID) {
-  return (dispatch,state) => {
+  return (dispatch) => {
     dispatch({type:USER_MEDIAS_REQUEST});
-    //const currentID = state().userReducer.current;
     return getUserToken().then((token) => {
         const url = API_ROOT + `/users/${userID}/medias?api_token=${token}`;
         return fetch(url)
@@ -98,9 +98,8 @@ export function fetchUserMedias(userID) {
 }
 
 export function fetchUserFollowings(userID) {
-  return (dispatch,state) => {
+  return (dispatch) => {
     dispatch({type:USER_FOLLOWINGS_REQUEST});
-    //const currentID = state().userReducer.current;
     return getUserToken().then((token) => {
         const url = API_ROOT + `/users/${userID}/followings?api_token=${token}`;
         return fetch(url)
@@ -116,9 +115,8 @@ export function fetchUserFollowings(userID) {
 }
 
 export function fetchUserFollowers(userID) {
-  return (dispatch,state) => {
+  return (dispatch) => {
     dispatch({type:USER_FOLLOWERS_REQUEST});
-    //const currentID = state().userReducer.current;
     return getUserToken().then((token) => {
         const url = API_ROOT + `/users/${userID}/followers?api_token=${token}`;
         return fetch(url)
@@ -162,9 +160,6 @@ function updateFollowee(authUser,followee) {
 
 export function followUser(authUserID,followeeID) {
   return (dispatch,state) => {
-
-    //const authUserID = state().userReducer.authUserID; // follower
-    //const followeeID = userID;
 
     const authUser = Object.assign({},state().entities.users[authUserID]);
     const followee = Object.assign({},state().entities.users[followeeID]);

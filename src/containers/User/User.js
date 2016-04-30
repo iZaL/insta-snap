@@ -3,8 +3,7 @@ import { View, ScrollView  } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { fetchUser } from './../../actions/User/user';
-import { setCurrentMedia } from './../../actions/Media/media';
-import { setCurrentUser,followUser } from './../../actions/User/user';
+import { followUser } from './../../actions/User/user';
 import { Icon } from 'react-native-icons';
 import UserScene from './../../components/User/UserScene';
 import LoadingIndicator from './../../components/LoadingIndicator';
@@ -12,45 +11,49 @@ import MediaList from './../../components/Media/MediaList';
 
 class User extends Component {
 
+  static propTypes = {
+    userID:PropTypes.number.isRequired
+  }
+
   constructor(props) {
     super(props);
   }
 
-  componentWillMount() {
-    const {dispatch} = this.props;
-    dispatch(fetchUser());
+  componentDidMount() {
+    this.props.dispatch(fetchUser(this.props.userID));
   }
 
   loadMedia(media) {
-    this.props.dispatch(setCurrentMedia(media.id));
-    Actions.mediaScene({
-      title:media.caption
+    return Actions.mediaScene({
+      title:media.caption,
+      mediaID:media.id
     });
   }
 
   loadUserMedias(user) {
-    this.props.dispatch(setCurrentUser(user.id));
-    Actions.userMediasScene({
-      title:user.name + ' Medias'
+    return Actions.userMediasScene({
+      title:user.name + ' Medias',
+      userID:user.id
     });
   }
 
   loadFollowers(user) {
-    this.props.dispatch(setCurrentUser(user.id));
-    Actions.followersScene({
-      title:user.name + ' Followers'
+    return Actions.followersScene({
+      title:user.name + ' Followers',
+      userID:user.id
+
     });
   }
 
   loadFollowings(user) {
-    this.props.dispatch(setCurrentUser(user.id));
-    Actions.followingsScene({
-      title:user.name + ' Followings'
+    return Actions.followingsScene({
+      title:user.name + ' Followings',
+      userID:user.id
     });
   }
 
   followUser(user) {
-    this.props.dispatch(followUser(user.id));
+    this.props.dispatch(followUser(this.props.userReducer.current,user.id));
   }
 
   render() {
@@ -74,15 +77,18 @@ class User extends Component {
   }
 }
 
-function mapStateToProps(state,ownProps) {
-  const { userReducer,entities } = state;
-  const user = entities.users[userReducer.current];
-  const medias = user.medias ? user.medias.map((mediaID) => entities.medias[mediaID]) : [];
-  return {
-    userReducer,
-    user,
-    medias
+function makeMapStateToProps(initialState, initialOwnProps) {
+  const userID = initialOwnProps.userID;
+  return function mapStateToProps(state) {
+    const { userReducer,entities } = state;
+    const user = initialState.entities.users[userID];
+    const medias = user.medias ? user.medias.map((mediaID) => entities.medias[mediaID]) : [];
+    return {
+      userReducer,
+      user,
+      medias
+    }
   }
 }
 
-export default connect(mapStateToProps)(User)
+export default connect(makeMapStateToProps)(User)

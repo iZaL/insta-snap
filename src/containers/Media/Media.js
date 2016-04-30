@@ -15,8 +15,8 @@ import LoadingIndicator from './../../components/LoadingIndicator';
 class Media extends Component {
 
   static propTypes = {
-    itemID:PropTypes.number.isRequired
-  }
+    mediaID:PropTypes.number.isRequired
+  };
 
   constructor(props) {
     super(props);
@@ -25,25 +25,25 @@ class Media extends Component {
   componentWillMount() {
     const {dispatch} = this.props;
     if(!this.props.media.user) {
-      dispatch(fetchMedia(this.props.itemID));
+      dispatch(fetchMedia(this.props.mediaID));
     }
   }
 
   loadComments() {
     Actions.mediaCommentsScene({
-      mediaID:this.props.itemID
+      mediaID:this.props.mediaID
     });
   }
 
   loadFavorites() {
     Actions.mediaFavoritesScene({
-      mediaID:this.props.itemID
+      mediaID:this.props.mediaID
     });
   }
 
   loadDownloads() {
     Actions.mediaDownloadsScene({
-      mediaID:this.props.itemID
+      mediaID:this.props.mediaID
     });
   }
 
@@ -51,20 +51,20 @@ class Media extends Component {
     if(!this.props.userReducer.isAuthenticated) {
       return Actions.loginDialog({dialogText:'Please Login to view and manage your Favorites'});
     }
-    this.props.dispatch(favoriteMedia(this.props.itemID));
+    this.props.dispatch(favoriteMedia(this.props.mediaID));
   }
 
   downloadMedia() {
     if(!this.props.userReducer.isAuthenticated) {
       return Actions.loginDialog({dialogText:'Please Login to view and manage your Favorites'});
     }
-    this.props.dispatch(downloadMedia(this.props.itemID));
+    this.props.dispatch(downloadMedia(this.props.mediaID));
   }
 
   loadUser(user) {
     Actions.userScene({
       title:user.name,
-      itemId:user.id
+      userID:user.id
     })
   }
 
@@ -120,11 +120,11 @@ const styles = StyleSheet.create({
 });
 
 function makeMapStateToProps(initialState, initialOwnProps) {
-  var itemID = initialOwnProps.itemID;
+  const mediaID = initialOwnProps.mediaID;
 
   return function mapStateToProps(state) {
     const { entities,mediaReducer,userReducer } = state;
-    const media = entities.medias[itemID];
+    const media = entities.medias[mediaID];
 
     return {
       mediaReducer,
