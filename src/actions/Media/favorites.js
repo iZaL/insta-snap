@@ -59,11 +59,11 @@ function mediaFavoritesFailure(err) {
  * @returns {Function}
  * Favorite a media
  */
-export function favoriteMedia() {
+export function favoriteMedia(mediaID) {
   return (dispatch,state) => {
 
     const params = {
-      media:state().mediaReducer.current
+      media:mediaID
     };
 
     const media = Object.assign({},state().entities.medias[params.media]);
@@ -90,9 +90,8 @@ export function favoriteMedia() {
  */
 
 // get Auth user's favorites
-export function fetchMediaFavorites() {
-  return (dispatch,state) => {
-    const mediaID = state().mediaReducer.current;
+export function fetchMediaFavorites(mediaID) {
+  return (dispatch) => {
     dispatch(mediaFavoritesRequest());
     return getUserToken().then((token) => {
       const url = API_ROOT + `/medias/${mediaID}/favorites?api_token=${token}`;

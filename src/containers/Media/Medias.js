@@ -19,17 +19,10 @@ class Medias extends Component {
   }
 
   loadMedia(media) {
-    this.props.dispatch(setCurrentMedia(media.id));
     Actions.mediaScene({
+      itemID:media.id,
       title:media.caption
     });
-  }
-
-  createMedia() {
-    if(!this.props.userReducer.isAuthenticated) {
-      return Actions.loginDialog({dialogText:'Please Login to view and manage your Favorites'});
-    }
-    return Actions.captureMedia();
   }
 
   render() {
@@ -49,7 +42,7 @@ class Medias extends Component {
 }
 
 function mapStateToProps(state) {
-  const {entities,mediasReducer,userReducer } = state;
+  const { entities,mediasReducer,userReducer } = state;
   return {
     medias:entities.medias ? entities.medias.filter((media) => media != undefined ) : [],
     mediasReducer,

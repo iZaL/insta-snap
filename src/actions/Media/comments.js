@@ -26,17 +26,15 @@ function commentSaving() {
   }
 }
 
-function commentSaved(payload) {
+function commentSaved() {
   return {
-    type: COMMENT_SAVED,
-    comment: payload.comment
+    type: COMMENT_SAVED
   }
 }
 
-export function fetchComments() {
-  return (dispatch,state) => {
+export function fetchComments(mediaID) {
+  return (dispatch) => {
     dispatch({type:COMMENTS_REQUEST});
-    const mediaID = state().mediaReducer.current;
     const url = API_ROOT + `/medias/${mediaID}/comments`;
     return fetch(url)
       .then(response => response.json())
@@ -49,12 +47,12 @@ export function fetchComments() {
   }
 }
 
-export function commentMedia(comment) {
-  return (dispatch,state) => {
+export function commentMedia(mediaID,comment) {
+  return (dispatch) => {
     dispatch(commentSaving());
     const params = {
       comment,
-      media: state().mediaReducer.current
+      media: mediaID
     };
     return getUserToken().then((token) => {
       const url = API_ROOT + `/medias/comment?api_token=${token}`;
@@ -65,7 +63,7 @@ export function commentMedia(comment) {
         .then(response => response.json())
         .then(json => {
           if(json.success) {
-            dispatch({type:COMMENT_SAVED});
+            dispatch(commentSaved());
             dispatch(fetchComments())
           }
         })

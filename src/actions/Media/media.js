@@ -30,10 +30,8 @@ function mediaSuccess(payload) {
   }
 }
 
-export function fetchMedia() {
-  return (dispatch,state) => {
-
-    const mediaID = state().mediaReducer.current;
+export function fetchMedia(mediaID) {
+  return (dispatch) => {
 
     dispatch({type:MEDIA_REQUEST});
 
@@ -52,11 +50,11 @@ export function fetchMedia() {
   }
 }
 
-export function setCurrentMedia(mediaID) {
-  return (dispatch) => {
-    dispatch({type: SET_CURRENT_MEDIA, current: mediaID});
-  }
-}
+//export function setCurrentMedia(mediaID) {
+//  return (dispatch) => {
+//    dispatch({type: SET_CURRENT_MEDIA, current: mediaID});
+//  }
+//}
 
 export function saveMedia(uri) {
   return (dispatch) => {

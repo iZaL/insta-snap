@@ -27,11 +27,9 @@ export function fetchMedias() {
   }
 }
 
-export function fetchUserMedias() {
-  const url = API_ROOT + '/medias';
-  return (dispatch,state) => {
+export function fetchUserMedias(userID) {
+  return (dispatch) => {
     dispatch({type:MEDIAS_REQUEST});
-    const userID = state().userReducer.current;
     return getUserToken().then((token) => {
       const url = API_ROOT + `/users/${userID}/medias?api_token=${token}`;
       return fetch(url)

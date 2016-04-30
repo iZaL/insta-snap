@@ -52,21 +52,21 @@ function userFollowersSuccess(payload) {
   }
 }
 
-export function setCurrentUser(id) {
-  return (dispatch) => {
-    dispatch({type:SET_CURRENT_USER,current:id});
-  }
-}
+//export function setCurrentUser(id) {
+//  return (dispatch) => {
+//    dispatch({type:SET_CURRENT_USER,current:id});
+//  }
+//}
 
-export function fetchUser(id=null) {
+export function fetchUser(userID) {
   return (dispatch,state) => {
-    const currentID = id ? id : state().userReducer.current;
-    if(state().entities.users[currentID].followers) {
+    //const currentID = id ? id : state().userReducer.current;
+    if(state().entities.users[userID].followers) {
       return;
     }
     dispatch({type:USER_REQUEST});
     return getUserToken().then((token) => {
-        const url = API_ROOT + `/users/${currentID}?api_token=${token}`;
+        const url = API_ROOT + `/users/${userID}?api_token=${token}`;
         return fetch(url)
           .then(response => response.json())
           .then(json => {
@@ -79,12 +79,12 @@ export function fetchUser(id=null) {
   }
 }
 
-export function fetchUserMedias() {
+export function fetchUserMedias(userID) {
   return (dispatch,state) => {
     dispatch({type:USER_MEDIAS_REQUEST});
-    const currentID = state().userReducer.current;
+    //const currentID = state().userReducer.current;
     return getUserToken().then((token) => {
-        const url = API_ROOT + `/users/${currentID}/medias?api_token=${token}`;
+        const url = API_ROOT + `/users/${userID}/medias?api_token=${token}`;
         return fetch(url)
           .then(response => response.json())
           .then(json => {
@@ -97,12 +97,12 @@ export function fetchUserMedias() {
   }
 }
 
-export function fetchUserFollowings() {
+export function fetchUserFollowings(userID) {
   return (dispatch,state) => {
     dispatch({type:USER_FOLLOWINGS_REQUEST});
-    const currentID = state().userReducer.current;
+    //const currentID = state().userReducer.current;
     return getUserToken().then((token) => {
-        const url = API_ROOT + `/users/${currentID}/followings?api_token=${token}`;
+        const url = API_ROOT + `/users/${userID}/followings?api_token=${token}`;
         return fetch(url)
           .then(response => response.json())
           .then(json => {
@@ -115,12 +115,12 @@ export function fetchUserFollowings() {
   }
 }
 
-export function fetchUserFollowers() {
+export function fetchUserFollowers(userID) {
   return (dispatch,state) => {
     dispatch({type:USER_FOLLOWERS_REQUEST});
-    const currentID = state().userReducer.current;
+    //const currentID = state().userReducer.current;
     return getUserToken().then((token) => {
-        const url = API_ROOT + `/users/${currentID}/followers?api_token=${token}`;
+        const url = API_ROOT + `/users/${userID}/followers?api_token=${token}`;
         return fetch(url)
           .then(response => response.json())
           .then(json => {
@@ -160,11 +160,11 @@ function updateFollowee(authUser,followee) {
   }
 }
 
-export function followUser(userID) {
+export function followUser(authUserID,followeeID) {
   return (dispatch,state) => {
 
-    const authUserID = state().userReducer.authUserID; // follower
-    const followeeID = userID;
+    //const authUserID = state().userReducer.authUserID; // follower
+    //const followeeID = userID;
 
     const authUser = Object.assign({},state().entities.users[authUserID]);
     const followee = Object.assign({},state().entities.users[followeeID]);
