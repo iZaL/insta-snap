@@ -26,7 +26,7 @@ class MediaComments extends Component {
   componentWillMount() {
     DeviceEventEmitter.addListener('keyboardWillShow', this.keyboardWillShow.bind(this));
     DeviceEventEmitter.addListener('keyboardWillHide', this.keyboardWillHide.bind(this));
-    this.props.dispatch(fetchComments());
+    this.props.dispatch(fetchComments(this.props.mediaID));
   }
 
   keyboardWillShow(e) {
@@ -39,15 +39,12 @@ class MediaComments extends Component {
   }
 
   commentMedia(comment) {
-    // to manually check if the user is logged in.
-    // this check is not necessary if the app by default restricts to authenticated user's only
-
     if(!this.props.userReducer.isAuthenticated) {
       return Actions.loginDialog({dialogText:'Please Login to view and manage your Favorites'});
     }
 
     const {dispatch} = this.props;
-    dispatch(commentMedia((comment))).then(()=>{
+    dispatch(commentMedia(this.props.mediaID,comment)).then(()=>{
       this.refs.scrollView.scrollTo({x: 0})
     });
   }
@@ -83,4 +80,4 @@ function makeMapStateToProps(initialState, initialOwnProps) {
   }
 }
 
-export default connect(makeMapStateToProps)(MediaComments)
+export default connect(makeMapStateToProps)(MediaComments);
