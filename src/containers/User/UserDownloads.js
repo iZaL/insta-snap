@@ -9,7 +9,7 @@ import LoadingIndicator from './../../components/LoadingIndicator';
 class UserDownloads extends Component {
 
   static propTypes = {
-    userID:PropTypes.number.isRequired
+    userID:PropTypes.number
   }
 
   constructor(props) {

@@ -41,7 +41,7 @@ class Followings extends Component {
   }
 
   followUser(user) {
-    this.props.dispatch(followUser(this.props.userReducer.current,user.id));
+    this.props.dispatch(followUser(this.props.userReducer.authUserID,user.id));
   }
 
   render() {
@@ -59,14 +59,16 @@ class Followings extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  const { entities,userReducer } = state;
-  const user = entities.users[userReducer.current];
-
-  return {
-    userReducer,
-    users: user && user.followings ? user.followings.map((userID) => entities.users[userID]) : []
+function makeMapStateToProps(initialState, initialOwnProps) {
+  const userID = initialOwnProps.userID;
+  return function mapStateToProps(state) {
+    const { entities,userReducer } = state;
+    const user = entities.users[userID];
+    return {
+      userReducer,
+      users: user && user.followings ? user.followings.map((userID) => entities.users[userID]) : []
+    }
   }
 }
 
-export default connect(mapStateToProps)(Followings)
+export default connect(makeMapStateToProps)(Followings)

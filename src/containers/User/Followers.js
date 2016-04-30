@@ -40,7 +40,7 @@ class Followers extends Component {
   }
 
   followUser(user) {
-    this.props.dispatch(followUser(this.props.userReducer.current,user.id));
+    this.props.dispatch(followUser(this.props.userReducer.authUserID,user.id));
   }
 
 
@@ -59,14 +59,16 @@ class Followers extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  const { entities,userReducer } = state;
-  const user = entities.users[userReducer.current];
-
-  return {
-    userReducer,
-    users: user && user.followers ? user.followers.map((userID) => entities.users[userID]) : []
+function makeMapStateToProps(initialState, initialOwnProps) {
+  const userID = initialOwnProps.userID;
+  return function mapStateToProps(state) {
+    const { entities,userReducer } = state;
+    const user = entities.users[userID];
+    return {
+      userReducer,
+      users: user && user.followers ? user.followers.map((userID) => entities.users[userID]) : []
+    }
   }
 }
 
-export default connect(mapStateToProps)(Followers)
+export default connect(makeMapStateToProps)(Followers)

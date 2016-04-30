@@ -9,7 +9,7 @@ import LoadingIndicator from './../../components/LoadingIndicator';
 class UserFavorites extends Component {
 
   static propTypes = {
-    userID:PropTypes.number.isRequired
+    userID:PropTypes.number
   }
 
   constructor(props) {

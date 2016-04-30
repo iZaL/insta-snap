@@ -34,7 +34,6 @@ import {
 const InitialState= Record({
   isAuthenticated :false,
   authUserID:null, // authenticated user ID
-  current:null,
   isFetching:false,
   favorites:new (Record({
     isFetching:false,
@@ -159,9 +158,6 @@ export default function userReducer(state = initialState, action = {}) {
       return state
         .set('authUserID',null)
         .set('isAuthenticated',false);
-    case SET_CURRENT_USER:
-      return state
-        .set('current',action.current);
     default:
       return state;
 

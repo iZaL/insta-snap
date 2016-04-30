@@ -18,7 +18,7 @@ class UserMedias extends Component {
 
   componentDidMount() {
     const {dispatch} = this.props;
-    dispatch(fetchUserMedias());
+    dispatch(fetchUserMedias(this.props.userID));
   }
 
   loadMedia(media) {
@@ -42,13 +42,17 @@ class UserMedias extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  const {entities,userReducer } = state;
-  const user = entities.users[userReducer.current];
-  return {
-    medias: user && user.medias ? user.medias.map((mediaID) => entities.medias[mediaID]) : [],
-    userReducer
+function makeMapStateToProps(initialState, initialOwnProps) {
+  const userID = initialOwnProps.userID;
+  return function mapStateToProps(state)
+  {
+    const {entities,userReducer } = state;
+    const user = entities.users[userID];
+    return {
+      medias: user && user.medias ? user.medias.map((mediaID) => entities.medias[mediaID]) : [],
+      userReducer
+    }
   }
 }
 
-export default connect(mapStateToProps)(UserMedias)
+export default connect(makeMapStateToProps)(UserMedias)

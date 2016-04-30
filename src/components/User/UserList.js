@@ -66,7 +66,9 @@ export default class UserList extends Component {
       <ListView
         dataSource={dataSource}
         renderRow={this.renderRow.bind(this)}
-        style={styles.container}/>
+        style={styles.container}
+        enableEmptySections={true}
+      />
     )
   }
 

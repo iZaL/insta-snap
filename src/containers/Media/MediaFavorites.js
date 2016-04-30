@@ -29,7 +29,7 @@ class MediaFavorites extends Component {
   }
 
   followUser(user) {
-    this.props.dispatch(followUser(this.props.userReducer.current,user.id));
+    this.props.dispatch(followUser(this.props.userReducer.authUserID,user.id));
   }
 
   render() {
