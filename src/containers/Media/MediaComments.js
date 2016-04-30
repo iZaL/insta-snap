@@ -9,6 +9,10 @@ import { Actions } from 'react-native-router-flux';
 
 class MediaComments extends Component {
 
+  static propTypes = {
+    mediaID : PropTypes.number.isRequired
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -50,6 +54,7 @@ class MediaComments extends Component {
 
   render() {
     const {comments} = this.props;
+
     return (
       <ScrollView contentContainerStyle={{paddingBottom: 49,paddingTop: 64, margin:5, height: this.state.visibleHeight}} ref="scrollView">
         <MediaCommentList
@@ -63,15 +68,19 @@ class MediaComments extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  const { entities,mediaReducer,userReducer } = state;
-  const media = entities.medias[mediaReducer.current];
-  const comments = media.comments ? media.comments.map((commentID) => Object.assign({},entities.comments[commentID],{user:entities.users[entities.comments[commentID].user]})) : [];
-  return {
-    comments,
-    mediaReducer,
-    userReducer
+function makeMapStateToProps(initialState, initialOwnProps) {
+
+  const media = entities.medias[initialOwnProps.mediaID];
+
+  return function mapStateToProps(state) {
+    const { entities,mediaReducer,userReducer } = state;
+    const comments = media.comments ? media.comments.map((commentID) => Object.assign({},entities.comments[commentID],{user:entities.users[entities.comments[commentID].user]})) : [];
+    return {
+      comments,
+      mediaReducer,
+      userReducer
+    }
   }
 }
 
-export default connect(mapStateToProps)(MediaComments)
+export default connect(makeMapStateToProps)(MediaComments)

@@ -5,7 +5,6 @@ import { Actions } from 'react-native-router-flux';
 import { favoriteMedia } from './../../actions/Media/favorites';
 import { downloadMedia } from './../../actions/Media/downloads';
 import { fetchMedia } from './../../actions/Media/media';
-import { setCurrentUser } from './../../actions/User/user';
 import MediaItem from './../../components/Media/MediaItem';
 import MediaCommentIcon from './../../components/Media/Comment/MediaCommentIcon';
 import MediaFavoriteIcon from './../../components/Media/MediaFavoriteIcon';
@@ -32,19 +31,19 @@ class Media extends Component {
 
   loadComments() {
     Actions.mediaCommentsScene({
-      itemID:this.props.itemID
+      mediaID:this.props.itemID
     });
   }
 
   loadFavorites() {
     Actions.mediaFavoritesScene({
-      itemID:this.props.itemID
+      mediaID:this.props.itemID
     });
   }
 
   loadDownloads() {
     Actions.mediaDownloadsScene({
-      itemID:this.props.itemID
+      mediaID:this.props.itemID
     });
   }
 
@@ -64,8 +63,8 @@ class Media extends Component {
 
   loadUser(user) {
     Actions.userScene({
-      itemId:user.id,
-      title:user.name
+      title:user.name,
+      itemId:user.id
     })
   }
 
@@ -74,8 +73,7 @@ class Media extends Component {
     const {mediaReducer,media,user} = this.props;
 
     return (
-      <ScrollView style={styles.container} contentInset={{bottom:40}}
-      >
+      <ScrollView contentContainerStyle={styles.container} contentInset={{bottom:49}} >
 
         { mediaReducer.isFetching && <LoadingIndicator /> }
 
@@ -128,6 +126,7 @@ function makeMapStateToProps(initialState, initialOwnProps) {
     const { entities,mediaReducer,userReducer } = state;
     const media = entities.medias[itemID];
 
+    console.warn(media.user);
     return {
       mediaReducer,
       media,

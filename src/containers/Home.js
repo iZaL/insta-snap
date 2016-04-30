@@ -6,7 +6,7 @@ import { fetchMedias } from './../actions/Media/medias';
 import Master from './../components/Master';
 import LoadingIndicator from './../components/LoadingIndicator';
 
-class Medias extends Component {
+class Home extends Component {
 
   constructor(props) {
     super(props);
@@ -20,7 +20,7 @@ class Medias extends Component {
   loadMedia(media) {
     Actions.mediaEntityScene({
       title:media.caption,
-      data: media
+      itemID: media.id
     });
   }
 
@@ -46,12 +46,10 @@ class Medias extends Component {
 }
 
 function mapStateToProps(state) {
-  const { entities,mediasReducer } = state;
   return {
-    ...state,
-    mediasReducer,
+    mediasReducer:state.mediasReducer,
     medias:entities.medias.filter((media) => media != undefined )
   }
 }
 
-export default connect(mapStateToProps)(Medias)
+export default connect(mapStateToProps)(Home);

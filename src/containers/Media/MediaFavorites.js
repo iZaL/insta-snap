@@ -9,6 +9,10 @@ import LoadingIndicator from './../../components/LoadingIndicator';
 
 class MediaFavorites extends Component {
 
+  static propTypes = {
+    mediaID : PropTypes.number.isRequired
+  }
+
   constructor(props) {
     super(props);
   }
@@ -30,7 +34,7 @@ class MediaFavorites extends Component {
 
   render() {
 
-    const {isFetching,users,userReducer} = this.props;
+    const {users,userReducer} = this.props;
     return (
       <ScrollView contentContainerStyle={{top:64}}>
         <UserList
@@ -44,15 +48,18 @@ class MediaFavorites extends Component {
   }
 }
 
+function makeMapStateToProps(initialState, initialOwnProps) {
 
-function mapStateToProps(state) {
-  const {entities,mediaReducer,userReducer } = state;
-  const media = entities.medias[mediaReducer.current];
-  const mediaFavorites = media.favorites ? media.favorites.map((userID) => entities.users[userID]) : [];
-  return {
-    users:mediaFavorites,
-    isFetching:mediaReducer.favorites.isFetching,
-    userReducer
+  const media = entities.medias[initialOwnProps.mediaID];
+
+  return function mapStateToProps(state) {
+    const {entities,mediaReducer,userReducer } = state;
+    const mediaFavorites = media.favorites ? media.favorites.map((userID) => entities.users[userID]) : [];
+    return {
+      users: mediaFavorites,
+      isFetching: mediaReducer.favorites.isFetching,
+      userReducer
+    }
   }
 }
-export default connect(mapStateToProps)(MediaFavorites)
+export default connect(makeMapStateToProps)(MediaFavorites);
