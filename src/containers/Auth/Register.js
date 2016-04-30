@@ -36,12 +36,12 @@ class Register extends Component {
     const {dispatch} = this.props;
     const fields = this.state.fields;
     dispatch(register(fields, (cb)=> {
-      Actions.login();
+      return Actions.login();
     }));
   }
 
   handleLoginRoute() {
-    Actions.login();
+    return Actions.login();
   }
 
   render() {

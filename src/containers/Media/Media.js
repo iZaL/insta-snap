@@ -22,48 +22,41 @@ class Media extends Component {
     super(props);
   }
 
-  componentWillMount() {
-    const {dispatch} = this.props;
-    dispatch(fetchMedia(this.props.mediaID,['user']));
+  componentDidMount() {
+    this.props.dispatch(fetchMedia(this.props.mediaID,['user']));
   }
 
   loadComments() {
-    Actions.mediaCommentsScene({
+    return Actions.mediaCommentsScene({
       mediaID:this.props.mediaID
     });
   }
 
   loadFavorites() {
-    Actions.mediaFavoritesScene({
+    return Actions.mediaFavoritesScene({
       mediaID:this.props.mediaID
     });
   }
 
   loadDownloads() {
-    Actions.mediaDownloadsScene({
+    return Actions.mediaDownloadsScene({
       mediaID:this.props.mediaID
     });
   }
 
+  loadUser(user) {
+    return Actions.userScene({
+      title:user.name,
+      userID:user.id
+    })
+  }
+
   favoriteMedia() {
-    if(!this.props.userReducer.isAuthenticated) {
-      return Actions.loginDialog({dialogText:'Please Login to view and manage your Favorites'});
-    }
     this.props.dispatch(favoriteMedia(this.props.mediaID));
   }
 
   downloadMedia() {
-    if(!this.props.userReducer.isAuthenticated) {
-      return Actions.loginDialog({dialogText:'Please Login to view and manage your Favorites'});
-    }
     this.props.dispatch(downloadMedia(this.props.mediaID));
-  }
-
-  loadUser(user) {
-    Actions.userScene({
-      title:user.name,
-      userID:user.id
-    })
   }
 
   render() {
@@ -78,26 +71,34 @@ class Media extends Component {
         { user && <MediaAuthorInfo user={user} loadUser={this.loadUser.bind(this)}/> }
 
         <View style={styles.buttonWrapper}>
+
           <MediaCommentIcon
             media={media}
             loadComments={() => this.loadComments()}
           />
-          { media.favorites &&
-          <MediaFavoriteIcon
-            media={media}
-            favoriteMedia={() => this.favoriteMedia()}
-            loadFavorites={() => this.loadFavorites()}
-          />
+
+          {
+            media.favorites &&
+            <MediaFavoriteIcon
+              media={media}
+              favoriteMedia={() => this.favoriteMedia()}
+              loadFavorites={() => this.loadFavorites()}
+            />
           }
-          { media.downloads &&
-          <MediaDownloadIcon
-            media={media}
-            downloadMedia={() => this.downloadMedia()}
-            loadDownloads={() => this.loadDownloads()}
-          />
+
+          {
+            media.downloads &&
+            <MediaDownloadIcon
+              media={media}
+              downloadMedia={() => this.downloadMedia()}
+              loadDownloads={() => this.loadDownloads()}
+            />
           }
+
         </View>
+
         <MediaItem media={media} />
+
       </ScrollView>
     );
 

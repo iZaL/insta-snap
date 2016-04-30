@@ -44,7 +44,6 @@ export function fetchMedia(mediaID,requiredFields=[]) {
       return fetch(url)
         .then(response => response.json())
         .then(json => {
-          console.log('json',json);
           dispatch(mediaSuccess(json));
         })
         .catch((err)=> {
@@ -82,10 +81,10 @@ export function saveMedia(uri) {
     };
 
     return getUserToken().then((token) => {
-      const url = API_ROOT + `/medias`;
+      const url = API_ROOT + `/medias?api_token=${token}`;
       var body = new FormData();
-      body.append('media', media);
       body.append('api_token', token);
+      body.append('media', media);
       xhr.open('POST', url);
       xhr.send(body);
       return true;

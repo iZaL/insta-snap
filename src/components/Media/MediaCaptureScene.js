@@ -17,7 +17,7 @@ export default class MediaCaptureScene extends Component {
   _captureMedia() {
     this.camera.capture()
       .then((data) => {
-        this.props.onCapture(data)
+        this.props.onCapture(data.path)
       })
       .catch(err => console.error(err));
   }
