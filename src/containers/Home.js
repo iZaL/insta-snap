@@ -48,7 +48,7 @@ class Home extends Component {
 function mapStateToProps(state) {
   return {
     mediasReducer:state.mediasReducer,
-    medias:entities.medias.filter((media) => media != undefined )
+    medias:state.entities.medias.filter((media) => media != undefined )
   }
 }
 

@@ -82,20 +82,20 @@ class Media extends Component {
         <View style={styles.buttonWrapper}>
           <MediaCommentIcon
             media={media}
-            loadComments={() => this.loadComments.bind(this)}
+            loadComments={() => this.loadComments()}
           />
           { media.favorites &&
           <MediaFavoriteIcon
             media={media}
-            favoriteMedia={() => this.favoriteMedia.bind(this)}
-            loadFavorites={() => this.loadFavorites.bind(this)}
+            favoriteMedia={() => this.favoriteMedia()}
+            loadFavorites={() => this.loadFavorites()}
           />
           }
           { media.downloads &&
           <MediaDownloadIcon
             media={media}
-            downloadMedia={() => this.downloadMedia.bind(this)}
-            loadDownloads={() => this.loadDownloads.bind(this)}
+            downloadMedia={() => this.downloadMedia()}
+            loadDownloads={() => this.loadDownloads()}
           />
           }
         </View>
@@ -126,7 +126,6 @@ function makeMapStateToProps(initialState, initialOwnProps) {
     const { entities,mediaReducer,userReducer } = state;
     const media = entities.medias[itemID];
 
-    console.warn(media.user);
     return {
       mediaReducer,
       media,

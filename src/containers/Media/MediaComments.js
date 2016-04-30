@@ -67,7 +67,7 @@ class MediaComments extends Component {
 
 function makeMapStateToProps(initialState, initialOwnProps) {
 
-  const media = entities.medias[initialOwnProps.mediaID];
+  const media = initialState.entities.medias[initialOwnProps.mediaID];
 
   return function mapStateToProps(state) {
     const { entities,mediaReducer,userReducer } = state;

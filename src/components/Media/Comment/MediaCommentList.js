@@ -49,6 +49,7 @@ export default class MediaCommentList extends Component {
         automaticallyAdjustContentInsets={false}
         style={styles.container}
         renderSeparator={(sectionID, rowID) => <View key={`${sectionID}-${rowID}`} style={styles.separator}/> }
+        enableEmptySections={true}
       />
     )
   }

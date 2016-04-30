@@ -44,8 +44,7 @@ export function login(credentials) {
       .then(response => response.json())
       .then(json => {
         if (json.success) {
-          const normalized = normalize(json.data,Schemas.USER);
-          dispatch(loginSuccess({normalized:normalized,userID:json.data.id}));
+          dispatch(loginSuccess(json));
           setUserToken(json.data.api_token);
           return true;
         } else {
