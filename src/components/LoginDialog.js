@@ -13,7 +13,7 @@ export default class LoginDialog extends Component {
 
   render() {
     return (
-      <Image source={assets.bg} style={styles.container}>
+      <View style={styles.container}>
         <View style={styles.dialogWrapper}>
           <Text style={styles.dialogText}>
             {this.props.dialogText}
@@ -38,7 +38,7 @@ export default class LoginDialog extends Component {
           <Text style={styles.minFeatureText} onPress={()=>Actions.pop()}>Browse the site with limited features</Text>
 
         </View>
-      </Image>
+      </View>
     );
   }
 }
@@ -46,12 +46,12 @@ export default class LoginDialog extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: null,
-    height: null,
     padding: 10,
     justifyContent:'center',
+
   },
   dialogWrapper:{
+    flex:1,
     backgroundColor:'white',
     opacity:0.9,
     paddingTop:50,

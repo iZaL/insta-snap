@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
-import { Scene, TabBar, Modal, Schema, Actions, Switch } from 'react-native-router-flux';
+import React, { Component, } from 'react';
+import { StatusBar, Navigator,StyleSheet } from 'react-native';
+import { Scene, Reducer, Router, Switch, TabBar, Modal, Schema, Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
+import { loginUserByToken } from './actions/Auth/login';
 import Home from './containers/Home';
 import Login from './containers/Auth/Login';
 import Register from './containers/Auth/Register';
@@ -20,15 +22,7 @@ import Settings from './containers/Settings';
 import TabIcon from './components/TabIcon';
 import LoginDialog from './components/LoginDialog';
 
-const styles = StyleSheet.create({
-  container: {
-    flex:1, backgroundColor:'white',justifyContent: 'center',alignItems: 'center'
-  }
-});
-
-export default class Scenes extends Component {
-  render() {
-    return (
+const scenes = Actions.create(
       <Scene key="modal" component={Modal} >
 
         <Scene key="root" hideNavBar={true} component={Modal}>
@@ -38,7 +32,7 @@ export default class Scenes extends Component {
                  default="mediasRouter" selector={props=>props.default}
           >
 
-            <Scene key="settingsTab" component={Medias} icon={TabIcon} selectedTabIcon="ion|ios-gear" tabIcon="ion|ios-gear-outline"
+            <Scene key="settingsTab" component={Settings} icon={TabIcon} selectedTabIcon="ion|ios-gear" tabIcon="ion|ios-gear-outline"
                    navigationBarStyle={{backgroundColor: '#343459',borderBottomColor: '#343459'}}
                    titleStyle={{ color:'white', fontSize:17}}
                    barButtonTextStyle={{ fontSize:17, color:'white' }}
@@ -64,7 +58,6 @@ export default class Scenes extends Component {
                    navigationBarStyle={{backgroundColor: '#343459',borderBottomColor: '#343459'}}
                    titleStyle={{ color:'white', fontSize:17}}
                    barButtonTextStyle={{ fontSize:17, color:'white' }}
-                   style={styles.container}
             >
               <Scene key="mediasScene"  component={Medias} rightTitle="+" onRight={()=>Actions.mediaCapture()}   />
               <Scene key="mediaScene" component={Media} />
@@ -92,7 +85,47 @@ export default class Scenes extends Component {
       </Scene>
 
     );
+
+class Scenes extends Component {
+
+  componentDidMount() {
+    //warning(false, "ScrollView doesn't take rejection well - scrolls anyway");
+
+    StatusBar.barStyle = 'light-content';
+    const {dispatch} = this.props;
+    dispatch(loginUserByToken()).then((success)=>{
+      if(success) {
+        //Actions.tabBar();
+      }
+    });
+  }
+
+  render() {
+    return (
+      <Router createReducer={reducerCreate}  sceneStyle={styles.container} scenes={scenes} />
+    );
+  }
+}
+
+const reducerCreate = params=>{
+  const defaultReducer = Reducer(params);
+  return (state, action)=>{
+    console.log("ACTION:", action);
+    return defaultReducer(state, action);
+  }
+};
+
+function mapStateToProps(state) {
+  return {
+    ...state
   }
 }
 
 
+const styles=  StyleSheet.create({
+  container: {
+    backgroundColor:"transparent"
+  }
+});
+
+export default connect(mapStateToProps)(Scenes);

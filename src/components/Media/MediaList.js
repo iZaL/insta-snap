@@ -59,6 +59,7 @@ export default class MediaList extends Component {
         renderRow={this.renderRow.bind(this)}
         automaticallyAdjustContentInsets={false}
         ref='listView'
+        enableEmptySections={true}
       />
     )
 

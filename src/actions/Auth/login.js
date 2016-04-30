@@ -18,10 +18,11 @@ function loginRequest() {
 }
 
 function loginSuccess(payload) {
+  const normalized = normalize(payload.data,Schemas.USER);
   return {
     type: LOGIN_SUCCESS,
-    userID:payload.userID,
-    entities:payload.normalized.entities
+    userID:payload.data.id,
+    entities:normalized.entities
   };
 }
 
@@ -71,8 +72,7 @@ export function loginUserByToken() {
           .then(response => response.json())
           .then(json => {
             if (json.success) {
-              const normalized = normalize(json.data,Schemas.USER);
-              dispatch(loginSuccess({normalized:normalized,userID:json.data.id}));
+              dispatch(loginSuccess(json));
               return true;
             } else {
               dispatch(loginFailure(json.message));

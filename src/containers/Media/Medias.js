@@ -15,7 +15,7 @@ class Medias extends Component {
 
   componentDidMount() {
     const {dispatch} = this.props;
-    dispatch(fetchMedias());
+    //dispatch(fetchMedias());
   }
 
   loadMedia(media) {
@@ -37,7 +37,9 @@ class Medias extends Component {
     const { medias,mediasReducer } = this.props;
 
     return (
-      <ScrollView contentInset={{bottom:40}} contentContainerStyle={{ paddingTop:64 }}>
+      <ScrollView contentInset={{bottom:40}} style={{ flex:1,paddingTop:64 }}
+        styles={{ flex:1 }}
+      >
         { mediasReducer.isFetching && <LoadingIndicator /> }
         <MediaList medias={medias} loadMedia={this.loadMedia.bind(this)}/>
       </ScrollView>

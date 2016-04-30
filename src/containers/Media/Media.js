@@ -22,7 +22,7 @@ class Media extends Component {
   componentWillMount() {
     const {dispatch} = this.props;
     if(!this.props.media.user) {
-      dispatch(fetchMedia());
+      //dispatch(fetchMedia());
     }
   }
 
@@ -63,9 +63,9 @@ class Media extends Component {
 
     const {mediaReducer,media,user} = this.props;
 
-
     return (
-      <ScrollView style={styles.container} contentInset={{bottom:40}} >
+      <ScrollView style={styles.container} contentInset={{bottom:40}}
+      >
 
         { mediaReducer.isFetching && <LoadingIndicator /> }
 
@@ -100,7 +100,6 @@ class Media extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     padding: 5,
     paddingTop: 64
   },

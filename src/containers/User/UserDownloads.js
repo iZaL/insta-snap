@@ -37,7 +37,7 @@ class UserDownloads extends Component {
     const { medias,userReducer } = this.props;
 
     return (
-      <ScrollView contentInset={{bottom:40}} contentContainerStyle={{ paddingTop:64}}>
+      <ScrollView contentInset={{bottom:40}} contentContainerStyle={{ paddingTop:64}} style={{ flex:1 }}>
         { userReducer.downloads.isFetching && <LoadingIndicator/> }
         <MediaList medias={medias.filter((media) => !media.unDownloaded)} loadMedia={this.loadMedia.bind(this)}/>
       </ScrollView>

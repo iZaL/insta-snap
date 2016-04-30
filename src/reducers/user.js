@@ -33,7 +33,7 @@ import {
 
 const InitialState= Record({
   isAuthenticated :false,
-  authUserID:1, // authenticated user ID
+  authUserID:null, // authenticated user ID
   current:null,
   isFetching:false,
   favorites:new (Record({
