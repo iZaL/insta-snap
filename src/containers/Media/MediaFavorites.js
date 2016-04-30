@@ -50,10 +50,12 @@ class MediaFavorites extends Component {
 
 function makeMapStateToProps(initialState, initialOwnProps) {
 
-  const media = initialState.entities.medias[initialOwnProps.mediaID];
+  const mediaID = initialOwnProps.mediaID;
 
   return function mapStateToProps(state) {
     const {entities,mediaReducer,userReducer } = state;
+    const media = entities.medias[mediaID];
+
     const mediaFavorites = media.favorites ? media.favorites.map((userID) => entities.users[userID]) : [];
     return {
       users: mediaFavorites,

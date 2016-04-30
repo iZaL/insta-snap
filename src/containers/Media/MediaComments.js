@@ -67,10 +67,11 @@ class MediaComments extends Component {
 
 function makeMapStateToProps(initialState, initialOwnProps) {
 
-  const media = initialState.entities.medias[initialOwnProps.mediaID];
+  const mediaID = initialOwnProps.mediaID;
 
   return function mapStateToProps(state) {
     const { entities,mediaReducer,userReducer } = state;
+    const media = entities.medias[mediaID];
     const comments = media.comments ? media.comments.map((commentID) => Object.assign({},entities.comments[commentID],{user:entities.users[entities.comments[commentID].user]})) : [];
     return {
       comments,
