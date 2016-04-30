@@ -7,7 +7,7 @@ import { followUser } from './../../actions/User/user';
 import MediaList from './../../components/Media/MediaList';
 import UserList from './../../components/User/UserList';
 import LoadingIndicator from './../../components/LoadingIndicator';
-
+import uniq from 'lodash/uniq';
 class Followings extends Component {
 
   static propTypes = {
@@ -47,7 +47,7 @@ class Followings extends Component {
     return (
       <ScrollView contentInset={{bottom:40}} contentContainerStyle={{ paddingTop:64}}>
         <UserList
-          users={users}
+          users={users.filter((user) => !user.unFollowed)}
           loadUser={this.loadUser.bind(this)}
           followUser={this.followUser.bind(this)}
           authUserID={userReducer.authUserID ? userReducer.authUserID : 0 }
@@ -64,7 +64,7 @@ function makeMapStateToProps(initialState, initialOwnProps) {
     const user = entities.users[userID];
     return {
       userReducer,
-      users: user && user.followings ? user.followings.map((userID) => entities.users[userID]) : []
+      users: user && user.followings ? uniq(user.followings.map((userID) => entities.users[userID]),'id') : []
     }
   }
 }

@@ -81,7 +81,6 @@ function makeMapStateToProps(initialState, initialOwnProps) {
   return function mapStateToProps(state) {
     const { userReducer,entities } = state;
     const user = state.entities.users[userID];
-    console.log('usss',user);
 
     const medias = user.medias ? user.medias.map((mediaID) => entities.medias[mediaID]) : [];
     return {

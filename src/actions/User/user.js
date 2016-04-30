@@ -95,8 +95,12 @@ export function fetchUserMedias(userID,requiredFields=[]) {
   }
 }
 
-export function fetchUserFollowings(userID) {
-  return (dispatch) => {
+export function fetchUserFollowings(userID,requiredFields=[]) {
+  return (dispatch,getState) => {
+    const user = getState().entities.users[userID];
+    if (user && requiredFields.every(key => user.hasOwnProperty(key))) {
+      return null;
+    }
     dispatch({type:USER_FOLLOWINGS_REQUEST});
     return getUserToken().then((token) => {
         const url = API_ROOT + `/users/${userID}/followings?api_token=${token}`;
@@ -112,8 +116,12 @@ export function fetchUserFollowings(userID) {
   }
 }
 
-export function fetchUserFollowers(userID) {
-  return (dispatch) => {
+export function fetchUserFollowers(userID,requiredFields=[]) {
+  return (dispatch,getState) => {
+    const user = getState().entities.users[userID];
+    if (user && requiredFields.every(key => user.hasOwnProperty(key))) {
+      return null;
+    }
     dispatch({type:USER_FOLLOWERS_REQUEST});
     return getUserToken().then((token) => {
         const url = API_ROOT + `/users/${userID}/followers?api_token=${token}`;

@@ -7,6 +7,7 @@ import { followUser } from './../../actions/User/user';
 import MediaList from './../../components/Media/MediaList';
 import UserList from './../../components/User/UserList';
 import LoadingIndicator from './../../components/LoadingIndicator';
+import uniq from 'lodash/uniq';
 
 class Followers extends Component {
 
@@ -20,7 +21,7 @@ class Followers extends Component {
 
   componentDidMount() {
     const {dispatch} = this.props;
-    dispatch(fetchUserFollowers(this.props.userID));
+    dispatch(fetchUserFollowers(this.props.userID,['followers']));
   }
 
   loadMedia(media) {
@@ -65,7 +66,7 @@ function makeMapStateToProps(initialState, initialOwnProps) {
     const user = entities.users[userID];
     return {
       userReducer,
-      users: user && user.followers ? user.followers.map((userID) => entities.users[userID]) : []
+      users: user && user.followers ? uniq(user.followers.map((userID) => entities.users[userID]),'id') : []
     }
   }
 }

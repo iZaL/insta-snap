@@ -92,7 +92,7 @@ var styles = StyleSheet.create({
     color:'black'
   },
   separator: {
-    height:0.5,
+    height:1,
     backgroundColor:'#E8E8E8'
   }
 

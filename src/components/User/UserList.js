@@ -106,7 +106,7 @@ var styles = StyleSheet.create({
     color: '#DA552F',
   },
   separator: {
-    height:0.5,
+    height:1,
     backgroundColor:'#E8E8E8'
   },
   followWrapper: {
