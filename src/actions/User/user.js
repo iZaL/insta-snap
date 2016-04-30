@@ -52,12 +52,6 @@ function userFollowersSuccess(payload) {
   }
 }
 
-//export function setCurrentUser(id) {
-//  return (dispatch) => {
-//    dispatch({type:SET_CURRENT_USER,current:id});
-//  }
-//}
-
 export function fetchUser(userID) {
   console.log('userID',userID);
   return (dispatch,state) => {

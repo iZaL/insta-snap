@@ -3,11 +3,14 @@ import { ScrollView, View } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { fetchUserFavorites } from './../../actions/User/favorites';
-import { setCurrentMedia } from './../../actions/Media/media';
 import MediaList from './../../components/Media/MediaList';
 import LoadingIndicator from './../../components/LoadingIndicator';
 
 class UserFavorites extends Component {
+
+  static propTypes = {
+    userID:PropTypes.number.isRequired
+  }
 
   constructor(props) {
     super(props);
@@ -23,11 +26,10 @@ class UserFavorites extends Component {
   }
 
   loadMedia(media) {
-    this.props.dispatch(setCurrentMedia(media.id));
-    Actions.mediaTab();
-
-    Actions.mediaScene({
-      title:media.caption
+    Actions.mediasRouter();
+    return Actions.mediaScene({
+      title:media.caption,
+      mediaID:media.id
     });
   }
 

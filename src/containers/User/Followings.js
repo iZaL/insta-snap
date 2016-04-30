@@ -12,33 +12,36 @@ import LoadingIndicator from './../../components/LoadingIndicator';
 
 class Followings extends Component {
 
+  static propTypes = {
+    userID:PropTypes.number.isRequired
+  }
+
   constructor(props) {
     super(props);
   }
 
   componentDidMount() {
     const {dispatch} = this.props;
-    //dispatch(fetchUserFollowings());
+    dispatch(fetchUserFollowings(this.props.userID));
   }
 
   loadMedia(media) {
-    this.props.dispatch(setCurrentMedia(media.id));
-    Actions.mediaTab();
-
-    Actions.mediaScene({
-      title:media.caption
+    Actions.mediasRouter();
+    return Actions.mediaScene({
+      title:media.caption,
+      mediaID:media.id
     });
   }
 
   loadUser(user) {
-    this.props.dispatch(setCurrentUser(user.id));
-    Actions.userScene({
-      title:user.name
+    return Actions.userScene({
+      title:user.name,
+      userID:user.id
     });
   }
 
   followUser(user) {
-    this.props.dispatch(followUser(user.id));
+    this.props.dispatch(followUser(this.props.userReducer.current,user.id));
   }
 
   render() {

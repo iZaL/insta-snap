@@ -3,11 +3,14 @@ import { ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { fetchUserMedias } from './../../actions/Media/medias';
-import { setCurrentMedia } from './../../actions/Media/media';
 import MediaList from './../../components/Media/MediaList';
 import LoadingIndicator from './../../components/LoadingIndicator';
 
 class UserMedias extends Component {
+
+  static propTypes = {
+    userID:PropTypes.number.isRequired
+  }
 
   constructor(props) {
     super(props);
@@ -19,9 +22,10 @@ class UserMedias extends Component {
   }
 
   loadMedia(media) {
-    this.props.dispatch(setCurrentMedia(media.id));
+    Actions.mediasRouter();
     Actions.mediaScene({
-      title:media.caption
+      title:media.caption,
+      mediaID:media.id
     });
   }
 

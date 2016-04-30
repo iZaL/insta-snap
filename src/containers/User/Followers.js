@@ -3,8 +3,6 @@ import { ScrollView, View } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { fetchUserFollowers,fetchUserFollowings,fetchUserMedias } from './../../actions/User/user';
-import { setCurrentMedia } from './../../actions/Media/media';
-import { setCurrentUser } from './../../actions/User/user';
 import { followUser } from './../../actions/User/user';
 import MediaList from './../../components/Media/MediaList';
 import UserList from './../../components/User/UserList';
@@ -12,33 +10,37 @@ import LoadingIndicator from './../../components/LoadingIndicator';
 
 class Followers extends Component {
 
+  static propTypes = {
+    userID:PropTypes.number.isRequired
+  }
+
   constructor(props) {
     super(props);
   }
 
   componentDidMount() {
     const {dispatch} = this.props;
-    //dispatch(fetchUserFollowers());
+    dispatch(fetchUserFollowers(this.props.userID));
   }
 
   loadMedia(media) {
-    this.props.dispatch(setCurrentMedia(media.id));
-    Actions.mediaTab();
+    Actions.mediasRouter();
 
-    Actions.mediaScene({
-      title:media.caption
+    return Actions.mediaScene({
+      title:media.caption,
+      mediaID:media.id
     });
   }
 
   loadUser(user) {
-    this.props.dispatch(setCurrentUser(user.id));
-    Actions.userScene({
-      title:user.name
+    return Actions.userScene({
+      title:user.name,
+      userID:user.id
     });
   }
 
   followUser(user) {
-    this.props.dispatch(followUser(user.id));
+    this.props.dispatch(followUser(this.props.userReducer.current,user.id));
   }
 
 

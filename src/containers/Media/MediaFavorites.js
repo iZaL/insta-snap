@@ -3,7 +3,7 @@ import { ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { fetchMediaFavorites } from './../../actions/Media/favorites';
-import { setCurrentUser, followUser } from './../../actions/User/user';
+import { followUser } from './../../actions/User/user';
 import UserList from './../../components/User/UserList';
 import LoadingIndicator from './../../components/LoadingIndicator';
 
@@ -22,9 +22,9 @@ class MediaFavorites extends Component {
   }
 
   loadUser(user) {
-    this.props.dispatch(setCurrentUser(user.id));
     Actions.userScene({
-      title:user.name
+      title:user.name,
+      userID:user.id
     });
   }
 
