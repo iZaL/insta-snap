@@ -50,12 +50,6 @@ export function fetchMedia(mediaID) {
   }
 }
 
-//export function setCurrentMedia(mediaID) {
-//  return (dispatch) => {
-//    dispatch({type: SET_CURRENT_MEDIA, current: mediaID});
-//  }
-//}
-
 export function saveMedia(uri) {
   return (dispatch) => {
 

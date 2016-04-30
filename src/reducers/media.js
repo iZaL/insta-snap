@@ -10,12 +10,10 @@ import {
   MEDIA_DOWNLOADS_REQUEST,
   MEDIA_DOWNLOADS_SUCCESS,
   MEDIA_DOWNLOADS_FAILURE,
-  SET_CURRENT_MEDIA
 } from '../constants/actiontypes'
 
 const InitialState = Record({
   isFetching:false,
-  current:null,
   favorites:new (Record({
     isFetching:false,
     error:null
@@ -60,8 +58,6 @@ export default function mediaReducer(state = initialState, action = {}) {
       return state
         .setIn(['downloads', 'isFetching'], false)
         .setIn(['downloads', 'error'], action.error);
-    case SET_CURRENT_MEDIA:
-      return state.set('current', action.current);
     default:
       return state
   }

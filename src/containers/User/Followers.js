@@ -43,7 +43,6 @@ class Followers extends Component {
     this.props.dispatch(followUser(this.props.userReducer.authUserID,user.id));
   }
 
-
   render() {
     const { users,userReducer } = this.props;
     return (
