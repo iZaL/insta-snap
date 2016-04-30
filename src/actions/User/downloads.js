@@ -36,11 +36,11 @@ function userDownloadsFailure(err) {
  */
 
 // get Auth user's downloads
-export function fetchUserDownloads() {
+export function fetchUserDownloads(userID) {
   return (dispatch) => {
     dispatch(userDownloadsRequest());
     return getUserToken().then((token) => {
-      const url = API_ROOT + `/downloads?api_token=${token}`;
+      const url = API_ROOT + `/users/${userID}/downloads?api_token=${token}`;
       return fetch(url)
         .then(response => response.json())
         .then(json => {

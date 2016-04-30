@@ -11,7 +11,6 @@ import {
   MEDIA_SAVE_SUCCESS,
   MEDIA_SAVE_REQUEST,
   MEDIA_SAVE_FAILURE,
-  SET_CURRENT_MEDIA
 } from '../../constants/actiontypes';
 
 function mediaSaveSuccess(payload) {
@@ -30,8 +29,13 @@ function mediaSuccess(payload) {
   }
 }
 
-export function fetchMedia(mediaID) {
-  return (dispatch) => {
+export function fetchMedia(mediaID,requiredFields=[]) {
+  return (dispatch,getState) => {
+
+    const media = getState().entities.medias[mediaID];
+    if (media && requiredFields.every(key => media.hasOwnProperty(key))) {
+      return null;
+    }
 
     dispatch({type:MEDIA_REQUEST});
 
@@ -78,10 +82,10 @@ export function saveMedia(uri) {
     };
 
     return getUserToken().then((token) => {
-      const url = API_ROOT + `/medias?api_token=${token}`;
+      const url = API_ROOT + `/medias`;
       var body = new FormData();
-      body.append('api_token', token);
       body.append('media', media);
+      body.append('api_token', token);
       xhr.open('POST', url);
       xhr.send(body);
       return true;

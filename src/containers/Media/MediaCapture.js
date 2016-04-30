@@ -65,7 +65,7 @@ class MediaCapture extends Component {
 
   saveMedia(mediaUri) {
     this.props.dispatch(saveMedia(mediaUri));
-    Actions.pop();
+    //Actions.pop();
   }
 
   retake() {

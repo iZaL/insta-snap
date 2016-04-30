@@ -35,11 +35,11 @@ function userFavoritesFailure(err) {
  */
 
 // get Auth user's favorites
-export function fetchUserFavorites() {
+export function fetchUserFavorites(userID) {
   return (dispatch) => {
     dispatch(userFavoritesRequest());
     return getUserToken().then((token) => {
-      const url = API_ROOT + `/favorites?api_token=${token}`;
+      const url = API_ROOT + `/users/${userID}/favorites?api_token=${token}`;
       return fetch(url)
         .then(response => response.json())
         .then(json => {

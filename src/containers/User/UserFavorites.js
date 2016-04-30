@@ -17,12 +17,8 @@ class UserFavorites extends Component {
   }
 
   componentDidMount() {
-    if(!this.props.userReducer.isAuthenticated) {
-      return Actions.loginDialog({dialogText:'Please Login to view and manage your Favorites'});
-    } else {
-      const {dispatch} = this.props;
-      dispatch(fetchUserFavorites());
-    }
+    const {dispatch,userReducer} = this.props;
+    dispatch(fetchUserFavorites(userReducer.authUserID));
   }
 
   loadMedia(media) {
@@ -35,6 +31,9 @@ class UserFavorites extends Component {
 
   render() {
     const { medias,userReducer } = this.props;
+    if(!this.props.userReducer.isAuthenticated) {
+      return Actions.loginDialog({dialogText: 'Please Login to view and manage your Favorites'});
+    }
     return (
       <ScrollView contentInset={{bottom:40}} contentContainerStyle={{ paddingTop:64}} style={{ flex:1 }}>
         { userReducer.favorites.isFetching ? <LoadingIndicator/> : <View/> }

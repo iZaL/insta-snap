@@ -52,12 +52,12 @@ function userFollowersSuccess(payload) {
   }
 }
 
-export function fetchUser(userID) {
-  console.log('userID',userID);
-  return (dispatch,state) => {
-    //const currentID = id ? id : state().userReducer.current;
-    if(state().entities.users[userID] && state().entities.users[userID].followers) {
-      return;
+export function fetchUser(userID,requiredFields=[]) {
+
+  return (dispatch,getState) => {
+    const user = getState().entities.users[userID];
+    if (user && requiredFields.every(key => user.hasOwnProperty(key))) {
+      return null;
     }
     dispatch({type:USER_REQUEST});
     return getUserToken().then((token) => {
@@ -74,8 +74,12 @@ export function fetchUser(userID) {
   }
 }
 
-export function fetchUserMedias(userID) {
-  return (dispatch) => {
+export function fetchUserMedias(userID,requiredFields=[]) {
+  return (dispatch,getState) => {
+    const user = getState().entities.users[userID];
+    if (user && requiredFields.every(key => user.hasOwnProperty(key))) {
+      return null;
+    }
     dispatch({type:USER_MEDIAS_REQUEST});
     return getUserToken().then((token) => {
         const url = API_ROOT + `/users/${userID}/medias?api_token=${token}`;

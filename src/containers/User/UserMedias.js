@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import { fetchUserMedias } from './../../actions/Media/medias';
+import { fetchUserMedias } from './../../actions/User/user';
 import MediaList from './../../components/Media/MediaList';
 import LoadingIndicator from './../../components/LoadingIndicator';
 

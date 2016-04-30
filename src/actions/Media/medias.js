@@ -26,18 +26,3 @@ export function fetchMedias() {
     })
   }
 }
-
-export function fetchUserMedias(userID) {
-  return (dispatch) => {
-    dispatch({type:MEDIAS_REQUEST});
-    return getUserToken().then((token) => {
-      const url = API_ROOT + `/users/${userID}/medias?api_token=${token}`;
-      return fetch(url)
-        .then(response => response.json())
-        .then(json => {
-          dispatch(mediasSuccess(json));
-        })
-        .catch((err) => dispatch({type: MEDIAS_FAILURE, error: err}))
-    })
-  }
-}

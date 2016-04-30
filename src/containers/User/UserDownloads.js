@@ -21,7 +21,7 @@ class UserDownloads extends Component {
       return Actions.loginDialog({dialogText:'Please Login to view and manage your Favorites'});
     } else {
       const {dispatch} = this.props;
-      dispatch(fetchUserDownloads());
+      dispatch(fetchUserDownloads(this.props.userReducer.authUserID));
     }
   }
 

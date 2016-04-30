@@ -20,7 +20,7 @@ class User extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(fetchUser(this.props.userID));
+    this.props.dispatch(fetchUser(this.props.userID,['medias']));
   }
 
   loadMedia(media) {
@@ -41,7 +41,6 @@ class User extends Component {
     return Actions.followersScene({
       title:user.name + ' Followers',
       userID:user.id
-
     });
   }
 
@@ -82,6 +81,8 @@ function makeMapStateToProps(initialState, initialOwnProps) {
   return function mapStateToProps(state) {
     const { userReducer,entities } = state;
     const user = state.entities.users[userID];
+    console.log('usss',user);
+
     const medias = user.medias ? user.medias.map((mediaID) => entities.medias[mediaID]) : [];
     return {
       userReducer,

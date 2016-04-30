@@ -24,9 +24,7 @@ class Media extends Component {
 
   componentWillMount() {
     const {dispatch} = this.props;
-    if(!this.props.media.user) {
-      dispatch(fetchMedia(this.props.mediaID));
-    }
+    dispatch(fetchMedia(this.props.mediaID,['user']));
   }
 
   loadComments() {
