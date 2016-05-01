@@ -36,8 +36,12 @@ function userDownloadsFailure(err) {
  */
 
 // get Auth user's downloads
-export function fetchUserDownloads(userID) {
-  return (dispatch) => {
+export function fetchUserDownloads(userID,requiredFields=[]) {
+  return (dispatch,getState) => {
+    const user = getState().entities.users[userID];
+    if (user && requiredFields.every(key => user.hasOwnProperty(key))) {
+      return null;
+    }
     dispatch(userDownloadsRequest());
     return getUserToken().then((token) => {
       const url = API_ROOT + `/users/${userID}/downloads?api_token=${token}`;

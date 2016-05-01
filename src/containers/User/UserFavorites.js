@@ -18,7 +18,7 @@ class UserFavorites extends Component {
 
   componentDidMount() {
     const {dispatch,userReducer} = this.props;
-    dispatch(fetchUserFavorites(userReducer.authUserID));
+    dispatch(fetchUserFavorites(userReducer.authUserID,['favorites']));
   }
 
   loadMedia(media) {

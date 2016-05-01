@@ -6,7 +6,7 @@ export default class LoadingIndicator extends Component {
   render() {
     return (
       <View style={[styles.container,this.props.style]}>
-        <ActivityIndicatorIOS size="large" animating={true}/>
+        <ActivityIndicatorIOS size="small" animating={true}/>
       </View>
     );
   }
