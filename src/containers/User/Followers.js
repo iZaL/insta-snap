@@ -20,8 +20,7 @@ class Followers extends Component {
   }
 
   componentDidMount() {
-    const {dispatch} = this.props;
-    dispatch(fetchUserFollowers(this.props.userID,['followers']));
+    this.props.dispatch(fetchUserFollowers(this.props.userID,['followers']));
   }
 
   loadMedia(media) {

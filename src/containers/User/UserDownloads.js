@@ -5,6 +5,7 @@ import { Actions } from 'react-native-router-flux';
 import { fetchUserDownloads } from './../../actions/User/downloads';
 import MediaList from './../../components/Media/MediaList';
 import LoadingIndicator from './../../components/LoadingIndicator';
+import LoginDialog from './../../components/LoginDialog';
 
 class UserDownloads extends Component {
 
@@ -17,9 +18,7 @@ class UserDownloads extends Component {
   }
 
   componentDidMount() {
-      const {dispatch} = this.props;
-      dispatch(fetchUserDownloads(this.props.userReducer.authUserID,['downloads']));
-
+    this.props.dispatch(fetchUserDownloads(this.props.userReducer.authUserID,['downloads']));
   }
 
   loadMedia(media) {
@@ -32,7 +31,9 @@ class UserDownloads extends Component {
 
   render() {
     const { medias,userReducer } = this.props;
-
+    if(!userReducer.isAuthenticated) {
+      return <LoginDialog message="Please Login to view and manage your Favorites"/>
+    }
     return (
       <ScrollView contentInset={{bottom:40}} contentContainerStyle={{ paddingTop:64}} style={{ flex:1 }}>
         { userReducer.downloads.isFetching && <LoadingIndicator/> }

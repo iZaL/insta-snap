@@ -79,8 +79,8 @@ export function favoriteMedia(mediaID) {
         body: JSON.stringify(params)
       })
         .then(response => response.json())
-        .then(json => {
-        }).catch((err)=> console.log(err))
+        .then(json => {})
+        .catch((err)=> console.log(err))
     })
   }
 }
@@ -101,7 +101,7 @@ export function fetchMediaFavorites(mediaID) {
           if(json.success) {
             dispatch(mediaFavoritesSuccess(json));
           } else {
-            Promise.reject(new Error(json.message))
+            throw new Error(json.message);
           }
         })
     }).catch((err)=> dispatch(mediaFavoritesFailure(err)))

@@ -5,6 +5,7 @@ import { Actions } from 'react-native-router-flux';
 import { fetchUserFavorites } from './../../actions/User/favorites';
 import MediaList from './../../components/Media/MediaList';
 import LoadingIndicator from './../../components/LoadingIndicator';
+import LoginDialog from './../../components/LoginDialog';
 
 class UserFavorites extends Component {
 
@@ -31,8 +32,8 @@ class UserFavorites extends Component {
 
   render() {
     const { medias,userReducer } = this.props;
-    if(!this.props.userReducer.isAuthenticated) {
-      return Actions.loginDialog({dialogText: 'Please Login to view and manage your Favorites'});
+    if(!userReducer.isAuthenticated) {
+      return <LoginDialog message="Please Login to view and manage your Favorites"/>
     }
     return (
       <ScrollView contentInset={{bottom:40}} contentContainerStyle={{ paddingTop:64}} style={{ flex:1 }}>

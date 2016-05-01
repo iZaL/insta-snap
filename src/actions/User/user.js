@@ -184,8 +184,8 @@ export function followUser(authUserID,followeeID) {
         body: JSON.stringify(params)
       })
         .then(response => response.json())
-        .then(json => {
-        }).catch((err)=> console.log(err))
+        .then(json => {})
+        .catch((err)=> console.log(err))
     })
   }
 }

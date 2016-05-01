@@ -50,7 +50,7 @@ export function fetchUserFavorites(userID,requiredFields=[]) {
           if(json.success) {
             dispatch(userFavoritesSuccess(json));
           } else {
-            Promise.reject(new Error(json.message))
+            throw new Error(json.message);
           }
         })
     }).catch((err)=> dispatch(userFavoritesFailure(err)))

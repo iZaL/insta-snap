@@ -14,7 +14,7 @@ class Medias extends Component {
   }
 
   componentDidMount() {
-    //this.props.dispatch(fetchMedias());
+    this.props.dispatch(fetchMedias());
   }
 
   loadMedia(media) {

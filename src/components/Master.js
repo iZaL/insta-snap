@@ -54,8 +54,6 @@ export default class Master extends Component {
     )
   }
 
-
-
   render() {
     const {medias} = this.props;
     let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2})
@@ -75,6 +73,7 @@ export default class Master extends Component {
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           style={[styles.scrollView,styles.horizontalScrollView]}
+          enableEmptySections={true}
         />
       </View>
     );

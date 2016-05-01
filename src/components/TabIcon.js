@@ -11,15 +11,22 @@ export default class TabIcon extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Icon
           name={this.props.selected ? this.props.selectedTabIcon : this.props.tabIcon }
           size={22}
           color={ this.props.selected ? '#66b2ff' :'#FFFFFF'}
           style={{width:22,height:22,alignSelf:'center',fontWeight:'300',}}
         />
-        <Text style={{color: this.props.selected ? '#66b2ff' :'#FFFFFF', fontSize:12, fontWeight:'300',fontFamily:'Menlo-Bold'}}>{this.props.title}</Text>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container:{
+    flex:1,
+    justifyContent:'center',
+    paddingBottom:10
+  }
+});

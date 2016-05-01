@@ -7,8 +7,7 @@ import Button from 'apsl-react-native-button';
 export default class LoginDialog extends Component {
 
   static propTypes = {
-    dialogText:PropTypes.string.isRequired
-
+    message:PropTypes.string.isRequired
   };
 
   render() {
@@ -16,7 +15,7 @@ export default class LoginDialog extends Component {
       <Image source={assets.bg} style={styles.container}>
         <View style={styles.dialogWrapper}>
           <Text style={styles.dialogText}>
-            {this.props.dialogText}
+            {this.props.message}
           </Text>
           <Button
             style={styles.button}

@@ -68,8 +68,7 @@ export function fetchMediaDownloads(mediaID) {
           if(json.success) {
             dispatch(mediaDownloadsSuccess(json));
           } else {
-            console.log('rejected');
-            Promise.reject(new Error(json.message))
+            throw new Error(json.message);
           }
         })
     }).catch((err)=> dispatch(mediaDownloadsFailure(err)))
@@ -100,9 +99,8 @@ export function downloadMedia(mediaID) {
         body: JSON.stringify(params)
       })
         .then(response => response.json())
-        .then(json => {
-          console.log('json',json)
-        }).catch((err)=> console.log(err))
+        .then(json => {})
+        .catch((err)=> console.log(err))
     })
   }
 }

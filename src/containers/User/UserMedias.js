@@ -17,8 +17,7 @@ class UserMedias extends Component {
   }
 
   componentDidMount() {
-    const {dispatch} = this.props;
-    dispatch(fetchUserMedias(this.props.userID,['medias']));
+    this.props.dispatch(fetchUserMedias(this.props.userID,['medias']));
   }
 
   loadMedia(media) {

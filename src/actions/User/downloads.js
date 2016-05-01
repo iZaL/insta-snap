@@ -51,8 +51,7 @@ export function fetchUserDownloads(userID,requiredFields=[]) {
           if(json.success) {
             dispatch(userDownloadsSuccess(json));
           } else {
-            console.log('rejected');
-            Promise.reject(new Error(json.message))
+            throw new Error(json.message);
           }
         })
     }).catch((err)=> dispatch(userDownloadsFailure(err)))

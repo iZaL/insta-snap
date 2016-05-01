@@ -12,8 +12,14 @@ function mediasSuccess(payload) {
   }
 }
 
-export function fetchMedias() {
-  return (dispatch) => {
+export function fetchMedias(requiredFields=[]) {
+  return (dispatch,getState) => {
+
+    //const medias = getState().entities.medias;
+    //if (medias && requiredFields.every(key => medias.hasOwnProperty(key))) {
+    //  return null;
+    //}
+
     dispatch({type:MEDIAS_REQUEST});
     return getUserToken().then((token) => {
       const url = API_ROOT + `/medias?api_token=${token}`;
