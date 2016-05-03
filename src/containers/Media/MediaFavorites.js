@@ -29,7 +29,7 @@ class MediaFavorites extends Component {
   }
 
   loadMore() {
-    this.props.dispatch(fetchMediaFavorites(this.props.mediaID));
+    this.props.dispatch(fetchMediaFavorites(this.props.mediaID,true));
   }
 
   followUser(user) {

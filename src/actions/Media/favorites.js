@@ -114,11 +114,11 @@ export function fetchMediaFavorites(mediaID,forceLoad=false) {
   return (dispatch,getState) => {
     const {
       nextPageUrl = API_ROOT + `/medias/${mediaID}/favorites`,
+      pageCount = 0
       } = getState().pagination.mediaFavorites[mediaID] || {};
 
-    if (nextPageUrl==null) {
-      console.log('not loading');
-      return ;
+    if (nextPageUrl == null || (pageCount > 0 && !forceLoad)) {
+      return null
     }
 
     dispatch(mediaFavoritesRequest(mediaID));
