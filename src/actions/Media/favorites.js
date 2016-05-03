@@ -107,10 +107,9 @@ export function fetchMediaFavorites(mediaID,forceLoad=false) {
     }
 
     dispatch(mediaFavoritesRequest(mediaID));
-    return getUserToken().then((token) => {
-      return fetch(nextPageUrl)
-        .then(response => response.json())
-        .then(json => dispatch(mediaFavoritesSuccess(mediaID,json)))
-    }).catch((err)=> dispatch(mediaFavoritesFailure(mediaID,err)))
+    return fetch(nextPageUrl)
+      .then(response => response.json())
+      .then(json => dispatch(mediaFavoritesSuccess(mediaID,json)))
+      .catch((err)=> dispatch(mediaFavoritesFailure(mediaID,err)))
   }
 }

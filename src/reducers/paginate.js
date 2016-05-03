@@ -66,7 +66,7 @@ function paginate({ types, mapActionToKey }) {
 }
 
 // Updates the pagination data for different actions.
-export default pagination = combineReducers({
+export default mediaFavorites = combineReducers({
   mediaFavorites: paginate({
     mapActionToKey: action => action.entityID,
     types: [

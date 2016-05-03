@@ -1,4 +1,5 @@
 import {Record} from 'immutable';
+import paginate from './../reducers/paginate';
 
 import {
   MEDIA_REQUEST,
@@ -14,14 +15,18 @@ import {
 
 const InitialState = Record({
   isFetching:false,
-  favorites:new (Record({
-    isFetching:false,
-    error:null
-  })),
   downloads:new (Record({
     isFetching:false,
     error:null
   })),
+  //favorites: paginate({
+  //  mapActionToKey: action => action.entityID,
+  //  types: [
+  //    MEDIA_FAVORITES_REQUEST,
+  //    MEDIA_FAVORITES_SUCCESS,
+  //    MEDIA_DOWNLOADS_FAILURE
+  //  ]
+  //})
 });
 
 const initialState = new InitialState;
@@ -34,18 +39,6 @@ export default function mediaReducer(state = initialState, action = {}) {
       return state.set('isFetching', false);
     case MEDIA_FAILURE:
       return state.set('isFetching', false);
-    //case MEDIA_FAVORITES_REQUEST:
-    //  return state
-    //    .setIn(['favorites', 'isFetching'], true)
-    //    .setIn(['favorites', 'error'], null);
-    //case MEDIA_FAVORITES_SUCCESS:
-    //  return state
-    //    .setIn(['favorites', 'isFetching'], false)
-    //    .setIn(['favorites', 'error'], null)
-    //case MEDIA_FAVORITES_FAILURE:
-    //  return state
-    //    .setIn(['favorites', 'isFetching'], false)
-    //    .setIn(['favorites', 'error'], action.error);
     case MEDIA_DOWNLOADS_REQUEST:
       return state
         .setIn(['downloads', 'isFetching'], true)
@@ -62,3 +55,15 @@ export default function mediaReducer(state = initialState, action = {}) {
       return state
   }
 }
+
+//// Updates the pagination data for different actions.
+//export default pagination = combineReducers({
+//  mediaFavorites: paginate({
+//    mapActionToKey: action => action.entityID,
+//    types: [
+//      ActionTypes.MEDIA_FAVORITES_REQUEST,
+//      ActionTypes.MEDIA_FAVORITES_SUCCESS,
+//      ActionTypes.MEDIA_DOWNLOADS_FAILURE
+//    ]
+//  })
+//})
