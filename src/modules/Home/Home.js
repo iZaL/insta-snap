@@ -28,11 +28,6 @@ class Home extends Component {
   render() {
 
     const {homeReducer,liveMedias,followerMedias } = this.props;
-    console.log('followerMedias',followerMedias);
-
-    if (homeReducer.isFetching) {
-      return <LoadingIndicator />;
-    }
 
     return (
       <ScrollView
@@ -40,6 +35,7 @@ class Home extends Component {
         contentContainerStyle={{paddingTop:64}}
         automaticallyAdjustContentInsets={false}
       >
+        { homeReducer.isFetching && <LoadingIndicator /> }
         <MediaGrid medias={liveMedias} loadMedia={this.loadMedia.bind(this)} title="المباشر"/>
         <MediaGrid medias={followerMedias} loadMedia={this.loadMedia.bind(this)} title="الخاص"/>
         <MediaGrid medias={liveMedias} loadMedia={this.loadMedia.bind(this)} title="Live"/>

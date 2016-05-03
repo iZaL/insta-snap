@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { ListView, ScrollView, TouchableHighlight, StyleSheet, Text, View,AlertIOS } from 'react-native';
-import { logoutUser } from './../actions/Auth/login';
+import { logoutUser } from './../../actions/Auth/login';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import SettingScene from './../components/SettingScene';
+import SettingsCell from './Components/SettingsCell';
+import SettingScene from './../../components/SettingScene';
+import find from 'lodash/find';
 
 class Settings extends Component {
 
@@ -16,6 +18,19 @@ class Settings extends Component {
     Actions.home();
   }
 
+  loadScene(name){
+    switch(name) {
+      case 'profile':
+        Actions.mediasRouter();
+        return Actions.userScene({
+          title:this.props.authUser.name,
+          userID:this.props.authUser.id
+        });
+      default :
+        return;
+    }
+  }
+
   logout() {
     AlertIOS.alert('Are you sure you want to logout ?  ', null, [{text: 'Yes', onPress:()=>{this.performLogout()}},{text:'No'}]);
   }
@@ -23,7 +38,8 @@ class Settings extends Component {
   render() {
     return (
       <ScrollView contentContainerStyle={{backgroundColor: '#f0f5f5',paddingTop:64}}>
-        <SettingScene logout={this.logout.bind(this)}/>
+        <SettingsCell icon="ion|power" title="Logout" callback={()=>this.logout()} />
+        <SettingsCell icon="ion|person" title="Profile" callback={()=>this.loadScene('profile')} />
       </ScrollView>
     );
 
@@ -31,7 +47,9 @@ class Settings extends Component {
 }
 
 function mapStateToProps(state) {
-  return {state}
+  return {
+    authUser:state.entities.users ? find(state.entities.users,['id',state.userReducer.authUserID]) : ''
+  }
 }
 
 export default connect(mapStateToProps)(Settings);

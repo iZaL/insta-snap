@@ -18,7 +18,7 @@ import MediaCapture from './containers/Media/MediaCapture';
 import UserMedias from './containers/User/UserMedias';
 import Followers from './containers/User/Followers';
 import Followings from './containers/User/Followings';
-import Settings from './containers/Settings';
+import Settings from './modules/Settings/Settings';
 import TabIcon from './components/TabIcon';
 import LoginDialog from './components/LoginDialog';
 

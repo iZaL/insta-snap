@@ -65,7 +65,7 @@ class User extends Component {
 
   render() {
 
-    const {userReducer,user, medias} = this.props;
+    const {userReducer,user, medias,mediasReducer} = this.props;
 
     return (
       <ScrollView style={{paddingTop:64}} contentInset={{bottom:49}}>
@@ -80,6 +80,7 @@ class User extends Component {
         <MediaList medias={medias}
                    loadMedia={this.loadMedia.bind(this)}
                    loadMore={this.loadMore.bind(this)}
+                   mediasReducer={mediasReducer}
 
         />
       </ScrollView>
@@ -96,6 +97,7 @@ function makeMapStateToProps(initialState, initialOwnProps) {
 
     const medias = user.medias ? user.medias.map((mediaID) => entities.medias[mediaID]) : [];
     return {
+      mediasReducer:state.mediasReducer,
       userReducer,
       user,
       medias
