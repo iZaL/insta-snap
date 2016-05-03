@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { fetchMedias } from './../../actions/Media/medias';
@@ -37,11 +37,13 @@ class Medias extends Component {
     const { medias,mediasReducer } = this.props;
 
     return (
-      <MediaList medias={medias}
-                 loadMedia={this.loadMedia.bind(this)}
-                 loadMore={this.loadMore.bind(this)}
-                 mediasReducer={mediasReducer}
-      />
+      <View style={{ flex:1, paddingTop: 64}}>
+        <MediaList medias={medias}
+                   loadMedia={this.loadMedia.bind(this)}
+                   loadMore={this.loadMore.bind(this)}
+                   mediasReducer={mediasReducer}
+        />
+      </View>
     );
 
   }
