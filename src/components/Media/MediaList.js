@@ -4,12 +4,15 @@ import { getExtension } from './../../utils/functions';
 //import Video from 'react-native-video';
 import VideoPlayer from './../../components/Video';
 const Lightbox = require('react-native-lightbox');
+import LoadingIndicator from './../../components/LoadingIndicator';
 
 export default class MediaList extends Component {
 
   static propTypes = {
     medias:PropTypes.array.isRequired,
-    loadMedia:PropTypes.func.isRequired
+    loadMedia:PropTypes.func.isRequired,
+    loadMore:PropTypes.func.isRequired,
+    mediasReducer:PropTypes.object.isRequired
   };
 
 
@@ -21,6 +24,12 @@ export default class MediaList extends Component {
     return (
       <VideoPlayer uri={url} />
     );
+  }
+
+  footer = () => {
+    return (
+        <LoadingIndicator />
+    )
   }
 
   renderVideo(media) {
@@ -58,7 +67,6 @@ export default class MediaList extends Component {
 
     return (
       <ListView
-        contentInset={{top:64,bottom:40}}
         contentContainerStyle={styles.list}
         dataSource={dataSource}
         renderRow={this.renderRow.bind(this)}

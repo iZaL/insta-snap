@@ -55,6 +55,14 @@ class User extends Component {
     this.props.dispatch(followUser(this.props.userReducer.authUserID,user.id));
   }
 
+  loadMore() {
+    console.log('loading more');
+    //if(!this.props.mediasReducer.isFetching) {
+      console.log('fired loading more');
+      //this.props.dispatch(fetchUserMedias(true));
+    //}
+  }
+
   render() {
 
     const {userReducer,user, medias} = this.props;
@@ -69,7 +77,11 @@ class User extends Component {
           loadFollowings={this.loadFollowings.bind(this)}
           followUser={this.followUser.bind(this)}
         />
-        <MediaList medias={medias} loadMedia={this.loadMedia.bind(this)}/>
+        <MediaList medias={medias}
+                   loadMedia={this.loadMedia.bind(this)}
+                   loadMore={this.loadMore.bind(this)}
+
+        />
       </ScrollView>
     );
 

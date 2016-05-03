@@ -40,6 +40,7 @@ class Medias extends Component {
       <MediaList medias={medias}
                  loadMedia={this.loadMedia.bind(this)}
                  loadMore={this.loadMore.bind(this)}
+                 mediasReducer={mediasReducer}
       />
     );
 
