@@ -31,14 +31,18 @@ class UserFavorites extends Component {
   }
 
   render() {
-    const { medias,userReducer } = this.props;
+    const { medias,userReducer,mediasReducer } = this.props;
     if(!userReducer.isAuthenticated) {
       return <LoginDialog message="Please Login to view and manage your Favorites"/>
     }
     return (
       <ScrollView contentInset={{bottom:40}} contentContainerStyle={{ paddingTop:64}} style={{ flex:1 }}>
         { userReducer.favorites.isFetching ? <LoadingIndicator/> : <View/> }
-        <MediaList medias={medias.filter((media) => !media.unFavorited)} loadMedia={this.loadMedia.bind(this)}/>
+        <MediaList medias={medias.filter((media) => !media.unFavorited)} loadMedia={this.loadMedia.bind(this)}
+                   loadMore={()=>''}
+                   mediasReducer={mediasReducer}
+
+        />
       </ScrollView>
     );
   }
@@ -49,7 +53,9 @@ function mapStateToProps(state) {
   const user = entities.users[userReducer.authUserID];
   return {
     medias: user && user.favorites ? user.favorites.map((favoriteID) => entities.medias[favoriteID]) : [] ,
-    userReducer
+    userReducer,
+    mediasReducer:state.mediasReducer
+
   }
 }
 

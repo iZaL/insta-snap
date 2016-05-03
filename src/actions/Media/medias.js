@@ -6,7 +6,6 @@ import { MEDIAS_SUCCESS, MEDIAS_REQUEST, MEDIAS_FAILURE } from '../../constants/
 
 function mediasSuccess(payload) {
   const normalized = normalize(payload, arrayOf(Schemas.MEDIA_ARRAY));
-  console.log('nrmz entites',normalized.entities);
   return {
     type: MEDIAS_SUCCESS,
     entities:normalized.entities,

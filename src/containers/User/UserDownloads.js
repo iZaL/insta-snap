@@ -30,14 +30,17 @@ class UserDownloads extends Component {
   }
 
   render() {
-    const { medias,userReducer } = this.props;
+    const { medias,userReducer,mediasReducer } = this.props;
     if(!userReducer.isAuthenticated) {
       return <LoginDialog message="Please Login to view and manage your Favorites"/>
     }
     return (
       <ScrollView contentInset={{bottom:40}} contentContainerStyle={{ paddingTop:64}} style={{ flex:1 }}>
         { userReducer.downloads.isFetching && <LoadingIndicator/> }
-        <MediaList medias={medias.filter((media) => !media.unDownloaded)} loadMedia={this.loadMedia.bind(this)}/>
+        <MediaList medias={medias.filter((media) => !media.unDownloaded)} loadMedia={this.loadMedia.bind(this)}
+                   loadMore={()=>''}
+                   mediasReducer={mediasReducer}
+        />
       </ScrollView>
     );
 

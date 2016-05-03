@@ -30,11 +30,14 @@ class UserMedias extends Component {
 
   render() {
 
-    const { medias,userReducer } = this.props;
+    const { medias,userReducer,mediasReducer } = this.props;
     return (
       <ScrollView contentInset={{bottom:40}} contentContainerStyle={{ paddingTop:64 }}>
         { userReducer.medias.isFetching && <LoadingIndicator /> }
-        <MediaList medias={medias} loadMedia={this.loadMedia.bind(this)}/>
+        <MediaList medias={medias} loadMedia={this.loadMedia.bind(this)}
+                   loadMore={()=>''}
+                   mediasReducer={mediasReducer}
+        />
       </ScrollView>
     );
 
@@ -49,7 +52,8 @@ function makeMapStateToProps(initialState, initialOwnProps) {
     const user = entities.users[userID];
     return {
       medias: user && user.medias ? user.medias.map((mediaID) => entities.medias[mediaID]) : [],
-      userReducer
+      userReducer,
+      mediasReducer:state.mediasReducer
     }
   }
 }
