@@ -90,25 +90,42 @@ export function favoriteMedia(mediaID) {
   }
 }
 
+export function loadStargazers(fullName, nextPage) {
+  return (dispatch, getState) => {
+    const {
+      nextPageUrl = `repos/${fullName}/stargazers`,
+      pageCount = 0
+      } = getState().pagination.stargazersByRepo[fullName] || {}
+
+    if (pageCount > 0 && !nextPage) {
+      return null
+    }
+
+    return dispatch(fetchStargazers(fullName, nextPageUrl))
+  }
+}
+
 /**
  * @returns {Function}
  */
 
 // get Auth user's favorites
-export function fetchMediaFavorites(mediaID) {
-  return (dispatch) => {
+export function fetchMediaFavorites(mediaID,forceLoad=false) {
+  return (dispatch,getState) => {
+    const {
+      nextPageUrl = API_ROOT + `/medias/${mediaID}/favorites`,
+      } = getState().pagination.mediaFavorites[mediaID] || {};
+
+    if (nextPageUrl==null) {
+      console.log('not loading');
+      return ;
+    }
+
     dispatch(mediaFavoritesRequest(mediaID));
     return getUserToken().then((token) => {
-      const url = API_ROOT + `/medias/${mediaID}/favorites?api_token=${token}`;
-      return fetch(url)
+      return fetch(nextPageUrl)
         .then(response => response.json())
-        .then(json => {
-          //if(json.success) {
-            dispatch(mediaFavoritesSuccess(mediaID,json));
-          //} else {
-          //  throw new Error(json.message);
-          //}
-        })
+        .then(json => dispatch(mediaFavoritesSuccess(mediaID,json)))
     }).catch((err)=> dispatch(mediaFavoritesFailure(mediaID,err)))
   }
 }

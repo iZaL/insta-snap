@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView,View,Text} from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { fetchMediaFavorites } from './../../actions/Media/favorites';
@@ -18,7 +18,7 @@ class MediaFavorites extends Component {
   }
 
   componentWillMount() {
-    //this.props.dispatch(fetchMediaFavorites());
+    this.props.dispatch(fetchMediaFavorites(this.props.mediaID));
   }
 
   loadUser(user) {
@@ -26,6 +26,10 @@ class MediaFavorites extends Component {
       title:user.name,
       userID:user.id
     });
+  }
+
+  loadMore() {
+    this.props.dispatch(fetchMediaFavorites(this.props.mediaID));
   }
 
   followUser(user) {
@@ -43,25 +47,40 @@ class MediaFavorites extends Component {
           followUser={this.followUser.bind(this)}
           authUserID={userReducer.authUserID ? userReducer.authUserID : 0 }
         />
+        <View>
+          <Text onPress={()=>this.loadMore()}>load more</Text>
+        </View>
       </ScrollView>
     )
   }
 }
 
-function makeMapStateToProps(initialState, initialOwnProps) {
+//function makeMapStateToProps(initialState, initialOwnProps) {
+//
 
-  const mediaID = initialOwnProps.mediaID;
+  function mapStateToProps(state,props) {
+    const mediaID = props.mediaID;
 
-  return function mapStateToProps(state) {
-    const {entities,mediaReducer,userReducer } = state;
-    const media = entities.medias[mediaID];
+    const {mediaReducer,userReducer } = state;
+    //const {
+    //  pagination: { starredByUser },
+    //  entities: { users, repos }
+    //  } = state
+    const {
+      pagination: { mediaFavorites },
+      entities: { users }
+      } = state;
 
-    const mediaFavorites = media.favorites ? media.favorites.map((userID) => entities.users[userID]) : [];
+    console.log('paginatoin',state.pagination);
+
+    const favoritedPagination = mediaFavorites[mediaID] || { ids: []};
+    const favoritedUsers = favoritedPagination.ids.map(id => users[id]);
+
     return {
-      users: mediaFavorites,
+      users: favoritedUsers,
       isFetching: mediaReducer.favorites.isFetching,
       userReducer
     }
   }
-}
-export default connect(makeMapStateToProps)(MediaFavorites);
+//}
+export default connect(mapStateToProps)(MediaFavorites);
