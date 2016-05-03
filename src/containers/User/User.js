@@ -81,7 +81,6 @@ class User extends Component {
                    loadMedia={this.loadMedia.bind(this)}
                    loadMore={this.loadMore.bind(this)}
                    mediasReducer={mediasReducer}
-
         />
       </ScrollView>
     );

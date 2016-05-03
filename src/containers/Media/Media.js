@@ -78,7 +78,7 @@ class Media extends Component {
           />
 
           {
-            media.favorites &&
+            media.favorites  &&
             <MediaFavoriteIcon
               media={media}
               favoriteMedia={() => this.favoriteMedia()}

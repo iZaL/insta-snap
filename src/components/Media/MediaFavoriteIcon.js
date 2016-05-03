@@ -14,7 +14,7 @@ export default class MediaFavoriteIcon extends Component {
     return (
       <View style={{flex:1, flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
         <TouchableHighlight onPress={() => this.props.loadFavorites()} underlayColor="transparent">
-          <Text style={styles.count}>{media.favorites && media.favorites.length}</Text>
+          <Text style={styles.count}>{media.favorites.length} Favorites</Text>
         </TouchableHighlight>
         <TouchableHighlight onPress={() => this.props.favoriteMedia()} underlayColor="transparent">
           <Icon

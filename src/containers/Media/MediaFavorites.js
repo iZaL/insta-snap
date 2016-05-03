@@ -38,7 +38,7 @@ class MediaFavorites extends Component {
 
   render() {
 
-    const {users,userReducer} = this.props;
+    const {users,userReducer,favorites} = this.props;
     return (
       <ScrollView contentContainerStyle={{top:64}}>
         <UserList
@@ -47,9 +47,6 @@ class MediaFavorites extends Component {
           followUser={this.followUser.bind(this)}
           authUserID={userReducer.authUserID ? userReducer.authUserID : 0 }
         />
-        <View>
-          <Text onPress={()=>this.loadMore()}>load more</Text>
-        </View>
       </ScrollView>
     )
   }

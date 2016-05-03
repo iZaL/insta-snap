@@ -39,10 +39,7 @@ class MediaComments extends Component {
   }
 
   commentMedia(comment) {
-    if(!this.props.userReducer.isAuthenticated) {
-      return Actions.loginDialog({dialogText:'Please Login to view and manage your Favorites'});
-    }
-
+    console.log('commenting');
     const {dispatch} = this.props;
     dispatch(commentMedia(this.props.mediaID,comment)).then(()=>{
       this.refs.scrollView.scrollTo({x: 0})

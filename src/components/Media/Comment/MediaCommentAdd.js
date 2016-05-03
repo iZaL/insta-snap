@@ -5,7 +5,6 @@ export default class MediaCommentAdd extends Component {
 
   static propTypes = {
     commentMedia:PropTypes.func.isRequired,
-    commentMedia:PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -16,10 +15,6 @@ export default class MediaCommentAdd extends Component {
     this.submitComment = this.submitComment.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
-
-  static propTypes = {
-    commentMedia:PropTypes.func.isRequired,
-  };
 
   handleChange = (comment) => {
     return this.setState({
@@ -76,7 +71,7 @@ var styles = StyleSheet.create({
   },
   buttonGreen: {
     height: 40,
-    backgroundColor: '#5BC3BE',
+    backgroundColor: '#343459',
     borderColor: '#48BBEC',
     alignSelf: 'stretch',
     justifyContent: 'center',

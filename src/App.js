@@ -63,17 +63,17 @@ const scenes = Actions.create(
           />
           <Scene key="mediaScene" component={Media}
           />
-          <Scene key="mediaCommentsScene" component={MediaComments}
+          <Scene key="mediaCommentsScene" component={MediaComments} title="Comment"
           />
-          <Scene key="mediaFavoritesScene" component={MediaFavorites}
+          <Scene key="mediaFavoritesScene" component={MediaFavorites} title="Favorites"
           />
-          <Scene key="mediaDownloadsScene" component={MediaDownloads}
+          <Scene key="mediaDownloadsScene" component={MediaDownloads} title="Downloads"
           />
-          <Scene key="userMediasScene" component={UserMedias}
+          <Scene key="userMediasScene" component={UserMedias} title="Downloads"
           />
-          <Scene key="followersScene" component={Followers}
+          <Scene key="followersScene" component={Followers} title="Followers"
           />
-          <Scene key="followingsScene" component={Followings}
+          <Scene key="followingsScene" component={Followings} title="Followings"
           />
           <Scene key="userScene" component={User}
           />

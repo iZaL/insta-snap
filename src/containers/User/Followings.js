@@ -19,7 +19,7 @@ class Followings extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(fetchUserFollowings(this.props.userID));
+    this.props.dispatch(fetchUserFollowings(this.props.userID,['followings']));
   }
 
   loadMedia(media) {
@@ -45,6 +45,7 @@ class Followings extends Component {
     const { users,userReducer } = this.props;
     return (
       <ScrollView contentInset={{bottom:40}} contentContainerStyle={{ paddingTop:64}}>
+        {userReducer.followings.isFetching && <LoadingIndicator/> }
         <UserList
           users={users.filter((user) => !user.unFollowed)}
           loadUser={this.loadUser.bind(this)}

@@ -13,6 +13,7 @@ export default class MediaCommentIcon extends Component {
       <View style={{flex:1, flexDirection:'row',justifyContent:'center'}}>
         <TouchableHighlight onPress={() => this.props.loadComments()} underlayColor="transparent">
           <View style={{flexDirection:'row'}}>
+            <Text style={styles.count}>Comments</Text>
             <Icon
               name='ion|ios-chatbubble-outline'
               size={24}
