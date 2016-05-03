@@ -55,32 +55,25 @@ class MediaFavorites extends Component {
   }
 }
 
-//function makeMapStateToProps(initialState, initialOwnProps) {
-//
+function makeMapStateToProps(initialState, initialOwnProps) {
 
-  function mapStateToProps(state,props) {
-    const mediaID = props.mediaID;
+  const mediaID = initialOwnProps.mediaID;
 
-    const {mediaReducer,userReducer } = state;
-    //const {
-    //  pagination: { starredByUser },
-    //  entities: { users, repos }
-    //  } = state
+  return function mapStateToProps(state) {
+
     const {
       pagination: { mediaFavorites },
-      entities: { users }
+      entities: { users },
+      userReducer
       } = state;
 
-    console.log('paginatoin',state.pagination);
-
-    const favoritedPagination = mediaFavorites[mediaID] || { ids: []};
-    const favoritedUsers = favoritedPagination.ids.map(id => users[id]);
+    const favorites = mediaFavorites[mediaID] || { ids: []};
+    const favoritedUsers = favorites.ids.map(id => users[id]);
 
     return {
       users: favoritedUsers,
-      isFetching: mediaReducer.favorites.isFetching,
       userReducer
     }
   }
-//}
-export default connect(mapStateToProps)(MediaFavorites);
+}
+export default connect(makeMapStateToProps)(MediaFavorites);
