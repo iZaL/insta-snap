@@ -24,15 +24,23 @@ class Medias extends Component {
     });
   }
 
+  loadMore() {
+    console.log('loading more');
+    if(!this.props.mediasReducer.isFetching) {
+      console.log('fired loading more');
+      this.props.dispatch(fetchMedias(true));
+    }
+  }
+
   render() {
 
     const { medias,mediasReducer } = this.props;
 
     return (
-      <ScrollView contentInset={{bottom:40}} contentContainerStyle={{ paddingTop:64 }} >
-        { mediasReducer.isFetching && <LoadingIndicator /> }
-        <MediaList medias={medias} loadMedia={this.loadMedia.bind(this)}/>
-      </ScrollView>
+      <MediaList medias={medias}
+                 loadMedia={this.loadMedia.bind(this)}
+                 loadMore={this.loadMore.bind(this)}
+      />
     );
 
   }

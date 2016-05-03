@@ -7,7 +7,9 @@ import {
 } from '../constants/actiontypes'
 
 const InitialState = Record({
-  isFetching:false
+  isFetching:false,
+  nextPageUrl:undefined,
+  pageCount:0
 });
 
 const initialState = new InitialState;
@@ -17,7 +19,10 @@ export default function mediasReducer(state = initialState, action = {}) {
     case MEDIAS_REQUEST:
       return state.set('isFetching', true);
     case MEDIAS_SUCCESS:
-      return state.set('isFetching', false);
+      return state
+        .set('isFetching', false)
+        .set('nextPageUrl',action.nextPageUrl)
+        .set('pageCount',state.pageCount + 1);
     case MEDIAS_FAILURE:
       return state.set('isFetching', false);
     default:

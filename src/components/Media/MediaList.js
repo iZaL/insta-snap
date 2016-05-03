@@ -12,6 +12,11 @@ export default class MediaList extends Component {
     loadMedia:PropTypes.func.isRequired
   };
 
+
+  loadMore = () => {
+    this.props.loadMore();
+  }
+
   renderVideoContent(url) {
     return (
       <VideoPlayer uri={url} />
@@ -31,7 +36,6 @@ export default class MediaList extends Component {
       </View>
     )
   }
-
 
   renderRow(media) {
     return (
@@ -54,12 +58,16 @@ export default class MediaList extends Component {
 
     return (
       <ListView
+        contentInset={{top:64,bottom:40}}
         contentContainerStyle={styles.list}
         dataSource={dataSource}
         renderRow={this.renderRow.bind(this)}
         automaticallyAdjustContentInsets={false}
-        ref='listView'
+        ref='mediasListView'
         enableEmptySections={true}
+        onEndReached={this.loadMore}
+        onEndReachedThreshold={300}
+        pageSize={2}
       />
     )
 
@@ -71,7 +79,7 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    paddingVertical:20
+    paddingVertical:20,
   },
   row: {
     justifyContent: 'center',
