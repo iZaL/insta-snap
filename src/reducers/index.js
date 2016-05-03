@@ -6,6 +6,7 @@ import userReducer from './user';
 import mediasReducer from './medias';
 import mediaReducer from './media';
 import commentsReducer from './comments';
+import pagination from './paginate';
 
 const rootReducer = combineReducers({
   entities,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   userReducer,
   mediasReducer,
   mediaReducer,
-  commentsReducer
+  commentsReducer,
+  pagination
 });
 
 export default rootReducer;

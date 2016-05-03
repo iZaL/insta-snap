@@ -34,17 +34,22 @@ function updateMediaFavorites(user,media) {
   }
 }
 
-function mediaFavoritesRequest() {
+function mediaFavoritesRequest(mediaID) {
   return {
-    type: MEDIA_FAVORITES_REQUEST
+    type: MEDIA_FAVORITES_REQUEST,
+    entityID:mediaID
   }
 }
 
-function mediaFavoritesSuccess(payload) {
-  const normalized = normalize(payload.data,Schemas.USER);
+function mediaFavoritesSuccess(mediaID,payload) {
+  const normalized = normalize(payload.data,Schemas.USER_ARRAY);
   return {
     type: MEDIA_FAVORITES_SUCCESS,
-    entities: normalized.entities
+    entities: normalized.entities,
+    result:normalized.result,
+    entityID:mediaID,
+    nextPageUrl:payload.next_page_url,
+    total:payload.total
   }
 }
 
@@ -92,18 +97,18 @@ export function favoriteMedia(mediaID) {
 // get Auth user's favorites
 export function fetchMediaFavorites(mediaID) {
   return (dispatch) => {
-    dispatch(mediaFavoritesRequest());
+    dispatch(mediaFavoritesRequest(mediaID));
     return getUserToken().then((token) => {
       const url = API_ROOT + `/medias/${mediaID}/favorites?api_token=${token}`;
       return fetch(url)
         .then(response => response.json())
         .then(json => {
-          if(json.success) {
-            dispatch(mediaFavoritesSuccess(json));
-          } else {
-            throw new Error(json.message);
-          }
+          //if(json.success) {
+            dispatch(mediaFavoritesSuccess(mediaID,json));
+          //} else {
+          //  throw new Error(json.message);
+          //}
         })
-    }).catch((err)=> dispatch(mediaFavoritesFailure(err)))
+    }).catch((err)=> dispatch(mediaFavoritesFailure(mediaID,err)))
   }
 }
