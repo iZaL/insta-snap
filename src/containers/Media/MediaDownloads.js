@@ -52,13 +52,18 @@ function makeMapStateToProps(initialState, initialOwnProps) {
   const mediaID = initialOwnProps.mediaID;
 
   return function mapStateToProps(state) {
-    const {entities,mediaReducer,userReducer } = state;
-    const media = entities.medias[mediaID];
 
-    const mediaDownloads = media.downloads ? media.downloads.map((userID) => entities.users[userID]) : [];
+    const {
+      pagination: { mediaDownloads },
+      entities: { users },
+      userReducer
+      } = state;
+
+    const downloads = mediaDownloads[mediaID] || { ids: []};
+    const downloadedUsers = downloads.ids.map(id => users[id]);
+
     return {
-      users:mediaDownloads,
-      isFetching:mediaReducer.downloads.isFetching,
+      users: downloadedUsers,
       userReducer
     }
   }

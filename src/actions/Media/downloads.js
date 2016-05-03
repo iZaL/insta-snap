@@ -35,43 +35,51 @@ function updateMediaDownloads(user,media) {
 }
 
 
-function mediaDownloadsRequest() {
+function mediaDownloadsRequest(mediaID) {
   return {
-    type: MEDIA_DOWNLOADS_REQUEST
+    type: MEDIA_DOWNLOADS_REQUEST,
+    entityID:mediaID
   }
 }
 
-function mediaDownloadsSuccess(payload) {
-  const normalized = normalize(payload.data,Schemas.USER);
+function mediaDownloadsSuccess(mediaID,payload) {
+  const normalized = normalize(payload.data,Schemas.USER_ARRAY);
   return {
     type: MEDIA_DOWNLOADS_SUCCESS,
-    entities: normalized.entities
+    entities: normalized.entities,
+    result:normalized.result,
+    entityID:mediaID,
+    nextPageUrl:payload.next_page_url,
+    total:payload.total
   }
 }
 
-function mediaDownloadsFailure(err) {
+function mediaDownloadsFailure(mediaID,err) {
   return {
     type: MEDIA_DOWNLOADS_FAILURE,
-    error:err
+    error:err,
+    entityID:mediaID
   }
 }
 
 // get Auth user's favorites
-export function fetchMediaDownloads(mediaID) {
-  return (dispatch) => {
-    dispatch(mediaDownloadsRequest());
-    return getUserToken().then((token) => {
-      const url = API_ROOT + `/medias/${mediaID}/downloads?api_token=${token}`;
-      return fetch(url)
-        .then(response => response.json())
-        .then(json => {
-          if(json.success) {
-            dispatch(mediaDownloadsSuccess(json));
-          } else {
-            throw new Error(json.message);
-          }
-        })
-    }).catch((err)=> dispatch(mediaDownloadsFailure(err)))
+export function fetchMediaDownloads(mediaID, forceLoad=false ) {
+  return (dispatch,getState) => {
+    const {
+      nextPageUrl = API_ROOT + `/medias/${mediaID}/downloads`,
+      pageCount = 0
+      } = getState().pagination.mediaDownloads[mediaID] || {};
+
+    if (nextPageUrl == null || (pageCount > 0 && !forceLoad)) {
+      return null
+    }
+
+    dispatch(mediaDownloadsRequest(mediaID));
+
+    return fetch(nextPageUrl)
+      .then(response => response.json())
+      .then(json => dispatch(mediaDownloadsSuccess(mediaID,json)))
+      .catch((err)=> dispatch(mediaDownloadsFailure(mediaID,err)))
   }
 }
 
@@ -104,3 +112,4 @@ export function downloadMedia(mediaID) {
     })
   }
 }
+

@@ -74,5 +74,13 @@ export default mediaFavorites = combineReducers({
       ActionTypes.MEDIA_FAVORITES_SUCCESS,
       ActionTypes.MEDIA_DOWNLOADS_FAILURE
     ]
-  })
+  }),
+  mediaDownloads: paginate({
+    mapActionToKey: action => action.entityID,
+    types: [
+      ActionTypes.MEDIA_DOWNLOADS_REQUEST,
+      ActionTypes.MEDIA_DOWNLOADS_SUCCESS,
+      ActionTypes.MEDIA_DOWNLOADS_FAILURE
+    ]
+  }),
 })
