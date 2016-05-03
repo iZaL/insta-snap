@@ -3,7 +3,7 @@ import { StatusBar, Navigator,StyleSheet } from 'react-native';
 import { Scene, Reducer, Router, Switch, TabBar, Modal, Schema, Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { loginUserByToken } from './actions/Auth/login';
-import Home from './containers/Home';
+import Home from './modules/Home/Home';
 import Login from './containers/Auth/Login';
 import Register from './containers/Auth/Register';
 import User from './containers/User/User';
@@ -54,7 +54,7 @@ const scenes = Actions.create(
                barButtonTextStyle={{ fontSize:17, color:'white' }}
         />
 
-        <Scene initial={true} key="mediasRouter" icon={TabIcon} selectedTabIcon="ion|briefcase" tabIcon="ion|briefcase"
+        <Scene  key="mediasRouter" icon={TabIcon} selectedTabIcon="ion|briefcase" tabIcon="ion|briefcase"
                navigationBarStyle={{backgroundColor: '#343459',borderBottomColor: '#343459'}}
                titleStyle={{ color:'white', fontSize:17}}
                barButtonTextStyle={{ fontSize:17, color:'white' }}
@@ -80,7 +80,7 @@ const scenes = Actions.create(
 
         </Scene>
 
-        <Scene key="home" hideNavBar={true} component={Home} icon={TabIcon} selectedTabIcon="ion|ios-home" tabIcon="ion|ios-home-outline" />
+        <Scene initial={true} key="home" hideNavBar={true} component={Home} icon={TabIcon} selectedTabIcon="ion|ios-home" tabIcon="ion|ios-home-outline" />
 
       </Scene>
 

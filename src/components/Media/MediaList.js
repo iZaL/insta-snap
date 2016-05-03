@@ -75,7 +75,6 @@ export default class MediaList extends Component {
         enableEmptySections={true}
         onEndReached={this.loadMore}
         onEndReachedThreshold={300}
-        pageSize={2}
       />
     )
 

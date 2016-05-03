@@ -6,6 +6,7 @@ import userReducer from './user';
 import mediasReducer from './medias';
 import mediaReducer from './media';
 import commentsReducer from './comments';
+import homeReducer from './../modules/Home/homeReducer';
 import pagination from './paginate';
 
 const rootReducer = combineReducers({
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   mediasReducer,
   mediaReducer,
   commentsReducer,
-  pagination
+  pagination,
+  homeReducer
 });
 
 export default rootReducer;

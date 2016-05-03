@@ -1,13 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import { Image, StyleSheet, Text, TouchableHighlight, View, ListView } from 'react-native';
 import { connect } from 'react-redux';
-import VideoPlayer from './Video';
+import VideoPlayer from './../../../components/Video';
 const Lightbox = require('react-native-lightbox');
 
-export default class Master extends Component {
+export default class MediaGrid extends Component {
 
   static propTypes = {
     medias:PropTypes.array.isRequired,
+    title:PropTypes.string.isRequired,
+    loadMedia:PropTypes.func.isRequired
   };
 
   renderImage = (url) => {
@@ -55,14 +57,14 @@ export default class Master extends Component {
   }
 
   render() {
-    const {medias} = this.props;
+    const {medias,title} = this.props;
     let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2})
     let dataSource = medias ? ds.cloneWithRows(medias) : ds.cloneWithRows([]);
 
     return (
       <View style={styles.container}>
         <View style={styles.headingWrapper}>
-          <Text style={styles.heading}>Live</Text>
+          <Text style={styles.heading}>{title}</Text>
         </View>
         <ListView
           contentContainerStyle={styles.list}
