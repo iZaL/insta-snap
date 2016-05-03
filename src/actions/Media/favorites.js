@@ -90,21 +90,6 @@ export function favoriteMedia(mediaID) {
   }
 }
 
-export function loadStargazers(fullName, nextPage) {
-  return (dispatch, getState) => {
-    const {
-      nextPageUrl = `repos/${fullName}/stargazers`,
-      pageCount = 0
-      } = getState().pagination.stargazersByRepo[fullName] || {}
-
-    if (pageCount > 0 && !nextPage) {
-      return null
-    }
-
-    return dispatch(fetchStargazers(fullName, nextPageUrl))
-  }
-}
-
 /**
  * @returns {Function}
  */
