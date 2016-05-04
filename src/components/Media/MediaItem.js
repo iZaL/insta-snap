@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Image, StyleSheet, Text, TouchableHighlight, View, ListView} from 'react-native';
 import { Icon } from 'react-native-icons';
 import { getExtension } from './../../utils/functions';
-import Video from 'react-native-video';
+import VideoPlayer from './Video';
 
 export default class MediaItem extends Component {
 
@@ -11,18 +11,14 @@ export default class MediaItem extends Component {
   };
 
   renderContent(media) {
-    const {caption,medium_url,type} = media;
+    const {caption,video_url,medium_url,type} = media;
     return (
       <View style={styles.container}>
         <View>
           { type == 'video' ?
-            <Video source={{uri: medium_url}}
-                   style={styles.fullScreen}
-                   repeat={false}
-            />
+            <VideoPlayer uri={video_url}/>
             :
             <Image style={styles.img} source={{uri:medium_url}}/>
-
           }
         </View>
 
@@ -49,7 +45,7 @@ const styles = StyleSheet.create({
     padding:5
   },
   img: {
-    height: 200,
+    height: 420,
     borderRadius: 5,
     paddingTop: 10
   },

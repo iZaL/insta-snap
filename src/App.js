@@ -28,7 +28,7 @@ const scenes = Actions.create(
 
   <Scene key="modal" component={Modal}>
 
-    <Scene key="root" hideNavBar={true}>
+    <Scene key="root" hideNavBar={true} component={Modal}>
 
       <Scene key="tabBar" tabs={true}
              navigationBarStyle={{backgroundColor: '#343459',borderBottomColor: '#343459'}}

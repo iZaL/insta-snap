@@ -13,9 +13,13 @@ export default class MediaFavoriteIcon extends Component {
     const {media} = this.props;
     return (
       <View style={{flex:1, flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
-        <TouchableHighlight onPress={() => this.props.loadFavorites()} underlayColor="transparent">
-          <Text style={styles.count}>{media.favorites.length} Favorites</Text>
-        </TouchableHighlight>
+
+        {
+          media.favorites &&
+          <TouchableHighlight onPress={() => this.props.loadFavorites()} underlayColor="transparent">
+            <Text style={styles.count}>{media.favorites.length} Favorites</Text>
+          </TouchableHighlight>
+        }
         <TouchableHighlight onPress={() => this.props.favoriteMedia()} underlayColor="transparent">
           <Icon
             name={media.isFavorited ? 'ion|android-favorite' : 'ion|android-favorite-outline'}

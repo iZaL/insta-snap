@@ -3,6 +3,7 @@ import { Image, Text, TouchableHighlight, View, ScrollView } from 'react-native'
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { fetchLiveMedias,fetchFollowerMedias } from './homeActions';
+import { favoriteMedia } from './../../actions/Media/favorites';
 import MediaGrid from './Components/MediaGrid';
 import LoadingIndicator from './../../components/LoadingIndicator';
 
@@ -25,6 +26,14 @@ class Home extends Component {
     });
   }
 
+  favoriteMedia() {
+    this.props.dispatch(favoriteMedia(this.props.mediaID));
+  }
+
+  downloadMedia() {
+    this.props.dispatch(downloadMedia(this.props.mediaID));
+  }
+
   render() {
 
     const {homeReducer,liveMedias,followerMedias } = this.props;
@@ -34,9 +43,13 @@ class Home extends Component {
         contentInset={{bottom:49}}
         contentContainerStyle={{paddingTop:64}}
         automaticallyAdjustContentInsets={false}
+        showsVerticalScrollIndicator={false}
       >
         { homeReducer.isFetching && <LoadingIndicator /> }
-        <MediaGrid medias={liveMedias}  title="المباشر"/>
+        <MediaGrid medias={liveMedias}  title="المباشر"
+                   favoriteMedia={this.favoriteMedia.bind(this)}
+                   downloadMedia={this.downloadMedia.bind(this)}
+        />
         <MediaGrid medias={followerMedias} title="الخاص"/>
         <MediaGrid medias={liveMedias} title="Live"/>
         <MediaGrid medias={liveMedias} title="Live"/>

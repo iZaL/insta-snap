@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { Image, StyleSheet, Text, TouchableHighlight, View, ListView,TouchableHighLight } from 'react-native';
 import { connect } from 'react-redux';
-import VideoPlayer from './../../../components/Video';
-import Video from 'react-native-video';
 const Lightbox = require('react-native-lightbox');
 import { Actions } from 'react-native-router-flux';
+import MediaFavoriteIcon from './../../../components/Media/MediaFavoriteIcon';
+import MediaDownloadIcon from './../../../components/Media/MediaDownloadIcon';
 
 export default class MediaGrid extends Component {
 
@@ -14,14 +14,33 @@ export default class MediaGrid extends Component {
     //loadMedia:PropTypes.func.isRequired
   };
 
-  renderImage = (url) => {
+  renderIcons(media) {
     return (
-      <View style={{flex: 1}}>
+        <View style={{ position:'absolute',bottom:0,alignItems:'center',justifyContent:'flex-start',width:380,flexDirection:'row',padding:10,paddingLeft:20,backgroundColor:'green'}}>
+          <MediaFavoriteIcon
+            media={media}
+            favoriteMedia={()=>this.props.favoriteMedia()}
+            loadFavorites={() => this.props.loadFavorites()}
+          />
+          <MediaDownloadIcon
+            media={media}
+            downloadMedia={() => this.props.downloadMedia()}
+            loadDownloads={() => this.props.loadDownloads()}
+          />
+        </View>
+    );
+  }
+
+  renderImage = (media) => {
+    return (
+      <View>
         <Image
           style={{flex: 1}}
           resizeMode="contain"
-          source={{ uri: url }}
-        />
+          source={{ uri: media.large_url }}
+        >
+          {this.renderIcons(media)}
+        </Image>
       </View>
     );
   };
@@ -48,7 +67,7 @@ export default class MediaGrid extends Component {
             </TouchableHighlight>
           </View>
           :
-          <Lightbox underlayColor="transparent" springConfig={{ tension: 30, friction: 7 }} swipeToDismiss={true} renderContent={()=> this.renderImage(media.large_url)} >
+          <Lightbox underlayColor="transparent" springConfig={{ tension: 30, friction: 7 }} swipeToDismiss={true} renderContent={()=> this.renderImage(media)} >
             <Image
               style={styles.thumbnail}
               resizeMode="stretch"

@@ -13,9 +13,12 @@ export default class MediaDownloadIcon extends Component {
     const {media} = this.props;
     return (
       <View style={{flex:1, flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
-        <TouchableHighlight onPress={() => this.props.loadDownloads()} underlayColor="transparent">
-          <Text style={styles.count}>{media.downloads.length} Downloads</Text>
-        </TouchableHighlight>
+        {
+          media.downloads &&
+          <TouchableHighlight onPress={() => this.props.loadDownloads()} underlayColor="transparent">
+            <Text style={styles.count}>{media.downloads.length} Downloads</Text>
+          </TouchableHighlight>
+        }
         <TouchableHighlight onPress={() => this.props.downloadMedia()} underlayColor="transparent">
           <Icon
             name={media.isDownloaded ? 'ion|android-star' : 'ion|android-star-outline'}

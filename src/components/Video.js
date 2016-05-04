@@ -41,10 +41,9 @@ class VideoPlayer extends Component {
   render() {
     const flexCompleted = this.getCurrentTimePercentage() * 100;
     const flexRemaining = (1 - this.getCurrentTimePercentage()) * 100;
-
     return (
       <View style={styles.container}>
-        <TouchableOpacity style={styles.fullScreen} onPress={() => {this.setState({paused: !this.state.paused})}}>
+        <TouchableOpacity style={styles.fullScreen} onPress={() => {this.setState({muted: !this.state.muted})}}>
 
           <Video source={{uri: this.props.uri}}
                  style={styles.fullScreen}
@@ -60,14 +59,9 @@ class VideoPlayer extends Component {
           </Video>
         </TouchableOpacity>
         <View style={styles.topLeftButton}>
-          <TouchableHighlight underlayColor="transparent" onPress={() => Actions.pop()}>
-            <Icon
-              name='ion|close-round'
-              size={22}
-              color={'white'}
-              style={styles.closeButton}
-            />
-          </TouchableHighlight>
+          <TouchableOpacity  onPress={() => Actions.pop()}>
+            <Text style={styles.closeButton}>×</Text>
+          </TouchableOpacity>
         </View>
         <View style={styles.controls}>
           <View style={styles.trackingControls}>
@@ -79,6 +73,7 @@ class VideoPlayer extends Component {
         </View>
       </View>
     );
+
   }
 }
 
@@ -98,13 +93,26 @@ const styles = StyleSheet.create({
   },
   topLeftButton:{
     position: 'absolute',
-    top: 10,
-    left: 5,
-    padding:10
+    top: 3,
+    left:3,
   },
-  closeButton :{
-    height:22,
-    width:22,
+  //closeButton :{
+  //  height:18,
+  //  width:18,
+  //},
+  closeButton: {
+    fontSize: 35,
+    color: 'white',
+    lineHeight: 40,
+    width: 40,
+    textAlign: 'center',
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowRadius: 1.5,
+    shadowColor: 'black',
+    shadowOpacity: 0.8,
   },
   controls: {
     backgroundColor: "transparent",
@@ -121,11 +129,12 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   innerProgressCompleted: {
-    height: 20,
+    height: 2,
     backgroundColor: '#cccccc',
+    opacity:0.5
   },
   innerProgressRemaining: {
-    height: 20,
+    height: 2,
     backgroundColor: '#2C2C2C',
   },
 });
