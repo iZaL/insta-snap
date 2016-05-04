@@ -7,7 +7,8 @@ import VideoPlayer from './../VideoPlayer';
 export default class MediaItem extends Component {
 
   static PropTypes = {
-    media:PropTypes.object.isRequired
+    media:PropTypes.object.isRequired,
+    videoPaused:PropTypes.bool.isRequired,
   };
 
   renderContent(media) {
@@ -16,7 +17,10 @@ export default class MediaItem extends Component {
       <View style={styles.container}>
         <View>
           { type == 'video' ?
-            <VideoPlayer uri={video_url}/>
+            <VideoPlayer
+              uri={video_url}
+              videoPaused={this.props.videoPaused}
+            />
             :
             <Image style={styles.img} source={{uri:medium_url}}/>
           }

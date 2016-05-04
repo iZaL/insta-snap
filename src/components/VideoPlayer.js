@@ -3,6 +3,28 @@ import { AlertIOS, StyleSheet, Text, TouchableOpacity, View, TouchableHighlight 
 import Video from 'react-native-video';
 
 export  default class VideoPlayer extends Component {
+
+  componentWillUnmount() {
+    console.log('unmounted');
+    console.log(this.props);
+  }
+
+  //shouldComponentUpdate(nextProps) {
+  //  if(this.props.videoMuted != nextProps.videoMuted) {
+  //    return true;
+  //  }
+  //}
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      muted: nextProps.videoMuted,
+      paused: nextProps.videoPaused
+    });
+  }
+
+  static propTypes = {
+    videoPaused:PropTypes.bool.isRequired
+  }
+
   constructor(props) {
     super(props);
     this.onLoad = this.onLoad.bind(this);
@@ -16,7 +38,7 @@ export  default class VideoPlayer extends Component {
     duration: 0.0,
     currentTime: 0.0,
     controls: false,
-    paused: false,
+    paused: this.props.videoPaused,
     skin: 'custom'
   };
 
@@ -26,9 +48,10 @@ export  default class VideoPlayer extends Component {
   onProgress(data) {
   }
   render() {
+    console.log('pp',this.props);
     return (
       <View style={styles.container}>
-        <TouchableOpacity style={styles.fullScreen} onPress={() => {this.setState({paused: !this.state.paused})}}>
+        <TouchableOpacity style={styles.fullScreen} onPress={() => this.setState({paused:!this.state.paused})}>
           <Video source={{uri: this.props.uri}}
                  style={styles.fullScreen}
                  rate={this.state.rate}

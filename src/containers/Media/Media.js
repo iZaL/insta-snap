@@ -20,6 +20,12 @@ class Media extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      videoPaused:false,
+    }
+
+    this.pauseVideo = this.pauseVideo.bind(this);
   }
 
   componentDidMount() {
@@ -27,24 +33,33 @@ class Media extends Component {
   }
 
   loadComments() {
+    this.pauseVideo();
     return Actions.mediaCommentsScene({
       mediaID:this.props.mediaID
     });
   }
 
+  pauseVideo() {
+    this.setState({
+      videoPaused:true,
+    });
+  }
   loadFavorites() {
+    this.pauseVideo();
     return Actions.mediaFavoritesScene({
       mediaID:this.props.mediaID
     });
   }
 
   loadDownloads() {
+    this.pauseVideo();
     return Actions.mediaDownloadsScene({
       mediaID:this.props.mediaID
     });
   }
 
   loadUser(user) {
+    this.pauseVideo();
     return Actions.userScene({
       title:user.name,
       userID:user.id
@@ -97,7 +112,10 @@ class Media extends Component {
 
         </View>
 
-        <MediaItem media={media} />
+        <MediaItem media={media}
+                   videoPaused={this.state.videoPaused}
+                   videoMuted={this.state.videoMuted}
+        />
 
       </ScrollView>
     );

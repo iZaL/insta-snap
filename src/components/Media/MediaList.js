@@ -45,7 +45,9 @@ export default class MediaList extends Component {
         ref='mediasListView'
         enableEmptySections={true}
         onEndReached={this.loadMore}
-        onEndReachedThreshold={300}
+        onEndReachedThreshold={500}
+        showsVerticalScrollIndicator={false}
+        initialListSize={40}
       />
     )
 

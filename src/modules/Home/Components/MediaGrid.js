@@ -25,7 +25,6 @@ export default class MediaGrid extends Component {
   };
 
   renderVideoContent(url) {
-    console.log('url',url);
     return (
       <FullScreenVideoPlayer uri={url} />
     );
