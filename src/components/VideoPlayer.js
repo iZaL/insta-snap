@@ -4,16 +4,6 @@ import Video from 'react-native-video';
 
 export  default class VideoPlayer extends Component {
 
-  componentWillUnmount() {
-    console.log('unmounted');
-    console.log(this.props);
-  }
-
-  //shouldComponentUpdate(nextProps) {
-  //  if(this.props.videoMuted != nextProps.videoMuted) {
-  //    return true;
-  //  }
-  //}
   componentWillReceiveProps(nextProps) {
     this.setState({
       muted: nextProps.videoMuted,
@@ -27,8 +17,6 @@ export  default class VideoPlayer extends Component {
 
   constructor(props) {
     super(props);
-    this.onLoad = this.onLoad.bind(this);
-    this.onProgress = this.onProgress.bind(this);
   }
   state = {
     rate: 1,
@@ -42,13 +30,7 @@ export  default class VideoPlayer extends Component {
     skin: 'custom'
   };
 
-  onLoad(data) {
-  }
-
-  onProgress(data) {
-  }
   render() {
-    console.log('pp',this.props);
     return (
       <View style={styles.container}>
         <TouchableOpacity style={styles.fullScreen} onPress={() => this.setState({paused:!this.state.paused})}>
@@ -59,9 +41,6 @@ export  default class VideoPlayer extends Component {
                  volume={this.state.volume}
                  muted={this.state.muted}
                  resizeMode={this.state.resizeMode}
-                 onLoad={this.onLoad}
-                 onProgress={this.onProgress}
-                 onEnd={() => {}}
                  repeat={true} >
           </Video>
         </TouchableOpacity>

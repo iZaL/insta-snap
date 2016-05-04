@@ -6,7 +6,7 @@ import { fetchMedias } from './../../actions/Media/medias';
 import { setCurrentMedia } from './../../actions/Media/media';
 import MediaList from './../../components/Media/MediaList';
 import LoadingIndicator from './../../components/LoadingIndicator';
-
+import reverse from 'lodash/reverse';
 class Medias extends Component {
 
   constructor(props) {
@@ -35,6 +35,7 @@ class Medias extends Component {
   render() {
 
     const { medias,mediasReducer } = this.props;
+    console.log('medias',medias);
 
     return (
       <View style={{ flex:1, paddingTop: 64}}>
@@ -52,7 +53,7 @@ class Medias extends Component {
 function mapStateToProps(state) {
   const { entities,mediasReducer,userReducer } = state;
   return {
-    medias:entities.medias ? entities.medias.filter((media) => media != undefined ) : [],
+    medias:entities.medias ? entities.medias.filter((media) => media != undefined ).reverse() : [],
     mediasReducer,
     userReducer
   }
