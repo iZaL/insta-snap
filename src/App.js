@@ -21,13 +21,14 @@ import Followings from './containers/User/Followings';
 import Settings from './modules/Settings/Settings';
 import TabIcon from './components/TabIcon';
 import LoginDialog from './components/LoginDialog';
-
+import VideoPlayer from './components/Video';
 const scenes = Actions.create(
 
   //@todo : fix nav styles, #rnrf issue
-  <Scene key="modal" component={Modal} >
 
-    <Scene key="root" hideNavBar={true} component={Modal}>
+  <Scene key="modal" component={Modal}>
+
+    <Scene key="root" hideNavBar={true}>
 
       <Scene key="tabBar" tabs={true}
              navigationBarStyle={{backgroundColor: '#343459',borderBottomColor: '#343459'}}
@@ -89,6 +90,7 @@ const scenes = Actions.create(
       <Scene key="login" hideNavBar={true} component={Login}  />
       <Scene key="register" component={Register} hideNavBar={true} title="تسجيل الدخول"   />
 
+      <Scene key="videoDemo" component={VideoPlayer} hideNavBar={true} />
     </Scene>
 
   </Scene>

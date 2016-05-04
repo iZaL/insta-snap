@@ -36,10 +36,10 @@ class Home extends Component {
         automaticallyAdjustContentInsets={false}
       >
         { homeReducer.isFetching && <LoadingIndicator /> }
-        <MediaGrid medias={liveMedias} loadMedia={this.loadMedia.bind(this)} title="المباشر"/>
-        <MediaGrid medias={followerMedias} loadMedia={this.loadMedia.bind(this)} title="الخاص"/>
-        <MediaGrid medias={liveMedias} loadMedia={this.loadMedia.bind(this)} title="Live"/>
-        <MediaGrid medias={liveMedias} loadMedia={this.loadMedia.bind(this)} title="Live"/>
+        <MediaGrid medias={liveMedias}  title="المباشر"/>
+        <MediaGrid medias={followerMedias} title="الخاص"/>
+        <MediaGrid medias={liveMedias} title="Live"/>
+        <MediaGrid medias={liveMedias} title="Live"/>
       </ScrollView>
     );
 

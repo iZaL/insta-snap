@@ -1,15 +1,17 @@
 import React, { Component, PropTypes } from 'react';
-import { Image, StyleSheet, Text, TouchableHighlight, View, ListView } from 'react-native';
+import { Image, StyleSheet, Text, TouchableHighlight, View, ListView,TouchableHighLight } from 'react-native';
 import { connect } from 'react-redux';
 import VideoPlayer from './../../../components/Video';
+import Video from 'react-native-video';
 const Lightbox = require('react-native-lightbox');
+import { Actions } from 'react-native-router-flux';
 
 export default class MediaGrid extends Component {
 
   static propTypes = {
     medias:PropTypes.array.isRequired,
     title:PropTypes.string.isRequired,
-    loadMedia:PropTypes.func.isRequired
+    //loadMedia:PropTypes.func.isRequired
   };
 
   renderImage = (url) => {
@@ -25,24 +27,26 @@ export default class MediaGrid extends Component {
   };
 
   renderVideoContent(url) {
-    return (
-      <VideoPlayer uri={url} />
-    );
+    console.log('playing video ',url);
+    return Actions.videoDemo({
+      uri:url
+    });
   }
 
   renderRow(media) {
+    console.log('media',media);
     return (
       <View style={styles.row}>
         { media.type == 'video' ?
-          <Lightbox underlayColor="transparent" springConfig={{ tension: 30, friction: 7 }} swipeToDismiss={true} renderContent={()=> this.renderVideoContent()}  >
-            <View>
+          <View>
+            <TouchableHighlight onPress={()=>this.renderVideoContent(media.video_url)} underlayColor='transparent' >
               <Image
                 style={styles.thumbnail}
                 resizeMode="stretch"
                 source={{ uri: media.medium_url }}
               />
-            </View>
-          </Lightbox>
+            </TouchableHighlight>
+          </View>
           :
           <Lightbox underlayColor="transparent" springConfig={{ tension: 30, friction: 7 }} swipeToDismiss={true} renderContent={()=> this.renderImage(media.large_url)} >
             <Image
