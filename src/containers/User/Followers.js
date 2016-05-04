@@ -13,7 +13,7 @@ class Followers extends Component {
 
   static propTypes = {
     userID:PropTypes.number.isRequired
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -71,4 +71,4 @@ function makeMapStateToProps(initialState, initialOwnProps) {
   }
 }
 
-export default connect(makeMapStateToProps)(Followers)
+export default connect(makeMapStateToProps)(Followers);

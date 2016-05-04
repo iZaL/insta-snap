@@ -6,7 +6,7 @@ import { fetchLiveMedias,fetchFollowerMedias } from './homeActions';
 import { favoriteMedia } from './../../actions/Media/favorites';
 import MediaGrid from './Components/MediaGrid';
 import LoadingIndicator from './../../components/LoadingIndicator';
-
+import reverse from 'lodash/reverse';
 class Home extends Component {
 
   constructor(props) {
@@ -46,7 +46,7 @@ class Home extends Component {
         showsVerticalScrollIndicator={false}
       >
         { homeReducer.isFetching && <LoadingIndicator /> }
-        
+
         <MediaGrid medias={liveMedias}  title="المباشر"
                    favoriteMedia={this.favoriteMedia.bind(this)}
                    downloadMedia={this.downloadMedia.bind(this)}

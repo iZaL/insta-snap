@@ -53,7 +53,7 @@ class Register extends Component {
 
     return (
 
-      <ScrollView style={{padding:10,paddingTop: 64}}>
+      <ScrollView style={{flex:1,padding:10,paddingTop: 64}}>
 
         {register.isFetching ? <LoadingIndicator style={{ marginTop:10}} /> : <View />}
 

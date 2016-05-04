@@ -1,8 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { StyleSheet,View,Text,Image } from 'react-native';
-import { assets } from './../utils/assets';
 import { Actions } from 'react-native-router-flux';
-import Button from 'apsl-react-native-button';
+import FormButton from './FormButton';
 
 export default class LoginDialog extends Component {
 
@@ -12,52 +11,43 @@ export default class LoginDialog extends Component {
 
   render() {
     return (
-      <Image source={assets.bg} style={styles.container}>
-        <View style={styles.dialogWrapper}>
+        <View style={styles.container}>
           <Text style={styles.dialogText}>
             {this.props.message}
           </Text>
-          <Button
+          <FormButton
             style={styles.button}
             onPress={()=>Actions.login()}
-            textStyle={{fontSize: 18, color:'white'}}
-          >
-            Login
-          </Button>
+            buttonText="Login"
+         />
           <Text style={styles.orText}>
             Don't have an account ?
           </Text>
-          <Button
+          <FormButton
             style={styles.button}
             onPress={()=>Actions.register()}
-            textStyle={{fontSize: 18, color:'white'}}
-          >
-            Sign up now !
-          </Button>
+            buttonText="Sign up now !"
+          />
           <Text style={styles.minFeatureText} onPress={()=>Actions.pop()}>Browse the site with limited features</Text>
 
         </View>
-      </Image>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    width: null,
-    height: null,
-    padding: 10,
     justifyContent:'center',
+    backgroundColor:'white',
+    padding:10,
+    margin:10,
+    marginTop: 100,
   },
   dialogWrapper:{
-    backgroundColor:'white',
+    backgroundColor:'green',
     opacity:0.9,
-    paddingTop:50,
-    paddingBottom:100,
     padding:20,
-    margin:30,
-    alignItems:'center'
+    marginTop:30,
   },
   dialogText:{
     fontSize:16,

@@ -108,6 +108,7 @@ export default class LoginScene extends Component {
 var styles = StyleSheet.create({
 
   container:{
+    flex:1,
     padding:10
   },
   label: {

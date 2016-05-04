@@ -95,7 +95,7 @@ export default class RegisterScene extends Component {
     };
 
     return (
-      <View style={{paddingTop:20}}>
+      <View style={{paddingTop:20, flex:1}}>
 
         <Form ref="form"
               type={registerForm}

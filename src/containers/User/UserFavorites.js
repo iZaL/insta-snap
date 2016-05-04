@@ -36,12 +36,11 @@ class UserFavorites extends Component {
       return <LoginDialog message="Please Login to view and manage your Favorites"/>
     }
     return (
-      <ScrollView contentInset={{bottom:40}} contentContainerStyle={{ paddingTop:64}} style={{ flex:1 }}>
+      <ScrollView contentInset={{bottom:40}} contentContainerStyle={{ flex:1,paddingTop:64}} style={{ flex:1 }}>
         { userReducer.favorites.isFetching ? <LoadingIndicator/> : <View/> }
         <MediaList medias={medias.filter((media) => !media.unFavorited)} loadMedia={this.loadMedia.bind(this)}
                    loadMore={()=>''}
                    mediasReducer={mediasReducer}
-
         />
       </ScrollView>
     );

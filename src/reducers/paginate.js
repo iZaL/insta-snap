@@ -52,13 +52,13 @@ function paginate({ types, mapActionToKey }) {
       case requestType:
       case successType:
       case failureType:
-        const key = mapActionToKey(action)
-        //if (typeof key !== 'string') {
-        //  throw new Error('Expected key to be a string.')
-        //}
+        const key = mapActionToKey(action);
+        if (typeof key !== 'string') {
+          throw new Error('Expected key to be a string.')
+        }
         return merge({}, state, {
           [key]: updatePagination(state[key], action)
-        })
+        });
       default:
         return state
     }

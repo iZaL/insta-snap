@@ -35,7 +35,6 @@ class Medias extends Component {
   render() {
 
     const { medias,mediasReducer } = this.props;
-    console.log('medias',medias);
 
     return (
       <View style={{ flex:1, paddingTop: 64}}>

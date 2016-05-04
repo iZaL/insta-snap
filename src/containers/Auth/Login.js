@@ -28,7 +28,7 @@ export default class Login extends Component {
     dispatch(login(credentials))
       .then((success)=> {
         if(success) {
-          return Actions.tabBar();
+          return Actions.home();
         } else {
           alert('Wrong Credentials, Try again');
         }
@@ -42,7 +42,7 @@ export default class Login extends Component {
 
   handleForgotPasswordRoute() {
     // @todo: implement route
-    Actions.tabBar();
+    Actions.home();
   }
 
   onFieldChange(value, field) {
@@ -55,7 +55,7 @@ export default class Login extends Component {
   render() {
     const { login } = this.props;
     return (
-      <ScrollView style={{paddingTop: 64}}>
+      <ScrollView style={{paddingTop: 64,flex:1}}>
         <LoginScene
           login={login}
           credentials={this.state.credentials}
