@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Image, StyleSheet, Text, TouchableHighlight, View, ListView} from 'react-native';
 import { Icon } from 'react-native-icons';
 import { getExtension } from './../../utils/functions';
-import VideoPlayer from './Video';
+import VideoPlayer from './../VideoPlayer';
 
 export default class MediaItem extends Component {
 

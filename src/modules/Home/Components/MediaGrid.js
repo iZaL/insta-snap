@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { Image, StyleSheet, Text, TouchableHighlight, View, ListView,TouchableHighLight } from 'react-native';
 import { connect } from 'react-redux';
 const Lightbox = require('react-native-lightbox');
-import { Actions } from 'react-native-router-flux';
 import MediaFavoriteIcon from './../../../components/Media/MediaFavoriteIcon';
 import MediaDownloadIcon from './../../../components/Media/MediaDownloadIcon';
+import FullScreenVideoPlayer from './../../../components/FullScreenVideoPlayer';
 
 export default class MediaGrid extends Component {
 
@@ -16,18 +16,18 @@ export default class MediaGrid extends Component {
 
   renderIcons(media) {
     return (
-        <View style={{ position:'absolute',bottom:0,alignItems:'center',justifyContent:'flex-start',width:380,flexDirection:'row',padding:10,paddingLeft:20,backgroundColor:'green'}}>
-          <MediaFavoriteIcon
-            media={media}
-            favoriteMedia={()=>this.props.favoriteMedia()}
-            loadFavorites={() => this.props.loadFavorites()}
-          />
-          <MediaDownloadIcon
-            media={media}
-            downloadMedia={() => this.props.downloadMedia()}
-            loadDownloads={() => this.props.loadDownloads()}
-          />
-        </View>
+      <View style={{ position:'absolute',bottom:0,alignItems:'center',justifyContent:'flex-start',width:380,flexDirection:'row',padding:10,paddingLeft:20,backgroundColor:'green'}}>
+        <MediaFavoriteIcon
+          media={media}
+          favoriteMedia={()=>this.props.favoriteMedia()}
+          loadFavorites={() => this.props.loadFavorites()}
+        />
+        <MediaDownloadIcon
+          media={media}
+          downloadMedia={() => this.props.downloadMedia()}
+          loadDownloads={() => this.props.loadDownloads()}
+        />
+      </View>
     );
   }
 
@@ -45,11 +45,17 @@ export default class MediaGrid extends Component {
     );
   };
 
+  //renderVideoContent(url) {
+  //  console.log('playing video ',url);
+  //  return Actions.videoDemo({
+  //    uri:url
+  //  });
+  //}
+
   renderVideoContent(url) {
-    console.log('playing video ',url);
-    return Actions.videoDemo({
-      uri:url
-    });
+    return (
+      <VideoPlayer uri={url} />
+    );
   }
 
   renderRow(media) {
@@ -57,15 +63,13 @@ export default class MediaGrid extends Component {
     return (
       <View style={styles.row}>
         { media.type == 'video' ?
-          <View>
-            <TouchableHighlight onPress={()=>this.renderVideoContent(media.video_url)} underlayColor='transparent' >
-              <Image
-                style={styles.thumbnail}
-                resizeMode="stretch"
-                source={{ uri: media.medium_url }}
-              />
-            </TouchableHighlight>
-          </View>
+          <Lightbox underlayColor="transparent" springConfig={{ tension: 30, friction: 7 }} swipeToDismiss={true} renderContent={()=> this.renderVideoContent(media.video_url)}  >
+            <Image
+              style={styles.thumbnail}
+              resizeMode="stretch"
+              source={{ uri: media.thumb_url }}
+            />
+          </Lightbox>
           :
           <Lightbox underlayColor="transparent" springConfig={{ tension: 30, friction: 7 }} swipeToDismiss={true} renderContent={()=> this.renderImage(media)} >
             <Image

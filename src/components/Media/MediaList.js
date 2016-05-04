@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Image, StyleSheet, Text, TouchableHighlight, View, ListView } from 'react-native';
 import { getExtension } from './../../utils/functions';
 //import Video from 'react-native-video';
-import VideoPlayer from './../../components/Media/Video';
+import VideoPlayer from './../Video';
 const Lightbox = require('react-native-lightbox');
 import LoadingIndicator from './../../components/LoadingIndicator';
 

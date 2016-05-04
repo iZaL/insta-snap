@@ -4,7 +4,8 @@ import Video from 'react-native-video';
 import { Icon } from 'react-native-icons';
 import {Actions} from 'react-native-router-flux';
 
-class VideoPlayer extends Component {
+export default class FullScreenVideoPlayer extends Component {
+
   constructor(props) {
     super(props);
     this.onLoad = this.onLoad.bind(this);
@@ -58,11 +59,6 @@ class VideoPlayer extends Component {
                  repeat={true} >
           </Video>
         </TouchableOpacity>
-        <View style={styles.topLeftButton}>
-          <TouchableOpacity  onPress={() => Actions.pop()}>
-            <Text style={styles.closeButton}>×</Text>
-          </TouchableOpacity>
-        </View>
         <View style={styles.controls}>
           <View style={styles.trackingControls}>
             <View style={styles.progress}>
@@ -138,5 +134,3 @@ const styles = StyleSheet.create({
     backgroundColor: '#2C2C2C',
   },
 });
-
-module.exports = VideoPlayer;
