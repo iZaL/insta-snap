@@ -46,6 +46,7 @@ class Home extends Component {
         showsVerticalScrollIndicator={false}
       >
         { homeReducer.isFetching && <LoadingIndicator /> }
+        
         <MediaGrid medias={liveMedias}  title="المباشر"
                    favoriteMedia={this.favoriteMedia.bind(this)}
                    downloadMedia={this.downloadMedia.bind(this)}

@@ -1,65 +1,37 @@
 import React, { Component, PropTypes } from 'react';
 import { Image, StyleSheet, Text, TouchableHighlight, View, ListView,TouchableHighLight } from 'react-native';
 import { connect } from 'react-redux';
-const Lightbox = require('react-native-lightbox');
 import MediaFavoriteIcon from './../../../components/Media/MediaFavoriteIcon';
 import MediaDownloadIcon from './../../../components/Media/MediaDownloadIcon';
 import FullScreenVideoPlayer from './../../../components/FullScreenVideoPlayer';
+const Lightbox = require('react-native-lightbox');
 
 export default class MediaGrid extends Component {
 
   static propTypes = {
     medias:PropTypes.array.isRequired,
     title:PropTypes.string.isRequired,
-    //loadMedia:PropTypes.func.isRequired
   };
-
-  renderIcons(media) {
-    return (
-      <View style={{ position:'absolute',bottom:0,alignItems:'center',justifyContent:'flex-start',width:380,flexDirection:'row',padding:10,paddingLeft:20,backgroundColor:'green'}}>
-        <MediaFavoriteIcon
-          media={media}
-          favoriteMedia={()=>this.props.favoriteMedia()}
-          loadFavorites={() => this.props.loadFavorites()}
-        />
-        <MediaDownloadIcon
-          media={media}
-          downloadMedia={() => this.props.downloadMedia()}
-          loadDownloads={() => this.props.loadDownloads()}
-        />
-      </View>
-    );
-  }
 
   renderImage = (media) => {
     return (
-      <View>
-        <Image
-          style={{flex: 1}}
-          resizeMode="contain"
-          source={{ uri: media.large_url }}
-        >
-          {this.renderIcons(media)}
-        </Image>
-      </View>
+      <Image
+        style={{flex: 1}}
+        resizeMode="contain"
+        source={{ uri: media.large_url }}
+      >
+      </Image>
     );
   };
 
-  //renderVideoContent(url) {
-  //  console.log('playing video ',url);
-  //  return Actions.videoDemo({
-  //    uri:url
-  //  });
-  //}
-
   renderVideoContent(url) {
+    console.log('url',url);
     return (
-      <VideoPlayer uri={url} />
+      <FullScreenVideoPlayer uri={url} />
     );
   }
 
   renderRow(media) {
-    console.log('media',media);
     return (
       <View style={styles.row}>
         { media.type == 'video' ?
@@ -75,7 +47,7 @@ export default class MediaGrid extends Component {
             <Image
               style={styles.thumbnail}
               resizeMode="stretch"
-              source={{ uri: media.medium_url }}
+              source={{ uri: media.thumb_url }}
             />
           </Lightbox>
         }

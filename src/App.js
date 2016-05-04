@@ -21,7 +21,6 @@ import Followings from './containers/User/Followings';
 import Settings from './modules/Settings/Settings';
 import TabIcon from './components/TabIcon';
 import LoginDialog from './components/LoginDialog';
-import VideoPlayer from './components/Video';
 const scenes = Actions.create(
 
   //@todo : fix nav styles, #rnrf issue
@@ -90,7 +89,6 @@ const scenes = Actions.create(
       <Scene key="login" hideNavBar={true} component={Login}  />
       <Scene key="register" component={Register} hideNavBar={true} title="تسجيل الدخول"   />
 
-      <Scene key="videoDemo" component={VideoPlayer} hideNavBar={true} />
     </Scene>
 
   </Scene>
@@ -100,15 +98,9 @@ const scenes = Actions.create(
 class App extends Component {
 
   componentDidMount() {
-    //warning(false, "ScrollView doesn't take rejection well - scrolls anyway");
-
     StatusBar.barStyle = 'light-content';
     const {dispatch} = this.props;
-    dispatch(loginUserByToken()).then((success)=>{
-      if(success) {
-        //Actions.tabBar();
-      }
-    });
+    dispatch(loginUserByToken());
   }
 
   render() {

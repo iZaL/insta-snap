@@ -1,9 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { Image, StyleSheet, Text, TouchableHighlight, View, ListView } from 'react-native';
-import { getExtension } from './../../utils/functions';
-//import Video from 'react-native-video';
-import VideoPlayer from './../Video';
-const Lightbox = require('react-native-lightbox');
 import LoadingIndicator from './../../components/LoadingIndicator';
 
 export default class MediaList extends Component {
@@ -15,38 +11,14 @@ export default class MediaList extends Component {
     mediasReducer:PropTypes.object.isRequired
   };
 
-
   loadMore = () => {
     this.props.loadMore();
-  }
-
-  renderVideoContent(url) {
-    return (
-      <VideoPlayer uri={url} />
-    );
   }
 
   footer = () => {
     return (
         <LoadingIndicator />
     )
-  }
-
-  renderVideo(media) {
-    return (
-      <VideoPlayer uri={media.video_url} />
-    )
-    //return (
-    //  <View style={styles.row}>
-    //    <Lightbox underlayColor="transparent" springConfig={{ tension: 30, friction: 7 }} swipeToDismiss={true} renderContent={()=> this.renderVideoContent(media.video_url)}  >
-    //      <Image
-    //        style={styles.thumbnail}
-    //        resizeMode="stretch"
-    //        source={{ uri: media.thumb_url }}
-    //      />
-    //    </Lightbox>
-    //  </View>
-    //)
   }
 
   renderRow(media) {
