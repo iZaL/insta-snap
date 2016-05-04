@@ -42,7 +42,6 @@ class MediaComments extends Component {
   }
 
   commentMedia(comment) {
-    console.log('commenting');
     const {dispatch} = this.props;
     dispatch(commentMedia(this.props.mediaID,comment)).then(()=>{
       this.refs.scrollView.scrollTo({x: 0})
