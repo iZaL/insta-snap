@@ -22,11 +22,7 @@ import LoginDialog from './components/LoginDialog';
 
 export const scenes = Actions.create(
 
-  //@todo : fix nav styles, #rnrf issue
-
   <Scene key="modal" component={Modal}>
-
-    <Scene key="root" hideNavBar={true} >
 
       <Scene key="tabBar" tabs={true} hideNavBar={true}
              navigationBarStyle={{backgroundColor: '#343459',borderBottomColor: '#343459'}}
@@ -94,8 +90,6 @@ export const scenes = Actions.create(
         <Scene key="register" component={Register} hideNavBar={true} title="تسجيل الدخول"   />
 
       </Scene>
-
-    </Scene>
 
   </Scene>
 
