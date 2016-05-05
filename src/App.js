@@ -1,20 +1,18 @@
 import React, { Component, } from 'react';
-import { StatusBar, Navigator,StyleSheet } from 'react-native';
-import { Scene, Reducer, Router, Switch, TabBar, Modal, Schema, Actions } from 'react-native-router-flux';
+import { Reducer, Router } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { loginUserByToken } from './actions/Auth/login';
-
 import { scenes } from './scenes';
 
-export default class App extends Component {
+class App extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.dispatch(loginUserByToken());
   }
 
   render() {
     return (
-      <Router createReducer={reducerCreate} sceneStyle={styles.container} scenes={scenes} />
+      <Router createReducer={reducerCreate} sceneStyle={{flex:1,backgroundColor:"white"}} scenes={scenes} />
     );
   }
 }
@@ -32,12 +30,5 @@ function mapStateToProps(state) {
     isAuthenticated : state.userReducer.isAuthenticated
   }
 }
-
-const styles=  StyleSheet.create({
-  container: {
-    flex:1,
-    backgroundColor:"white"
-  }
-});
 
 export default connect(mapStateToProps)(App);
