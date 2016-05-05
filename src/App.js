@@ -9,7 +9,7 @@ import { scenes } from './scenes';
 export default class App extends Component {
 
   componentWillMount() {
-    //this.props.dispatch(loginUserByToken());
+    this.props.dispatch(loginUserByToken());
   }
 
   render() {

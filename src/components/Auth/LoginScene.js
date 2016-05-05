@@ -40,7 +40,6 @@ export default class LoginScene extends Component {
       placeholder: 'Email',
       keyboardType: 'email-address',
       editable: !login.isFetching,
-      hasError: login.form.fields.emailHasError,
       error: 'Please enter valid email',
       autoCapitalize:'none',
       autoCorrect:false
@@ -52,7 +51,6 @@ export default class LoginScene extends Component {
       maxLength: 12,
       secureTextEntry: true,
       editable: !login.isFetching,
-      hasError: login.form.fields.passwordHasError,
       error: 'Must have 6-12 numbers, letters or special characters'
     };
 

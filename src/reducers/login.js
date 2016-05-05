@@ -11,40 +11,18 @@ import {
 
 const initialState = {
   isFetching: false,
-  error: null,
-  form: {
-    disabled: false,
-    isValid: false,
-    error: null,
-    fields: {
-      email: '',
-      emailHasError: false,
-      password: '',
-      passwordHasError: false,
-    }
-  },
+  error: null
 }
-
-//const initialState = new InitialState;
 
 export default function login(state = initialState, action = {}) {
 
   switch (action.type) {
     case LOGIN_REQUEST:
-      return {
-        ...state,isFetching:true,error:null
-      }
-      //return state.set('isFetching', true).set('error', null);
+      return {...state,isFetching:true,error:null}
     case LOGIN_SUCCESS:
-      return {
-        ...state, isFetching: false, error: null
-      }
-      //return state.setIn(['isFetching'], false).setIn(['error'], null);
+      return {...state, isFetching: false, error: null}
     case LOGIN_FAILURE:
-      return {
-        ...state, isFetching: false, error: action.error
-      }
-      //return state.setIn(['isFetching'], false).setIn(['error'], action.error);
+      return {...state, isFetching: false, error: action.error}
     default:
       return state;
   }

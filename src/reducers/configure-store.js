@@ -15,10 +15,11 @@ const createAppStore = applyMiddleware(
   logger
 )(createStore);
 
-export default function configureStore(onComplete: ?() => void) {
+export default function configureStore() {
 
-  const store = autoRehydrate()(createAppStore)(rootReducer);
-  persistStore(store, {storage: AsyncStorage}, onComplete);
+  const store = createAppStore(rootReducer);
+  //const store = autoRehydrate()(createAppStore)(rootReducer);
+  //persistStore(store, {storage: AsyncStorage}, onComplete);
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers

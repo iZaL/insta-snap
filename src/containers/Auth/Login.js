@@ -11,14 +11,8 @@ export default class Login extends Component {
     super(props);
 
     this.state = {
-      credentials: { email : this.props.login.form.fields.email, password : this.props.login.form.fields.password }
+      credentials: { email : 'admin@test.com', password : 'password' }
     };
-  }
-
-  componentDidMount() {
-    this.setState({
-      credentials : {email : 'admin@test.com',password:'password'}
-    });
   }
 
   handleLogin() {
@@ -37,18 +31,15 @@ export default class Login extends Component {
   }
 
   handleRegisterRoute() {
-    Actions.register();
+    return Actions.register();
   }
 
   handleForgotPasswordRoute() {
     // @todo: implement route
-    Actions.home();
+    return Actions.home();
   }
 
-  onFieldChange(value, field) {
-    let changedField = field[0];
-    const { dispatch } = this.props;
-    //dispatch(onLoginFormFieldChange(changedField, value[changedField]));
+  onFieldChange(value) {
     this.setState({credentials: value});
   }
 
