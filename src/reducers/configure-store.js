@@ -1,14 +1,32 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
-import rootReducer from './index';
-const logger = createLogger();
+import rootReducer from './../reducers';
+import {persistStore, autoRehydrate} from 'redux-persist';
+import { AsyncStorage } from 'react-native';
 
-const createStoreWithMiddleware = applyMiddleware(
+const logger = createLogger({
+  collapsed:true,
+  duration:true
+});
+
+const createAppStore = applyMiddleware(
   thunkMiddleware,
   logger
 )(createStore);
 
-export default function configureStore(initialState) {
-  return createStoreWithMiddleware(rootReducer,initialState);
+export default function configureStore(onComplete: ?() => void) {
+
+  const store = autoRehydrate()(createAppStore)(rootReducer);
+  persistStore(store, {storage: AsyncStorage}, onComplete);
+
+  if (module.hot) {
+    // Enable Webpack hot module replacement for reducers
+    module.hot.accept(() => {
+      const nextRootReducer = require('./../reducers').default;
+      store.replaceReducer(nextRootReducer)
+    })
+  }
+
+  return store;
 }
