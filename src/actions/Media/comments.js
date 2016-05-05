@@ -64,7 +64,7 @@ export function commentMedia(mediaID,comment) {
         .then(json => {
           if(json.success) {
             dispatch(commentSaved());
-            dispatch(fetchComments())
+            dispatch(fetchComments(mediaID))
           }
         })
     }).catch((err)=> {

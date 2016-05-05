@@ -6,7 +6,7 @@ import MediaCommentList from './../../components/Media/Comment/MediaCommentList'
 import MediaCommentAdd from './../../components/Media/Comment/MediaCommentAdd';
 import LoadingIndicator from './../../components/LoadingIndicator';
 import { Actions } from 'react-native-router-flux';
-
+import reverse from 'lodash/reverse';
 class MediaComments extends Component {
 
   static propTypes = {
@@ -23,13 +23,10 @@ class MediaComments extends Component {
     this.keyboardWillHide = this.keyboardWillHide.bind(this);
   }
 
-  componentWillMount() {
-    DeviceEventEmitter.addListener('keyboardWillShow', this.keyboardWillShow.bind(this));
-    DeviceEventEmitter.addListener('keyboardWillHide', this.keyboardWillHide.bind(this));
-  }
-
   componentDidMount() {
     this.props.dispatch(fetchComments(this.props.mediaID));
+    DeviceEventEmitter.addListener('keyboardWillShow', this.keyboardWillShow.bind(this));
+    DeviceEventEmitter.addListener('keyboardWillHide', this.keyboardWillHide.bind(this));
   }
 
   keyboardWillShow(e) {
@@ -54,7 +51,7 @@ class MediaComments extends Component {
     return (
       <ScrollView contentContainerStyle={{paddingBottom: 49,paddingTop: 64, margin:5, height: this.state.visibleHeight}} ref="scrollView">
         <MediaCommentList
-          comments={comments}
+          comments={reverse(comments)}
         />
         <MediaCommentAdd
           commentMedia={this.commentMedia.bind(this)}

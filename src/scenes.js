@@ -22,7 +22,7 @@ import LoginDialog from './components/LoginDialog';
 
 export const scenes = Actions.create(
 
-  <Scene key="modal" component={Modal}>
+  <Scene key="root" component={Modal}>
 
       <Scene key="tabBar" tabs={true} hideNavBar={true}
              navigationBarStyle={{backgroundColor: '#343459',borderBottomColor: '#343459'}}
@@ -84,9 +84,9 @@ export const scenes = Actions.create(
           <Scene key="homeScene" component={Home} hideNavBar={true}/>
         </Scene>
 
-        <Scene key="login"  hideNavBar={true} component={Login}  />
-        <Scene key="mediaCapture" hideNavBar={true} component={MediaCapture} hideTabBar={true}  />
-        <Scene key="loginDialog"  hideNavBar={true}  component={LoginDialog} />
+        <Scene key="login"  component={Login} hideNavBar={true} component={Login}  />
+        <Scene key="mediaCapture" component={MediaCapture} hideNavBar={true} component={MediaCapture} hideTabBar={true}  />
+        <Scene key="loginDialog"  component={LoginDialog} hideNavBar={true}  component={LoginDialog} />
         <Scene key="register" component={Register} hideNavBar={true} title="تسجيل الدخول"   />
 
       </Scene>
