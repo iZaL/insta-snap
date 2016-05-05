@@ -10,7 +10,7 @@
     "lodash": "^4.6.1",
     "normalizr": "^2.0.1",
     "react": "^0.14.8",
-    "react-native": "^0.24.1",
+    "react-native": "^0.25.1",
     "react-native-button": "^1.4.2",
     "react-native-camera": "git://github.com/lwansbrough/react-native-camera.git#master",
     "react-native-code-push": "^1.10.6-beta",
