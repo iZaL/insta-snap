@@ -5,7 +5,7 @@ import { Actions } from 'react-native-router-flux';
 import { fetchUserMedias } from './../../actions/User/user';
 import MediaList from './../../components/Media/MediaList';
 import LoadingIndicator from './../../components/LoadingIndicator';
-
+import reverse from 'lodash/reverse';
 class UserMedias extends Component {
 
   static propTypes = {
@@ -34,7 +34,7 @@ class UserMedias extends Component {
     return (
       <ScrollView contentInset={{bottom:40}} contentContainerStyle={{ paddingTop:64 }}>
         { userReducer.medias.isFetching && <LoadingIndicator /> }
-        <MediaList medias={medias} loadMedia={this.loadMedia.bind(this)}
+        <MediaList medias={reverse(medias)} loadMedia={this.loadMedia.bind(this)}
                    loadMore={()=>''}
                    mediasReducer={mediasReducer}
         />
