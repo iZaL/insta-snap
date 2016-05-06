@@ -11,7 +11,7 @@
 
 #import "RCTRootView.h"
 
-//#import "CodePush.h"
+#import "CodePush.h"
 
 
 @implementation AppDelegate
@@ -44,8 +44,9 @@
    * simulator in the "Release" build configuration.
    */
 
-   jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+//   jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
   
+  jsCodeLocation = [CodePush bundleURL];
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"InstaSnap"
