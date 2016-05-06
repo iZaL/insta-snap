@@ -49,7 +49,7 @@
   jsCodeLocation = [CodePush bundleURL];
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
-                                                      moduleName:@"InstaSnap"
+                                                      moduleName:@"mushtryati"
                                                initialProperties:nil
                                                    launchOptions:launchOptions];
 

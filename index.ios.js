@@ -3,4 +3,4 @@ import { AppRegistry } from 'react-native';
 import Root from './src/Root';
 //delete GLOBAL.XMLHttpRequest;
 
-AppRegistry.registerComponent('InstaSnap', () => Root);
+AppRegistry.registerComponent('mushtryati', () => Root);
