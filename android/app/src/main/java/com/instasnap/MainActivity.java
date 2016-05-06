@@ -1,6 +1,7 @@
 package com.instasnap;
 
 import com.facebook.react.ReactActivity;
+import com.microsoft.codepush.react.CodePush;
 import com.brentvatne.RCTVideo.ReactVideoPackage;
 import com.smixx.reactnativeicons.ReactNativeIcons;
 import com.lwansbrough.RCTCamera.RCTCameraPackage;
@@ -38,6 +39,7 @@ public class MainActivity extends ReactActivity {
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
+            new CodePush("CdymXklporg-HZxPJ8XRUwxBxc_XV11xDbpZe", this, BuildConfig.DEBUG),
             new ReactVideoPackage(),
             new ReactNativeIcons(),
             new RCTCameraPackage()

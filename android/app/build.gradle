@@ -120,6 +120,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-code-push')
     compile project(':react-native-video')
     compile project(':react-native-icons')
     compile project(':react-native-camera')
