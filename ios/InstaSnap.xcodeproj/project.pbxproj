@@ -778,10 +778,10 @@
 					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 				);
 				INFOPLIST_FILE = InstaSnap/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ideasowners.mushtryati;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ideasowners.moshtryati;
 				PRODUCT_NAME = InstaSnap;
 			};
 			name = Debug;
@@ -802,10 +802,10 @@
 					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 				);
 				INFOPLIST_FILE = InstaSnap/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ideasowners.mushtryati;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ideasowners.moshtryati;
 				PRODUCT_NAME = InstaSnap;
 			};
 			name = Release;

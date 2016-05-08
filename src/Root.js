@@ -9,6 +9,8 @@ const store = configureStore();
 export default class Root extends Component {
 
   componentDidMount() {
+    console.disableYellowBox = true;
+
     AppState.addEventListener("change", (newState) => {
       if(newState === "active") {
       codePush.sync({installMode: codePush.InstallMode.ON_NEXT_RESUME});
