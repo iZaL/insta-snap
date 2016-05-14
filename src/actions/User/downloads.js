@@ -1,5 +1,5 @@
 import { API_ROOT } from './../../constants/config';
-import { normalize, Schema, arrayOf } from 'normalizr';
+import { normalize } from 'normalizr';
 import { Schemas } from './../../utils/schema';
 import { getUserToken } from './../../utils/storage';
 
@@ -44,7 +44,7 @@ export function fetchUserDownloads(userID,requiredFields = []) {
     }
     dispatch(userDownloadsRequest());
     return getUserToken().then((token) => {
-      const url = API_ROOT + `/users/${userID}/downloads?api_token=${token}`;
+      const url = `${API_ROOT}/users/${userID}/downloads?api_token=${token}`;
       return fetch(url)
         .then(response => response.json())
         .then(json => {

@@ -48,7 +48,7 @@ export function fetchLiveMedias() {
   // company videos, cache for 1 day
   return (dispatch,getState) => {
     return getUserToken().then((token) => {
-      const  url = API_ROOT + `/medias/live?api_token=${token}`;
+      const  url = `${API_ROOT}/medias/live?api_token=${token}`;
       dispatch({type:HOME_REQUEST});
       return fetch(url)
         .then(response => response.json())
@@ -64,7 +64,7 @@ export function fetchFollowerMedias() {
   // use Followers media
   return (dispatch,getState) => {
     return getUserToken().then((token) => {
-      const  url = API_ROOT + `/medias/followers?api_token=${token}`;
+      const  url = `${API_ROOT}/medias/followers?api_token=${token}`;
       dispatch({type:HOME_REQUEST});
       return fetch(url)
         .then(response => response.json())
@@ -80,7 +80,7 @@ export function fetchCompanyMedias() {
   // get all company medias
   return (dispatch,getState) => {
     return getUserToken().then((token) => {
-      const  url = API_ROOT + `/medias/companies?api_token=${token}`;
+      const  url = `${API_ROOT}/medias/companies?api_token=${token}`;
       dispatch({type:HOME_REQUEST});
       return fetch(url)
         .then(response => response.json())
@@ -95,7 +95,7 @@ export function fetchCompanyMedias() {
 export function fetchMedias() {
   return (dispatch,getState) => {
     return getUserToken().then((token) => {
-      const  url = API_ROOT + `/medias?api_token=${token}`;
+      const  url = `${API_ROOT}/medias?api_token=${token}`;
       dispatch({type:HOME_REQUEST});
       return fetch(url)
         .then(response => response.json())

@@ -1,11 +1,10 @@
 import { API_ROOT } from './../../constants/config';
-import { normalize, Schema, arrayOf } from 'normalizr';
+import { normalize } from 'normalizr';
 import { Schemas } from './../../utils/schema';
 import { getUserToken } from './../../utils/storage';
 import union from 'lodash/union';
 
 import {
-  MEDIA_FAVORITE,
   MEDIA_FAVORITES_SUCCESS,
   MEDIA_FAVORITES_REQUEST,
   MEDIA_FAVORITES_FAILURE,
@@ -14,7 +13,7 @@ import {
 
 function updateUserFavorites(user,media) {
   const favorites = user.favorites ? user.favorites : [];
-  user.favorites = media.isFavorited ? favorites.filter((fav) => fav != media.id) : union(favorites,[media.id]);
+  user.favorites = media.isFavorited ? favorites.filter((fav) => fav !== media.id) : union(favorites,[media.id]);
   const normalized = normalize(user,Schemas.USER);
   return {
     type: MEDIA_FAVORITES_SUCCESS,
@@ -24,7 +23,7 @@ function updateUserFavorites(user,media) {
 
 function updateMediaFavorites(user,media) {
   const favorites = media.favorites ? media.favorites : [];
-  media.favorites = media.isFavorited ? favorites.filter((fav) => fav != user.id) : union(favorites,[user.id]);
+  media.favorites = media.isFavorited ? favorites.filter((fav) => fav !== user.id) : union(favorites,[user.id]);
   media.unFavorited = media.isFavorited ? true : false;
   media.isFavorited = !media.isFavorited;
   const normalized = normalize(media,Schemas.MEDIA);
@@ -78,7 +77,7 @@ export function favoriteMedia(mediaID) {
     dispatch(updateMediaFavorites(user,media));
 
     return getUserToken().then((token) => {
-      const url = API_ROOT + `/medias/favorite?api_token=${token}`;
+      const url = `${API_ROOT}/medias/favorite?api_token=${token}`;
       return fetch(url, {
         method: 'POST',
         body: JSON.stringify(params)
@@ -98,11 +97,11 @@ export function favoriteMedia(mediaID) {
 export function fetchMediaFavorites(mediaID,forceLoad = false) {
   return (dispatch,getState) => {
     const {
-      nextPageUrl = API_ROOT + `/medias/${mediaID}/favorites`,
+      nextPageUrl = `${API_ROOT}/medias/${mediaID}/favorites`,
       pageCount = 0
       } = getState().pagination.mediaFavorites[mediaID] || {};
 
-    if (nextPageUrl == null || (pageCount > 0 && !forceLoad)) {
+    if (nextPageUrl === null || (pageCount > 0 && !forceLoad)) {
       return null;
     }
 

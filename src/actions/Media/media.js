@@ -1,5 +1,5 @@
 import { API_ROOT } from './../../constants/config';
-import { normalize, Schema, arrayOf } from 'normalizr';
+import { normalize } from 'normalizr';
 import { Schemas } from './../../utils/schema';
 import { getUserToken } from './../../utils/storage';
 import { getExtension, getMediaName } from './../../utils/functions';
@@ -40,7 +40,7 @@ export function fetchMedia(mediaID,requiredFields = []) {
     dispatch({type:MEDIA_REQUEST});
 
     return getUserToken().then((token) => {
-      const url = API_ROOT + `/medias/${mediaID}?api_token=${token}`;
+      const url = `${API_ROOT}/medias/${mediaID}?api_token=${token}`;
       return fetch(url)
         .then(response => response.json())
         .then(json => {
@@ -59,7 +59,7 @@ export function saveMedia(uri) {
     console.log('saving media with uri ',uri);
     dispatch({type:MEDIA_SAVE_REQUEST});
 
-    var xhr = new XMLHttpRequest;
+    var xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = (e) => {
 
@@ -82,7 +82,7 @@ export function saveMedia(uri) {
     };
 
     return getUserToken().then((token) => {
-      const url = API_ROOT + `/medias?api_token=${token}`;
+      const url = `${API_ROOT}/medias?api_token=${token}`;
       var body = new FormData();
       body.append('api_token', token);
       body.append('media', media);

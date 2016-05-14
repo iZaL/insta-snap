@@ -13,7 +13,7 @@ class App extends Component {
 
   render() {
     return (
-      <Router createReducer={reducerCreate} sceneStyle={{flex:1,backgroundColor:"white"}} scenes={scenes} />
+      git createReducer={reducerCreate} sceneStyle={{flex:1,backgroundColor:"white"}} scenes={scenes} />
     );
   }
 }

@@ -1,5 +1,5 @@
 import { API_ROOT } from './../../constants/config';
-import { normalize, Schema, arrayOf } from 'normalizr';
+import { normalize, arrayOf } from 'normalizr';
 import { Schemas } from './../../utils/schema';
 import { getUserToken } from './../../utils/storage';
 import { MEDIAS_SUCCESS, MEDIAS_REQUEST, MEDIAS_FAILURE } from '../../constants/actiontypes';
@@ -18,11 +18,11 @@ export function fetchMedias(forceLoad = false) {
     return getUserToken().then((token) => {
 
       const {
-        nextPageUrl = API_ROOT + `/medias?api_token=${token}`,
+        nextPageUrl = `${API_ROOT}/medias?api_token=${token}`,
         pageCount = 0
         } = getState().mediasReducer || {};
 
-      if (nextPageUrl == null || (pageCount > 0 && !forceLoad)) {
+      if (nextPageUrl === null || (pageCount > 0 && !forceLoad)) {
         return null;
       }
 

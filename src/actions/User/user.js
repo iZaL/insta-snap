@@ -1,5 +1,5 @@
 import { API_ROOT } from './../../constants/config';
-import { normalize, Schema, arrayOf } from 'normalizr';
+import { normalize } from 'normalizr';
 import { Schemas } from './../../utils/schema';
 import { getUserToken } from './../../utils/storage';
 import union from 'lodash/union';
@@ -16,8 +16,7 @@ import {
   USER_FOLLOWINGS_FAILURE,
   USER_FOLLOWERS_REQUEST,
   USER_FOLLOWERS_SUCCESS,
-  USER_FOLLOWERS_FAILURE,
-  SET_CURRENT_USER
+  USER_FOLLOWERS_FAILURE
 } from './../../constants/actiontypes';
 
 function userSuccess(payload) {
@@ -61,7 +60,7 @@ export function fetchUser(userID,requiredFields = []) {
     }
     dispatch({type:USER_REQUEST});
     return getUserToken().then((token) => {
-        const url = API_ROOT + `/users/${userID}?api_token=${token}`;
+        const url = `${API_ROOT}/users/${userID}?api_token=${token}`;
         return fetch(url)
           .then(response => response.json())
           .then(json => {
@@ -82,7 +81,7 @@ export function fetchUserMedias(userID,requiredFields = []) {
     }
     dispatch({type:USER_MEDIAS_REQUEST});
     return getUserToken().then((token) => {
-        const url = API_ROOT + `/users/${userID}/medias?api_token=${token}`;
+        const url = `${API_ROOT}/users/${userID}/medias?api_token=${token}`;
         return fetch(url)
           .then(response => response.json())
           .then(json => {
@@ -103,7 +102,7 @@ export function fetchUserFollowings(userID,requiredFields = []) {
     }
     dispatch({type:USER_FOLLOWINGS_REQUEST});
     return getUserToken().then((token) => {
-        const url = API_ROOT + `/users/${userID}/followings?api_token=${token}`;
+        const url = `${API_ROOT}/users/${userID}/followings?api_token=${token}`;
         return fetch(url)
           .then(response => response.json())
           .then(json => {
@@ -124,7 +123,7 @@ export function fetchUserFollowers(userID,requiredFields = []) {
     }
     dispatch({type:USER_FOLLOWERS_REQUEST});
     return getUserToken().then((token) => {
-        const url = API_ROOT + `/users/${userID}/followers?api_token=${token}`;
+        const url = `${API_ROOT}/users/${userID}/followers?api_token=${token}`;
         return fetch(url)
           .then(response => response.json())
           .then(json => {
@@ -142,7 +141,7 @@ function updateFollower(authUser,followee) {
   // else, add the followee to the followings list
   const followings = authUser.followings ? authUser.followings : [];
   // if the action was unfollow, then remove the user from followings list, but if the action follow, then add the user to the followings list
-  authUser.followings = followee.isFollowing ? followings.filter((followingID) => followingID != followee.id) : union(followings,[followee.id]);
+  authUser.followings = followee.isFollowing ? followings.filter((followingID) => followingID !== followee.id) : union(followings,[followee.id]);
   const normalized = normalize(authUser,Schemas.USER);
   return {
     type: USER_FOLLOWINGS_SUCCESS,
@@ -154,7 +153,7 @@ function updateFollowee(authUser,followee) {
   // if the auth auth user is already in followers list, remove the follower from the followings list
   // else, add the auth user to the followers list
   const followers = followee.followers ? followee.followers : [];
-  followee.followers = followee.isFollowing ?  followers.filter((followerID) => followerID != authUser.id) : union(followers,[authUser.id]);
+  followee.followers = followee.isFollowing ?  followers.filter((followerID) => followerID !== authUser.id) : union(followers,[authUser.id]);
   // if the action was unfollow then set isFollowing to false, this is just a flag to update the UI, since the entities only merges the list, doesnt remove the value
   followee.isFollowing = !followee.isFollowing; // toggle the followees isFollowing (follower = auth user)
   const normalized = normalize(followee,Schemas.USER);
@@ -178,7 +177,7 @@ export function followUser(authUserID,followeeID) {
     dispatch(updateFollowee(authUser,followee));
 
     return getUserToken().then((token) => {
-      const url = API_ROOT + `/follow?api_token=${token}`;
+      const url = `${API_ROOT}/follow?api_token=${token}`;
       return fetch(url, {
         method: 'POST',
         body: JSON.stringify(params)
