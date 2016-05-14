@@ -12,7 +12,7 @@ import {
 function userDownloadsRequest() {
   return {
     type: USER_DOWNLOADS_REQUEST
-  }
+  };
 }
 
 function userDownloadsSuccess(payload) {
@@ -20,14 +20,14 @@ function userDownloadsSuccess(payload) {
   return {
     type: USER_DOWNLOADS_SUCCESS,
     entities: normalized.entities
-  }
+  };
 }
 
 function userDownloadsFailure(err) {
   return {
     type: USER_DOWNLOADS_FAILURE,
     error:err
-  }
+  };
 }
 
 /**
@@ -36,7 +36,7 @@ function userDownloadsFailure(err) {
  */
 
 // get Auth user's downloads
-export function fetchUserDownloads(userID,requiredFields=[]) {
+export function fetchUserDownloads(userID,requiredFields = []) {
   return (dispatch,getState) => {
     const user = getState().entities.users[userID];
     if (user && requiredFields.every(key => user.hasOwnProperty(key))) {
@@ -48,12 +48,12 @@ export function fetchUserDownloads(userID,requiredFields=[]) {
       return fetch(url)
         .then(response => response.json())
         .then(json => {
-          if(json.success) {
+          if (json.success) {
             dispatch(userDownloadsSuccess(json));
           } else {
             throw new Error(json.message);
           }
-        })
-    }).catch((err)=> dispatch(userDownloadsFailure(err)))
-  }
+        });
+    }).catch((err)=> dispatch(userDownloadsFailure(err)));
+  };
 }

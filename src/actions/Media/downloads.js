@@ -14,24 +14,24 @@ import {
 
 function updateUserDownloads(user,media) {
   const downloads = user.downloads ? user.downloads : [];
-  user.downloads = media.isDownloaded ? downloads.filter((download) => download != media.id) : union(downloads,[media.id]) ;
+  user.downloads = media.isDownloaded ? downloads.filter((download) => download != media.id) : union(downloads,[media.id]);
   const normalized = normalize(user,Schemas.USER);
   return {
     type: MEDIA_DOWNLOADS_SUCCESS,
     entities: normalized.entities
-  }
+  };
 }
 
 function updateMediaDownloads(user,media) {
   const downloads = media.downloads ? media.downloads : [];
-  media.downloads = media.isDownloaded ? downloads.filter((download) => download != user.id) : union(downloads,[user.id]) ;
+  media.downloads = media.isDownloaded ? downloads.filter((download) => download != user.id) : union(downloads,[user.id]);
   media.isDownloaded = !media.isDownloaded;
   media.unDownloaded = media.isDownloaded ? false : true;
   const normalized = normalize(media,Schemas.MEDIA);
   return {
     type: MEDIA_DOWNLOADS_SUCCESS,
     entities: normalized.entities
-  }
+  };
 }
 
 
@@ -39,7 +39,7 @@ function mediaDownloadsRequest(mediaID) {
   return {
     type: MEDIA_DOWNLOADS_REQUEST,
     entityID:mediaID
-  }
+  };
 }
 
 function mediaDownloadsSuccess(mediaID,payload) {
@@ -51,7 +51,7 @@ function mediaDownloadsSuccess(mediaID,payload) {
     entityID:mediaID,
     nextPageUrl:payload.next_page_url,
     total:payload.total
-  }
+  };
 }
 
 function mediaDownloadsFailure(mediaID,err) {
@@ -59,11 +59,11 @@ function mediaDownloadsFailure(mediaID,err) {
     type: MEDIA_DOWNLOADS_FAILURE,
     error:err,
     entityID:mediaID
-  }
+  };
 }
 
 // get Auth user's favorites
-export function fetchMediaDownloads(mediaID, forceLoad=false ) {
+export function fetchMediaDownloads(mediaID, forceLoad = false ) {
   return (dispatch,getState) => {
     const {
       nextPageUrl = API_ROOT + `/medias/${mediaID}/downloads`,
@@ -71,7 +71,7 @@ export function fetchMediaDownloads(mediaID, forceLoad=false ) {
       } = getState().pagination.mediaDownloads[mediaID] || {};
 
     if (nextPageUrl == null || (pageCount > 0 && !forceLoad)) {
-      return null
+      return null;
     }
 
     dispatch(mediaDownloadsRequest(mediaID));
@@ -79,8 +79,8 @@ export function fetchMediaDownloads(mediaID, forceLoad=false ) {
     return fetch(nextPageUrl)
       .then(response => response.json())
       .then(json => dispatch(mediaDownloadsSuccess(mediaID,json)))
-      .catch((err)=> dispatch(mediaDownloadsFailure(mediaID,err)))
-  }
+      .catch((err)=> dispatch(mediaDownloadsFailure(mediaID,err)));
+  };
 }
 
 /**
@@ -108,8 +108,8 @@ export function downloadMedia(mediaID) {
       })
         .then(response => response.json())
         .then(json => {})
-        .catch((err)=> console.log(err))
-    })
-  }
+        .catch((err)=> console.log(err));
+    });
+  };
 }
 

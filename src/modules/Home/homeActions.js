@@ -3,9 +3,9 @@ import { normalize, Schema, arrayOf } from 'normalizr';
 import { Schemas } from './../../utils/schema';
 import { getUserToken } from './../../utils/storage';
 
-export const HOME_REQUEST='HOME_REQUEST';
-export const HOME_SUCCESS='HOME_SUCCESS';
-export const HOME_FAILURE='HOME_FAILURE';
+export const HOME_REQUEST = 'HOME_REQUEST';
+export const HOME_SUCCESS = 'HOME_SUCCESS';
+export const HOME_FAILURE = 'HOME_FAILURE';
 
 
 function mediasSuccess(payload) {
@@ -14,7 +14,7 @@ function mediasSuccess(payload) {
     type: HOME_SUCCESS,
     entities:normalized.entities,
     liveMedias:normalized.result.data
-  }
+  };
 }
 
 function liveMediasSuccess(payload) {
@@ -23,7 +23,7 @@ function liveMediasSuccess(payload) {
     type: HOME_SUCCESS,
     entities:normalized.entities,
     liveMedias:normalized.result.data
-  }
+  };
 }
 
 function followerMediasSuccess(payload) {
@@ -32,7 +32,7 @@ function followerMediasSuccess(payload) {
     type: HOME_SUCCESS,
     entities:normalized.entities,
     followerMedias:normalized.result.data
-  }
+  };
 }
 
 function companyMediasSuccess(payload) {
@@ -41,7 +41,7 @@ function companyMediasSuccess(payload) {
     type: HOME_SUCCESS,
     entities:normalized.entities,
     companyMedias:entities.result
-  }
+  };
 }
 
 export function fetchLiveMedias() {
@@ -53,11 +53,11 @@ export function fetchLiveMedias() {
       return fetch(url)
         .then(response => response.json())
         .then(json => {
-          dispatch(liveMediasSuccess(json))
+          dispatch(liveMediasSuccess(json));
         })
-        .catch((err) => dispatch({type: HOME_FAILURE, error: err}))
-    })
-  }
+        .catch((err) => dispatch({type: HOME_FAILURE, error: err}));
+    });
+  };
 }
 
 export function fetchFollowerMedias() {
@@ -69,11 +69,11 @@ export function fetchFollowerMedias() {
       return fetch(url)
         .then(response => response.json())
         .then(json => {
-          dispatch(followerMediasSuccess(json))
+          dispatch(followerMediasSuccess(json));
         })
-        .catch((err) => dispatch({type: HOME_FAILURE, error: err}))
-    })
-  }
+        .catch((err) => dispatch({type: HOME_FAILURE, error: err}));
+    });
+  };
 }
 
 export function fetchCompanyMedias() {
@@ -85,11 +85,11 @@ export function fetchCompanyMedias() {
       return fetch(url)
         .then(response => response.json())
         .then(json => {
-          dispatch(companyMediasSuccess(json))
+          dispatch(companyMediasSuccess(json));
         })
-        .catch((err) => dispatch({type: HOME_FAILURE, error: err}))
-    })
-  }
+        .catch((err) => dispatch({type: HOME_FAILURE, error: err}));
+    });
+  };
 }
 
 export function fetchMedias() {
@@ -100,9 +100,9 @@ export function fetchMedias() {
       return fetch(url)
         .then(response => response.json())
         .then(json => {
-          dispatch(mediasSuccess(json))
+          dispatch(mediasSuccess(json));
         })
-        .catch((err) => dispatch({type: HOME_FAILURE, error: err}))
-    })
-  }
+        .catch((err) => dispatch({type: HOME_FAILURE, error: err}));
+    });
+  };
 }

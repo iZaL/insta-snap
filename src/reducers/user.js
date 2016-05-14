@@ -31,7 +31,7 @@ import {
   USER_FAILURE
 } from '../constants/actiontypes';
 
-const InitialState= Record({
+const InitialState = Record({
   isAuthenticated :false,
   authUserID:null, // authenticated user ID
   isFetching:false,
@@ -101,7 +101,7 @@ export default function userReducer(state = initialState, action = {}) {
     case USER_FAVORITES_SUCCESS:
       return state
         .setIn(['favorites', 'isFetching'], false)
-        .setIn(['favorites', 'error'], null)
+        .setIn(['favorites', 'error'], null);
     case USER_FAVORITES_FAILURE:
       return state
         .setIn(['favorites', 'isFetching'], false)
@@ -113,7 +113,7 @@ export default function userReducer(state = initialState, action = {}) {
     case USER_DOWNLOADS_SUCCESS:
       return state
         .setIn(['downloads', 'isFetching'], false)
-        .setIn(['downloads', 'error'], null)
+        .setIn(['downloads', 'error'], null);
     case USER_DOWNLOADS_FAILURE:
       return state
         .setIn(['downloads', 'isFetching'], false)
@@ -125,7 +125,7 @@ export default function userReducer(state = initialState, action = {}) {
     case USER_MEDIAS_SUCCESS:
       return state
         .setIn(['medias', 'isFetching'], false)
-        .setIn(['medias', 'error'], null)
+        .setIn(['medias', 'error'], null);
     case USER_MEDIAS_FAILURE:
       return state
         .setIn(['medias', 'isFetching'], false)
@@ -137,7 +137,7 @@ export default function userReducer(state = initialState, action = {}) {
     case USER_FOLLOWERS_SUCCESS:
       return state
         .setIn(['followers', 'isFetching'], false)
-        .setIn(['followers', 'error'], null)
+        .setIn(['followers', 'error'], null);
     case USER_FOLLOWERS_FAILURE:
       return state
         .setIn(['followers', 'isFetching'], false)
@@ -149,7 +149,7 @@ export default function userReducer(state = initialState, action = {}) {
     case USER_FOLLOWINGS_SUCCESS:
       return state
         .setIn(['followings', 'isFetching'], false)
-        .setIn(['followings', 'error'], null)
+        .setIn(['followings', 'error'], null);
     case USER_FOLLOWINGS_FAILURE:
       return state
         .setIn(['followings', 'isFetching'], false)

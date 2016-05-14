@@ -1,4 +1,4 @@
-import {API_ROOT} from './../../constants/config'
+import {API_ROOT} from './../../constants/config';
 
 import {
   REGISTER_FAILURE,
@@ -43,7 +43,7 @@ export function register(inputs, cb = false) {
         }
       })
       .catch((err)=> {
-        dispatch(registerFailure(err))
+        dispatch(registerFailure(err));
       });
   };
 }

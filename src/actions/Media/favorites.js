@@ -14,31 +14,31 @@ import {
 
 function updateUserFavorites(user,media) {
   const favorites = user.favorites ? user.favorites : [];
-  user.favorites = media.isFavorited ? favorites.filter((fav) => fav != media.id) : union(favorites,[media.id]) ;
+  user.favorites = media.isFavorited ? favorites.filter((fav) => fav != media.id) : union(favorites,[media.id]);
   const normalized = normalize(user,Schemas.USER);
   return {
     type: MEDIA_FAVORITES_SUCCESS,
     entities: normalized.entities
-  }
+  };
 }
 
 function updateMediaFavorites(user,media) {
   const favorites = media.favorites ? media.favorites : [];
-  media.favorites = media.isFavorited ? favorites.filter((fav) => fav != user.id) : union(favorites,[user.id]) ;
+  media.favorites = media.isFavorited ? favorites.filter((fav) => fav != user.id) : union(favorites,[user.id]);
   media.unFavorited = media.isFavorited ? true : false;
   media.isFavorited = !media.isFavorited;
   const normalized = normalize(media,Schemas.MEDIA);
   return {
     type: MEDIA_FAVORITES_SUCCESS,
     entities: normalized.entities
-  }
+  };
 }
 
 function mediaFavoritesRequest(mediaID) {
   return {
     type: MEDIA_FAVORITES_REQUEST,
     entityID:mediaID
-  }
+  };
 }
 
 function mediaFavoritesSuccess(mediaID,payload) {
@@ -50,14 +50,14 @@ function mediaFavoritesSuccess(mediaID,payload) {
     entityID:mediaID,
     nextPageUrl:payload.next_page_url,
     total:payload.total
-  }
+  };
 }
 
 function mediaFavoritesFailure(err) {
   return {
     type: MEDIA_FAVORITES_FAILURE,
     error:err
-  }
+  };
 }
 
 /**
@@ -85,9 +85,9 @@ export function favoriteMedia(mediaID) {
       })
         .then(response => response.json())
         .then(json => {})
-        .catch((err)=> console.log(err))
-    })
-  }
+        .catch((err)=> console.log(err));
+    });
+  };
 }
 
 /**
@@ -95,7 +95,7 @@ export function favoriteMedia(mediaID) {
  */
 
 // get Auth user's favorites
-export function fetchMediaFavorites(mediaID,forceLoad=false) {
+export function fetchMediaFavorites(mediaID,forceLoad = false) {
   return (dispatch,getState) => {
     const {
       nextPageUrl = API_ROOT + `/medias/${mediaID}/favorites`,
@@ -103,13 +103,13 @@ export function fetchMediaFavorites(mediaID,forceLoad=false) {
       } = getState().pagination.mediaFavorites[mediaID] || {};
 
     if (nextPageUrl == null || (pageCount > 0 && !forceLoad)) {
-      return null
+      return null;
     }
 
     dispatch(mediaFavoritesRequest(mediaID));
     return fetch(nextPageUrl)
       .then(response => response.json())
       .then(json => dispatch(mediaFavoritesSuccess(mediaID,json)))
-      .catch((err)=> dispatch(mediaFavoritesFailure(mediaID,err)))
-  }
+      .catch((err)=> dispatch(mediaFavoritesFailure(mediaID,err)));
+  };
 }

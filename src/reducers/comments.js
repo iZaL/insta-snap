@@ -25,6 +25,6 @@ export default function commentsReducer(state = initialState, action = {}) {
     case COMMENTS_FAILURE:
       return state.set('isFetching', false);
     default:
-      return state
+      return state;
   }
 }

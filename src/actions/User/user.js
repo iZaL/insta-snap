@@ -25,7 +25,7 @@ function userSuccess(payload) {
   return {
     type: USER_SUCCESS,
     entities: normalized.entities
-  }
+  };
 }
 
 function userMediasSuccess(payload) {
@@ -33,7 +33,7 @@ function userMediasSuccess(payload) {
   return {
     type: USER_MEDIAS_SUCCESS,
     entities: normalized.entities
-  }
+  };
 }
 
 function userFollowingsSuccess(payload) {
@@ -41,7 +41,7 @@ function userFollowingsSuccess(payload) {
   return {
     type: USER_FOLLOWINGS_SUCCESS,
     entities: normalized.entities
-  }
+  };
 }
 
 function userFollowersSuccess(payload) {
@@ -49,10 +49,10 @@ function userFollowersSuccess(payload) {
   return {
     type: USER_FOLLOWERS_SUCCESS,
     entities: normalized.entities
-  }
+  };
 }
 
-export function fetchUser(userID,requiredFields=[]) {
+export function fetchUser(userID,requiredFields = []) {
 
   return (dispatch,getState) => {
     const user = getState().entities.users[userID];
@@ -66,15 +66,15 @@ export function fetchUser(userID,requiredFields=[]) {
           .then(response => response.json())
           .then(json => {
             dispatch(userSuccess(json));
-          })
+          });
       })
       .catch((err)=> {
         dispatch({type:USER_FAILURE,error:err});
-      })
-  }
+      });
+  };
 }
 
-export function fetchUserMedias(userID,requiredFields=[]) {
+export function fetchUserMedias(userID,requiredFields = []) {
   return (dispatch,getState) => {
     const user = getState().entities.users[userID];
     if (user && requiredFields.every(key => user.hasOwnProperty(key))) {
@@ -87,15 +87,15 @@ export function fetchUserMedias(userID,requiredFields=[]) {
           .then(response => response.json())
           .then(json => {
             dispatch(userMediasSuccess(json));
-          })
+          });
       })
       .catch((err)=> {
         dispatch({type:USER_MEDIAS_FAILURE,error:err});
-      })
-  }
+      });
+  };
 }
 
-export function fetchUserFollowings(userID,requiredFields=[]) {
+export function fetchUserFollowings(userID,requiredFields = []) {
   return (dispatch,getState) => {
     const user = getState().entities.users[userID];
     if (user && requiredFields.every(key => user.hasOwnProperty(key))) {
@@ -108,15 +108,15 @@ export function fetchUserFollowings(userID,requiredFields=[]) {
           .then(response => response.json())
           .then(json => {
             dispatch(userFollowingsSuccess(json));
-          })
+          });
       })
       .catch((err)=> {
         dispatch({type:USER_FOLLOWINGS_FAILURE,error:err});
-      })
-  }
+      });
+  };
 }
 
-export function fetchUserFollowers(userID,requiredFields=[]) {
+export function fetchUserFollowers(userID,requiredFields = []) {
   return (dispatch,getState) => {
     const user = getState().entities.users[userID];
     if (user && requiredFields.every(key => user.hasOwnProperty(key))) {
@@ -129,12 +129,12 @@ export function fetchUserFollowers(userID,requiredFields=[]) {
           .then(response => response.json())
           .then(json => {
             dispatch(userFollowersSuccess(json));
-          })
+          });
       })
       .catch((err)=> {
         dispatch({type:USER_FOLLOWERS_FAILURE,error:err});
-      })
-  }
+      });
+  };
 }
 
 function updateFollower(authUser,followee) {
@@ -142,26 +142,26 @@ function updateFollower(authUser,followee) {
   // else, add the followee to the followings list
   const followings = authUser.followings ? authUser.followings : [];
   // if the action was unfollow, then remove the user from followings list, but if the action follow, then add the user to the followings list
-  authUser.followings = followee.isFollowing ? followings.filter((followingID) => followingID != followee.id) : union(followings,[followee.id]) ;
+  authUser.followings = followee.isFollowing ? followings.filter((followingID) => followingID != followee.id) : union(followings,[followee.id]);
   const normalized = normalize(authUser,Schemas.USER);
   return {
     type: USER_FOLLOWINGS_SUCCESS,
     entities: normalized.entities
-  }
+  };
 }
 
 function updateFollowee(authUser,followee) {
   // if the auth auth user is already in followers list, remove the follower from the followings list
   // else, add the auth user to the followers list
   const followers = followee.followers ? followee.followers : [];
-  followee.followers = followee.isFollowing ?  followers.filter((followerID) => followerID != authUser.id) : union(followers,[authUser.id])  ;
+  followee.followers = followee.isFollowing ?  followers.filter((followerID) => followerID != authUser.id) : union(followers,[authUser.id]);
   // if the action was unfollow then set isFollowing to false, this is just a flag to update the UI, since the entities only merges the list, doesnt remove the value
   followee.isFollowing = !followee.isFollowing; // toggle the followees isFollowing (follower = auth user)
   const normalized = normalize(followee,Schemas.USER);
   return {
     type: USER_FOLLOWERS_SUCCESS,
     entities: normalized.entities
-  }
+  };
 }
 
 export function followUser(authUserID,followeeID) {
@@ -185,8 +185,8 @@ export function followUser(authUserID,followeeID) {
       })
         .then(response => response.json())
         .then(json => {})
-        .catch((err)=> console.log(err))
-    })
-  }
+        .catch((err)=> console.log(err));
+    });
+  };
 }
 

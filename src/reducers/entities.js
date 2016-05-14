@@ -4,7 +4,7 @@ const initialState = {
   users:[],
   medias:[],
   comments:[],
-}
+};
 
 export default function entities(state = initialState, action) {
   if (action.entities) {

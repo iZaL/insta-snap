@@ -23,7 +23,7 @@ const usernameConstraints = {
     format: {
       pattern: usernamePattern,
       flags: 'i',
-      message: "must have 6-12 numbers, letters or special characters"
+      message: 'must have 6-12 numbers, letters or special characters'
     }
   }
 };
@@ -38,16 +38,16 @@ const passwordConstraints = {
   password: {
     format: {
       pattern: passwordPattern,
-      flags: "i",
-      message: "have at least a number and a special character,"
-      + " and between 6-12 in length"
+      flags: 'i',
+      message: 'have at least a number and a special character,'
+      + ' and between 6-12 in length'
     }
   }
 };
 
 const passwordAgainConstraints = {
   confirmPassword: {
-    equality: "password"
+    equality: 'password'
   }
 };
 
@@ -59,12 +59,12 @@ const passwordAgainConstraints = {
 export default function rules(state, action ) {
   const {field, value} = action.payload;
 
-  switch(field) {
+  switch (field) {
   /**
    * ### username validation
    * set the form field error
    */
-    case('username'):
+    case ('username'):
       let validUsername  = _.isUndefined(validate({username: value},
         usernameConstraints));
       if (validUsername) {
@@ -78,7 +78,7 @@ export default function rules(state, action ) {
    * ### email validation
    * set the form field error
    */
-    case('email'):
+    case ('email'):
       let validEmail  = _.isUndefined(validate({from: value},
         emailConstraints));
       if (validEmail) {
@@ -92,7 +92,7 @@ export default function rules(state, action ) {
    * ### password validation
    * set the form field error
    */
-    case('password'):
+    case ('password'):
       let validPassword = _.isUndefined(validate({password: value},
         passwordConstraints));
       if (validPassword) {
@@ -106,7 +106,7 @@ export default function rules(state, action ) {
    * ### passwordAgain validation
    * set the form field error
    */
-    case('passwordAgain'):
+    case ('passwordAgain'):
       var validPasswordAgain
         = _.isUndefined(validate({password: state.form.fields.password,
         confirmPassword: value}, passwordAgainConstraints));

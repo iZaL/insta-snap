@@ -17,19 +17,19 @@ function commentsSuccess(payload) {
   return {
     type: COMMENTS_SUCCESS,
     entities: normalized.entities
-  }
+  };
 }
 
 function commentSaving() {
   return {
     type: COMMENT_SAVING
-  }
+  };
 }
 
 function commentSaved() {
   return {
     type: COMMENT_SAVED
-  }
+  };
 }
 
 export function fetchComments(mediaID) {
@@ -43,8 +43,8 @@ export function fetchComments(mediaID) {
       })
       .catch((err)=> {
         dispatch({type: COMMENTS_FAILURE, error: err});
-      })
-  }
+      });
+  };
 }
 
 export function commentMedia(mediaID,comment) {
@@ -62,14 +62,14 @@ export function commentMedia(mediaID,comment) {
       })
         .then(response => response.json())
         .then(json => {
-          if(json.success) {
+          if (json.success) {
             dispatch(commentSaved());
-            dispatch(fetchComments(mediaID))
+            dispatch(fetchComments(mediaID));
           }
-        })
+        });
     }).catch((err)=> {
       dispatch({type:COMMENT_SAVING_FAILURE, error:err});
-    })
+    });
 
-  }
+  };
 }

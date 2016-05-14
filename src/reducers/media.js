@@ -5,7 +5,7 @@ import {
   MEDIA_REQUEST,
   MEDIA_SUCCESS,
   MEDIA_FAILURE,
-} from '../constants/actiontypes'
+} from '../constants/actiontypes';
 
 const InitialState = Record({
   isFetching:false,
@@ -22,6 +22,6 @@ export default function mediaReducer(state = initialState, action = {}) {
     case MEDIA_FAILURE:
       return state.set('isFetching', false);
     default:
-      return state
+      return state;
   }
 }

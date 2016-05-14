@@ -18,7 +18,7 @@ function mediaSaveSuccess(payload) {
   return {
     type: MEDIA_SAVE_SUCCESS,
     entities: normalized.entities
-  }
+  };
 }
 
 function mediaSuccess(payload) {
@@ -26,10 +26,10 @@ function mediaSuccess(payload) {
   return {
     type: MEDIA_SUCCESS,
     entities: normalized.entities
-  }
+  };
 }
 
-export function fetchMedia(mediaID,requiredFields=[]) {
+export function fetchMedia(mediaID,requiredFields = []) {
   return (dispatch,getState) => {
 
     const media = getState().entities.medias[mediaID];
@@ -48,9 +48,9 @@ export function fetchMedia(mediaID,requiredFields=[]) {
         })
         .catch((err)=> {
           dispatch({type: MEDIA_FAILURE, error: err});
-        })
-    })
-  }
+        });
+    });
+  };
 }
 
 export function saveMedia(uri) {
@@ -89,6 +89,6 @@ export function saveMedia(uri) {
       xhr.open('POST', url);
       xhr.send(body);
       return true;
-    })
-  }
+    });
+  };
 }

@@ -12,7 +12,7 @@ import {
 function userFavoritesRequest() {
   return {
     type: USER_FAVORITES_REQUEST
-  }
+  };
 }
 
 function userFavoritesSuccess(payload) {
@@ -20,14 +20,14 @@ function userFavoritesSuccess(payload) {
   return {
     type: USER_FAVORITES_SUCCESS,
     entities: normalized.entities
-  }
+  };
 }
 
 function userFavoritesFailure(err) {
   return {
     type: USER_FAVORITES_FAILURE,
     error:err
-  }
+  };
 }
 
 /**
@@ -35,7 +35,7 @@ function userFavoritesFailure(err) {
  */
 
 // get Auth user's favorites
-export function fetchUserFavorites(userID,requiredFields=[]) {
+export function fetchUserFavorites(userID,requiredFields = []) {
   return (dispatch,getState) => {
     const user = getState().entities.users[userID];
     if (user && requiredFields.every(key => user.hasOwnProperty(key))) {
@@ -47,12 +47,12 @@ export function fetchUserFavorites(userID,requiredFields=[]) {
       return fetch(url)
         .then(response => response.json())
         .then(json => {
-          if(json.success) {
+          if (json.success) {
             dispatch(userFavoritesSuccess(json));
           } else {
             throw new Error(json.message);
           }
-        })
-    }).catch((err)=> dispatch(userFavoritesFailure(err)))
-  }
+        });
+    }).catch((err)=> dispatch(userFavoritesFailure(err)));
+  };
 }

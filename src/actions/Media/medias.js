@@ -10,10 +10,10 @@ function mediasSuccess(payload) {
     type: MEDIAS_SUCCESS,
     entities:normalized.entities,
     nextPageUrl:payload.next_page_url
-  }
+  };
 }
 
-export function fetchMedias(forceLoad=false) {
+export function fetchMedias(forceLoad = false) {
   return (dispatch,getState) => {
     return getUserToken().then((token) => {
 
@@ -23,17 +23,17 @@ export function fetchMedias(forceLoad=false) {
         } = getState().mediasReducer || {};
 
       if (nextPageUrl == null || (pageCount > 0 && !forceLoad)) {
-        return null
+        return null;
       }
 
       dispatch({type:MEDIAS_REQUEST});
       return fetch(nextPageUrl)
         .then(response => response.json())
         .then(json => {
-          dispatch(mediasSuccess(json))
+          dispatch(mediasSuccess(json));
         })
-        .catch((err) => dispatch({type: MEDIAS_FAILURE, error: err}))
-    })
-  }
+        .catch((err) => dispatch({type: MEDIAS_FAILURE, error: err}));
+    });
+  };
 
 }
