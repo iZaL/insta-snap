@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { StyleSheet, Text, View,  TouchableHighlight, TextInput } from 'react-native';
+import { StyleSheet, Text, View,  TouchableHighlight } from 'react-native';
 import FormButton from './../FormButton';
 import stylesheet from './../../assets/style/form';
 import t from 'tcomb-form-native';
@@ -7,21 +7,13 @@ const Form = t.form.Form;
 
 export default class RegisterScene extends Component {
 
-  static propTypes = {
-    onRegisterPress:PropTypes.func.isRequired,
-    onLoginRoutePress:PropTypes.func.isRequired,
-    register:PropTypes.object.isRequired,
-    fields:PropTypes.object.isRequired,
-    onChange:PropTypes.func.isRequired
-  }
-
   handleRegister() {
     this.props.onRegisterPress();
   }
 
-  handleLoginRoutePress = () => {
+  handleLoginRoutePress() {
     this.props.onLoginRoutePress();
-  };
+  }
 
   render() {
 
@@ -106,12 +98,13 @@ export default class RegisterScene extends Component {
 
         <FormButton
           onPress={this.handleRegister.bind(this)}
-          buttonText='Register'/>
+          buttonText="Register"
+        />
 
         <TouchableHighlight
           onPress={this.handleLoginRoutePress.bind(this)}
           style={styles.center}
-          underlayColor='transparent'
+          underlayColor="transparent"
         >
           <Text style={[styles.label,styles.textUnderline, styles.mTop20]}>have an account ? Login </Text>
         </TouchableHighlight>
@@ -123,7 +116,15 @@ export default class RegisterScene extends Component {
 
 }
 
-var styles = StyleSheet.create({
+RegisterScene.propTypes = {
+  onRegisterPress:PropTypes.func.isRequired,
+  onLoginRoutePress:PropTypes.func.isRequired,
+  register:PropTypes.object.isRequired,
+  fields:PropTypes.object.isRequired,
+  onChange:PropTypes.func.isRequired
+};
+
+const styles = StyleSheet.create({
   buttonGreen: {
     height: 50,
     backgroundColor: '#5BC3BE',
@@ -156,5 +157,5 @@ var styles = StyleSheet.create({
   },
   center: {
     alignSelf: 'center'
-  },
+  }
 });

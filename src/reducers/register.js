@@ -31,7 +31,7 @@ const InitialState = Record({
   }))
 });
 
-const initialState = new InitialState;
+const initialState = new InitialState();
 
 export default function register(state = initialState, action = {}) {
   switch (action.type) {

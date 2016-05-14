@@ -1,5 +1,4 @@
 'use strict';
-import React from 'react';
 import { AsyncStorage } from 'react-native';
 import { API_TOKEN } from './../constants/config';
 

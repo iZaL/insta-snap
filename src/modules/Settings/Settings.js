@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { ListView, ScrollView, TouchableHighlight, StyleSheet, Text, View,AlertIOS } from 'react-native';
+import { ScrollView, AlertIOS } from 'react-native';
 import { logoutUser } from './../../actions/Auth/login';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import SettingsCell from './Components/SettingsCell';
-import SettingScene from './../../components/SettingScene';
 import find from 'lodash/find';
 
 class Settings extends Component {
@@ -19,7 +18,7 @@ class Settings extends Component {
   }
 
   loadScene(name){
-    switch(name) {
+    switch (name) {
       case 'profile':
         Actions.mediasRouter();
         return Actions.userScene({
@@ -32,7 +31,7 @@ class Settings extends Component {
   }
 
   logout() {
-    AlertIOS.alert('Are you sure you want to logout ?  ', null, [{text: 'Yes', onPress:()=>{this.performLogout()}},{text:'No'}]);
+    AlertIOS.alert('Are you sure you want to logout ?  ', null, [{text: 'Yes', onPress:()=>{this.performLogout();}},{text:'No'}]);
   }
 
   render() {
@@ -49,7 +48,7 @@ class Settings extends Component {
 function mapStateToProps(state) {
   return {
     authUser:state.entities.users ? find(state.entities.users,['id',state.userReducer.authUserID]) : ''
-  }
+  };
 }
 
 export default connect(mapStateToProps)(Settings);

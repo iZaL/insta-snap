@@ -12,7 +12,7 @@ const InitialState = Record({
   pageCount:0
 });
 
-const initialState = new InitialState;
+const initialState = new InitialState();
 
 export default function mediasReducer(state = initialState, action = {}) {
   switch (action.type) {

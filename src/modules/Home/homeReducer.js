@@ -12,7 +12,7 @@ const initialState =  {
   followerMedias: [],
   companyMedias:[],
   medias:[]
-}
+};
 
 export default function homeReducer(state = initialState, action = {}) {
   switch (action.type) {
@@ -25,8 +25,7 @@ export default function homeReducer(state = initialState, action = {}) {
         followerMedias:union(state.followerMedias, action.followerMedias),
         companyMedias:union(state.companyMedias, action.companyMedias),
         medias:union(state.medias, action.medias)
-      })
-        ;
+      });
     case HOME_FAILURE:
       return {...state,isFetching:false};
     default:

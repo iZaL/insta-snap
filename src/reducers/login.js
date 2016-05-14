@@ -12,17 +12,16 @@ import {
 const initialState = {
   isFetching: false,
   error: null
-}
+};
 
 export default function login(state = initialState, action = {}) {
-
   switch (action.type) {
     case LOGIN_REQUEST:
-      return {...state,isFetching:true,error:null}
+      return {...state,isFetching:true,error:null};
     case LOGIN_SUCCESS:
-      return {...state, isFetching: false, error: null}
+      return {...state, isFetching: false, error: null};
     case LOGIN_FAILURE:
-      return {...state, isFetching: false, error: action.error}
+      return {...state, isFetching: false, error: action.error};
     default:
       return state;
   }

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { StyleSheet, Text, View, Image, TouchableHighlight, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 import FormButton from './../FormButton';
 import LoadingIndicator from './../../components/LoadingIndicator';
 import t from 'tcomb-form-native/lib';
@@ -7,15 +7,6 @@ import stylesheet from './../../assets/style/form';
 const Form = t.form.Form;
 
 export default class LoginScene extends Component {
-
-  static propTypes = {
-    handleLogin:PropTypes.func.isRequired,
-    onForgotPasswordRoutePress:PropTypes.func.isRequired,
-    onRegisterRoutePress:PropTypes.func.isRequired,
-    login:PropTypes.object.isRequired,
-    onChange:PropTypes.func.isRequired,
-    credentials:PropTypes.object.isRequired
-  };
 
   handleLogin() {
     this.props.handleLogin();
@@ -82,36 +73,44 @@ export default class LoginScene extends Component {
         <FormButton
           isDisabled={login.isFetching}
           onPress={this.handleLogin.bind(this)}
-          buttonText='Login'
+          buttonText="Login"
         />
 
-        <TouchableHighlight onPress={this.handleRegisterRoutePress.bind(this)} underlayColor='transparent'
+        <TouchableHighlight onPress={this.handleRegisterRoutePress.bind(this)} underlayColor="transparent"
                             style={[styles.center,styles.mTop20]}
         >
           <Text style={[styles.label,styles.textUnderline]}>Dont have an account? Register</Text>
         </TouchableHighlight>
 
         <TouchableHighlight onPress={this.handleForgotPasswordRoutePress.bind(this)} style={[styles.center,styles.mTop20]}
-                            underlayColor='transparent' >
+                            underlayColor="transparent" >
           <Text style={[styles.label,styles.textUnderline]}>Forgot your password ?</Text>
         </TouchableHighlight>
 
       </View>
 
-    )
+    );
   }
 
 }
 
-var styles = StyleSheet.create({
+LoginScene.propTypes = {
+  handleLogin:PropTypes.func.isRequired,
+  onForgotPasswordRoutePress:PropTypes.func.isRequired,
+  onRegisterRoutePress:PropTypes.func.isRequired,
+  login:PropTypes.object.isRequired,
+  onChange:PropTypes.func.isRequired,
+  credentials:PropTypes.object.isRequired
+};
 
+var styles = StyleSheet.create({
   container:{
     flex:1,
     padding:10
   },
   label: {
     fontSize: 14,
-    color: '#888888',
+    color: '#888888'
   },
   textUnderline: {
     textDecorationLine: 'underline'
@@ -128,5 +127,5 @@ var styles = StyleSheet.create({
   mTop20: {
     marginTop: 50
   }
-})
+});
 

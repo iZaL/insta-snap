@@ -1,13 +1,9 @@
 import React, { PropTypes, Component } from 'react';
-import { StyleSheet,View,Text,Image } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import FormButton from './FormButton';
 
 export default class LoginDialog extends Component {
-
-  static propTypes = {
-    message:PropTypes.string.isRequired
-  };
 
   render() {
     return (
@@ -34,6 +30,10 @@ export default class LoginDialog extends Component {
     );
   }
 }
+
+LoginDialog.propTypes = {
+  message:PropTypes.string.isRequired
+};
 
 const styles = StyleSheet.create({
   container: {

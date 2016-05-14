@@ -1,23 +1,15 @@
 import React, {PropTypes,Component} from 'react';
-import { Image, StyleSheet, Text, TouchableHighlight, View, Dimensions, TouchableWithoutFeedback } from 'react-native';
+import { Image, StyleSheet, TouchableHighlight, View, Dimensions, TouchableWithoutFeedback } from 'react-native';
 import { Icon } from 'react-native-icons';
 import Camera from 'react-native-camera';
 import Video from 'react-native-video';
 
 export default class MediaCaptureScene extends Component {
 
-  static propTypes = {
-    cameraMode:PropTypes.string.isRequired,
-    cameraType:PropTypes.string.isRequired,
-    switchCameraType:PropTypes.func.isRequired,
-    switchCameraMode:PropTypes.func.isRequired,
-    onCapture:PropTypes.func.isRequired
-  }
-
   _captureMedia() {
     this.camera.capture()
       .then((data) => {
-        this.props.onCapture(data.path)
+        this.props.onCapture(data.path);
       })
       .catch(err => console.error(err));
   }
@@ -62,10 +54,10 @@ export default class MediaCaptureScene extends Component {
 
     const { cameraMode,cameraType,isRecording,hasCaptured,mediaUri } = this.props;
 
-    if(hasCaptured) {
+    if (hasCaptured) {
       return (
         <View style={styles.container}>
-          {cameraMode == 'video' ?
+          {cameraMode === 'video' ?
             <Video source={{uri: mediaUri}}
                    style={styles.fullScreen}
                    repeat={true}
@@ -76,7 +68,7 @@ export default class MediaCaptureScene extends Component {
           <View style={styles.topLeftButton}>
             <TouchableHighlight underlayColor="transparent" onPress={() => this.retake()}>
               <Icon
-                name='ion|close-round'
+                name="ion|close-round"
                 size={30}
                 color={'white'}
                 style={styles.closeButton}
@@ -86,7 +78,7 @@ export default class MediaCaptureScene extends Component {
           <View style={[styles.topRightButton,{top:5}]}>
             <TouchableHighlight underlayColor="transparent" onPress={() => this.saveMedia(mediaUri)}>
               <Icon
-                name='ion|ios-checkmark'
+                name="ion|ios-checkmark"
                 size={45}
                 color={'white'}
                 style={styles.checkMarkButton}
@@ -108,8 +100,8 @@ export default class MediaCaptureScene extends Component {
             style={styles.preview}
             aspect={Camera.constants.Aspect.fill}
             captureTarget={Camera.constants.CaptureTarget.disk}
-            captureMode={cameraMode == 'video' ? Camera.constants.CaptureMode.video : Camera.constants.CaptureMode.still }
-            type={cameraType == 'front' ? Camera.constants.Type.front : Camera.constants.Type.back }
+            captureMode={cameraMode === 'video' ? Camera.constants.CaptureMode.video : Camera.constants.CaptureMode.still }
+            type={cameraType === 'front' ? Camera.constants.Type.front : Camera.constants.Type.back }
             captureQuality="medium"
           >
             <View style={styles.buttonWrapper}>
@@ -117,22 +109,22 @@ export default class MediaCaptureScene extends Component {
               <View style={styles.rightCol}>
                 <TouchableHighlight onPress={()=> this.switchCameraMode() } underlayColor="transparent">
                   <Icon
-                    name={cameraMode == 'video' ? 'fontawesome|camera' : 'fontawesome|video-camera'}
+                    name={cameraMode === 'video' ? 'fontawesome|camera' : 'fontawesome|video-camera'}
                     size={25}
-                    color='white'
+                    color="white"
                     style={styles.videoCameraButton}
                   />
                 </TouchableHighlight>
               </View>
 
               <View style={styles.middleCol}>
-                { cameraMode == 'video' ?
+                { cameraMode === 'video' ?
                   <TouchableWithoutFeedback
                     onPressIn={()=> this.startVideoRecording()}
                     onPressOut={()=> this.pauseVideoRecording()}
                   >
                     <Icon
-                      name='ion|ios-circle-filled'
+                      name="ion|ios-circle-filled"
                       size={70}
                       color={isRecording ? 'red' : 'white'}
                       style={styles.cameraCaptureButton}
@@ -141,24 +133,23 @@ export default class MediaCaptureScene extends Component {
                   :
                   <TouchableHighlight onPress={()=> this.takePhoto() } underlayColor="transparent">
                     <Icon
-                      name='ion|ios-circle-filled'
+                      name="ion|ios-circle-filled"
                       size={70}
-                      color='white'
+                      color="white"
                       style={styles.cameraCaptureButton}
                     />
                   </TouchableHighlight>
                 }
               </View>
 
-              <View style={styles.rightCol}>
-              </View>
+              <View style={styles.rightCol}/>
 
             </View>
 
             <View style={styles.topLeftButton}>
               <TouchableHighlight underlayColor="transparent" onPress={() => this.returnBack()}>
                 <Icon
-                  name='ion|chevron-left'
+                  name="ion|chevron-left"
                   size={30}
                   color={'white'}
                   style={styles.closeButton}
@@ -169,8 +160,8 @@ export default class MediaCaptureScene extends Component {
             <View style={styles.topRightButton}>
               <TouchableHighlight onPress={()=> this.switchCameraType() } underlayColor="transparent">
                 <Icon
-                  name='ion|ios-reverse-camera-outline'
-                  name={cameraType == 'back' ? 'ion|ios-reverse-camera-outline' : 'ion|ios-reverse-camera'}
+                  name="ion|ios-reverse-camera-outline"
+                  name={cameraType === 'back' ? 'ion|ios-reverse-camera-outline' : 'ion|ios-reverse-camera'}
                   size={30}
                   color={'white'}
                   style={styles.closeButton}
@@ -187,6 +178,14 @@ export default class MediaCaptureScene extends Component {
 
   }
 }
+
+MediaCaptureScene.propTypes = {
+  cameraMode:PropTypes.string.isRequired,
+  cameraType:PropTypes.string.isRequired,
+  switchCameraType:PropTypes.func.isRequired,
+  switchCameraMode:PropTypes.func.isRequired,
+  onCapture:PropTypes.func.isRequired
+};
 
 const styles = StyleSheet.create({
   container: {

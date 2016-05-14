@@ -8,12 +8,11 @@ class App extends Component {
 
   componentDidMount() {
     this.props.dispatch(loginUserByToken());
-
   }
 
   render() {
     return (
-      git createReducer={reducerCreate} sceneStyle={{flex:1,backgroundColor:"white"}} scenes={scenes} />
+      <Router createReducer={reducerCreate} sceneStyle={{flex:1,backgroundColor:'white'}} scenes={scenes} />
     );
   }
 }
@@ -21,15 +20,15 @@ class App extends Component {
 const reducerCreate = params=>{
   const defaultReducer = Reducer(params);
   return (state, action)=> {
-    console.log("ACTION:", action);
+    console.log('ACTION:', action);
     return defaultReducer(state, action);
-  }
+  };
 };
 
 function mapStateToProps(state) {
   return {
     isAuthenticated : state.userReducer.isAuthenticated
-  }
+  };
 }
 
 export default connect(mapStateToProps)(App);

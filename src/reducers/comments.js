@@ -4,9 +4,6 @@ import {
   COMMENTS_REQUEST,
   COMMENTS_FAILURE,
   COMMENTS_SUCCESS,
-  COMMENT_SAVING,
-  COMMENT_SAVED,
-  COMMENT_SAVING_FAILURE
 } from '../constants/actiontypes';
 
 const InitialState = Record({
@@ -14,7 +11,7 @@ const InitialState = Record({
   error: null
 });
 
-const initialState = new InitialState;
+const initialState = new InitialState();
 
 export default function commentsReducer(state = initialState, action = {}) {
   switch (action.type) {

@@ -3,16 +3,16 @@ export default function validate(state) {
   const {fields} = state.form;
 
   if (
-    fields.name != ''
-    && fields.name != ''
+    fields.name !== ''
+    && fields.name !== ''
 
-    && fields.email != ''
+    && fields.email !== ''
     && !fields.emailHasError
 
-    && fields.password != ''
+    && fields.password !== ''
     && !fields.passwordHasError
 
-    && fields.passwordConfirmation != ''
+    && fields.passwordConfirmation !== ''
     && !fields.passwordConfirmationHasError
   ) {
     return state.setIn(['form', 'isValid'], true);

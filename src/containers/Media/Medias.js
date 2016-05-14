@@ -1,11 +1,9 @@
-import React, { Component, PropTypes } from 'react';
-import { ScrollView, View } from 'react-native';
+import React, { Component } from 'react';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { fetchMedias } from './../../actions/Media/medias';
-import { setCurrentMedia } from './../../actions/Media/media';
 import MediaList from './../../components/Media/MediaList';
-import LoadingIndicator from './../../components/LoadingIndicator';
 import reverse from 'lodash/reverse';
 class Medias extends Component {
 
@@ -26,7 +24,7 @@ class Medias extends Component {
 
   loadMore() {
     console.log('loading more');
-    if(!this.props.mediasReducer.isFetching) {
+    if (!this.props.mediasReducer.isFetching) {
       console.log('fired loading more');
       this.props.dispatch(fetchMedias(true));
     }
@@ -52,10 +50,10 @@ class Medias extends Component {
 function mapStateToProps(state) {
   const { entities,mediasReducer,userReducer } = state;
   return {
-    medias:entities.medias ? reverse(entities.medias.filter((media) => media != undefined )) : [],
+    medias:entities.medias ? reverse(entities.medias.filter((media) => media !== undefined )) : [],
     mediasReducer,
     userReducer
-  }
+  };
 }
 
-export default connect(mapStateToProps)(Medias)
+export default connect(mapStateToProps)(Medias);

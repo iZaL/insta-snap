@@ -1,8 +1,6 @@
-import React, { PropTypes, Component } from 'react';
-import { AlertIOS, StyleSheet, Text, TouchableOpacity, View, TouchableHighlight } from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import Video from 'react-native-video';
-import { Icon } from 'react-native-icons';
-import {Actions} from 'react-native-router-flux';
 
 export default class FullScreenVideoPlayer extends Component {
 
@@ -10,18 +8,19 @@ export default class FullScreenVideoPlayer extends Component {
     super(props);
     this.onLoad = this.onLoad.bind(this);
     this.onProgress = this.onProgress.bind(this);
+    this.state = ({
+      rate: 1,
+      volume: 1,
+      muted: false,
+      resizeMode: 'contain',
+      duration: 0.0,
+      currentTime: 0.0,
+      controls: false,
+      paused: false,
+      skin: 'custom'
+    });
   }
-  state = {
-    rate: 1,
-    volume: 1,
-    muted: false,
-    resizeMode: 'contain',
-    duration: 0.0,
-    currentTime: 0.0,
-    controls: false,
-    paused: false,
-    skin: 'custom'
-  };
+
 
   onLoad(data) {
     this.setState({duration: data.duration});
@@ -44,8 +43,7 @@ export default class FullScreenVideoPlayer extends Component {
     const flexRemaining = (1 - this.getCurrentTimePercentage()) * 100;
     return (
       <View style={styles.container}>
-        <TouchableOpacity style={styles.fullScreen} onPress={() => {this.setState({muted: !this.state.muted})}}>
-
+        <TouchableOpacity style={styles.fullScreen} onPress={() => {this.setState({muted: !this.state.muted});}}>
           <Video source={{uri: this.props.uri}}
                  style={styles.fullScreen}
                  rate={this.state.rate}
@@ -56,8 +54,8 @@ export default class FullScreenVideoPlayer extends Component {
                  onLoad={this.onLoad}
                  onProgress={this.onProgress}
                  onEnd={() => {}}
-                 repeat={true} >
-          </Video>
+                 repeat={true}
+          />
         </TouchableOpacity>
         <View style={styles.controls}>
           <View style={styles.trackingControls}>
@@ -72,6 +70,10 @@ export default class FullScreenVideoPlayer extends Component {
 
   }
 }
+
+FullScreenVideoPlayer.propTypes =  {
+
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -92,10 +94,6 @@ const styles = StyleSheet.create({
     top: 3,
     left:3,
   },
-  //closeButton :{
-  //  height:18,
-  //  width:18,
-  //},
   closeButton: {
     fontSize: 35,
     color: 'white',
@@ -108,21 +106,21 @@ const styles = StyleSheet.create({
     },
     shadowRadius: 1.5,
     shadowColor: 'black',
-    shadowOpacity: 0.8,
+    shadowOpacity: 0.8
   },
   controls: {
-    backgroundColor: "transparent",
+    backgroundColor: 'transparent',
     borderRadius: 5,
     position: 'absolute',
     bottom: 44,
     left: 4,
-    right: 4,
+    right: 4
   },
   progress: {
     flex: 1,
     flexDirection: 'row',
     borderRadius: 3,
-    overflow: 'hidden',
+    overflow: 'hidden'
   },
   innerProgressCompleted: {
     height: 2,
@@ -131,6 +129,6 @@ const styles = StyleSheet.create({
   },
   innerProgressRemaining: {
     height: 2,
-    backgroundColor: '#2C2C2C',
-  },
+    backgroundColor: '#2C2C2C'
+  }
 });

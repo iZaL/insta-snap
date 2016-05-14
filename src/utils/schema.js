@@ -1,4 +1,4 @@
-import { normalize, Schema, arrayOf } from 'normalizr';
+import { Schema, arrayOf } from 'normalizr';
 const mediaSchema = new Schema('medias');
 const userSchema = new Schema('users');
 const commentSchema = new Schema('comments');

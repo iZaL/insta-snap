@@ -1,5 +1,5 @@
 import { API_ROOT } from './../../constants/config';
-import { normalize, Schema, arrayOf } from 'normalizr';
+import { normalize, arrayOf } from 'normalizr';
 import { Schemas } from './../../utils/schema';
 import { getUserToken } from './../../utils/storage';
 
@@ -40,7 +40,7 @@ function companyMediasSuccess(payload) {
   return {
     type: HOME_SUCCESS,
     entities:normalized.entities,
-    companyMedias:entities.result
+    companyMedias:normalized.result
   };
 }
 

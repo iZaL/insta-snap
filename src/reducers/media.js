@@ -1,5 +1,5 @@
+'use strict';
 import {Record} from 'immutable';
-import paginate from './../reducers/paginate';
 
 import {
   MEDIA_REQUEST,
@@ -8,10 +8,10 @@ import {
 } from '../constants/actiontypes';
 
 const InitialState = Record({
-  isFetching:false,
+  isFetching:false
 });
 
-const initialState = new InitialState;
+const initialState = new InitialState();
 
 export default function mediaReducer(state = initialState, action = {}) {
   switch (action.type) {

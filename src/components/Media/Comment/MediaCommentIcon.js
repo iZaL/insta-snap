@@ -4,10 +4,6 @@ import { Icon } from 'react-native-icons';
 
 export default class MediaCommentIcon extends Component {
 
-  static propTypes = {
-    loadComments:PropTypes.func.isRequired
-  };
-
   render() {
     return (
       <View style={{flex:1, flexDirection:'row',justifyContent:'center'}}>
@@ -15,7 +11,7 @@ export default class MediaCommentIcon extends Component {
           <View style={{flexDirection:'row'}}>
             <Text style={styles.count}>Comments</Text>
             <Icon
-              name='ion|ios-chatbubble-outline'
+              name="ion|ios-chatbubble-outline"
               size={24}
               color={'gray'}
               style={styles.commentImg}
@@ -26,6 +22,10 @@ export default class MediaCommentIcon extends Component {
     );
   }
 }
+
+MediaCommentIcon.propTypes = {
+  loadComments:PropTypes.func.isRequired
+};
 
 const styles = StyleSheet.create({
   commentImg: {

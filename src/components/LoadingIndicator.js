@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, ActivityIndicatorIOS, View } from 'react-native';
 
 export default class LoadingIndicator extends Component {
@@ -12,7 +12,7 @@ export default class LoadingIndicator extends Component {
   }
 }
 
-const styles= StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex:1,
     justifyContent:'center',

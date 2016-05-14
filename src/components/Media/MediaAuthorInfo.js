@@ -3,15 +3,10 @@ import { View, StyleSheet, Text, Image,TouchableHighlight } from 'react-native';
 
 export default class MediaAuthorInfo extends Component {
 
-  static propTypes = ({
-    user:PropTypes.object.isRequired,
-    loadUser:PropTypes.func.isRequired,
-  });
-
   render() {
     const {user} = this.props;
     return (
-      <View style={{flexDirection: "row", padding:5}}>
+      <View style={{flexDirection: 'row', padding:5}}>
         <Text style={styles.createdAt}>2h</Text>
         <TouchableHighlight onPress={() => this.props.loadUser(user)} underlayColor="transparent">
           <View style={{flexDirection:'row'}}>
@@ -23,6 +18,11 @@ export default class MediaAuthorInfo extends Component {
     );
   }
 }
+
+MediaAuthorInfo.propTypes = {
+  user:PropTypes.object.isRequired,
+  loadUser:PropTypes.func.isRequired,
+};
 
 var styles = StyleSheet.create({
   thumbnail: {

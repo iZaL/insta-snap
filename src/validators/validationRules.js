@@ -1,5 +1,4 @@
 'use strict';
-
 import validate from 'validate.js';
 import _ from 'lodash';
 
@@ -68,9 +67,9 @@ export default function rules(state, action ) {
       let validUsername  = _.isUndefined(validate({username: value},
         usernameConstraints));
       if (validUsername) {
-        return state.setIn(['form', 'fields', 'usernameHasError'], false);
+        state.setIn(['form', 'fields', 'usernameHasError'], false);
       } else {
-        return state.setIn(['form', 'fields', 'usernameHasError'], true);
+        state.setIn(['form', 'fields', 'usernameHasError'], true);
       }
       break;
 
@@ -82,9 +81,9 @@ export default function rules(state, action ) {
       let validEmail  = _.isUndefined(validate({from: value},
         emailConstraints));
       if (validEmail) {
-        return state.setIn(['form', 'fields', 'emailHasError'], false);
+        state.setIn(['form', 'fields', 'emailHasError'], false);
       } else {
-        return state.setIn(['form', 'fields', 'emailHasError'], true);
+        state.setIn(['form', 'fields', 'emailHasError'], true);
       }
       break;
 
@@ -96,9 +95,9 @@ export default function rules(state, action ) {
       let validPassword = _.isUndefined(validate({password: value},
         passwordConstraints));
       if (validPassword) {
-        return state.setIn(['form', 'fields', 'passwordHasError'], false);
+        state.setIn(['form', 'fields', 'passwordHasError'], false);
       } else {
-        return state.setIn(['form', 'fields', 'passwordHasError'], true);
+        state.setIn(['form', 'fields', 'passwordHasError'], true);
       }
       break;
 
@@ -111,9 +110,9 @@ export default function rules(state, action ) {
         = _.isUndefined(validate({password: state.form.fields.password,
         confirmPassword: value}, passwordAgainConstraints));
       if (validPasswordAgain) {
-        return state.setIn(['form', 'fields', 'passwordAgainHasError'], false);
+        state.setIn(['form', 'fields', 'passwordAgainHasError'], false);
       } else {
-        return  state.setIn(['form', 'fields', 'passwordAgainHasError'], true);
+        state.setIn(['form', 'fields', 'passwordAgainHasError'], true);
       }
       break;
 

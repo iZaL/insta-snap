@@ -3,15 +3,13 @@ import { View, Text, TextInput, TouchableHighlight, StyleSheet } from 'react-nat
 
 export default class MediaCommentAdd extends Component {
 
-  static propTypes = {
-    commentMedia:PropTypes.func.isRequired,
-  };
-
   constructor(props) {
     super(props);
-    this.state = {
+
+    this.state = ({
       comment: ''
-    }
+    });
+
     this.submitComment = this.submitComment.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -51,6 +49,10 @@ export default class MediaCommentAdd extends Component {
     )
   }
 }
+
+MediaCommentAdd.propTypes = {
+  commentMedia:PropTypes.func.isRequired
+};
 
 var styles = StyleSheet.create({
   loginInput: {

@@ -1,12 +1,13 @@
-import React, { Component, PropTypes } from 'react';
-import { Image, Text, TouchableHighlight, View, ScrollView } from 'react-native';
+import React, { Component } from 'react';
+import { ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { fetchLiveMedias,fetchFollowerMedias } from './homeActions';
 import { favoriteMedia } from './../../actions/Media/favorites';
+import { downloadMedia } from './../../actions/Media/downloads';
 import MediaGrid from './Components/MediaGrid';
 import LoadingIndicator from './../../components/LoadingIndicator';
-import reverse from 'lodash/reverse';
+
 class Home extends Component {
 
   constructor(props) {
@@ -68,7 +69,7 @@ function mapStateToProps(state) {
     companyMedias:state.homeReducer.companyMedias ? state.homeReducer.companyMedias.map((media) => state.entities.medias[media]) : [],
     followerMedias:state.homeReducer.followerMedias ? state.homeReducer.followerMedias.map((media) => state.entities.medias[media]) : [],
 
-  }
+  };
 }
 
 export default connect(mapStateToProps)(Home);

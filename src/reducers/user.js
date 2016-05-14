@@ -17,18 +17,10 @@ import {
   USER_FOLLOWERS_FAILURE,
   LOGIN_SUCCESS,
   LOGOUT_USER,
-  SET_USER,
-  SET_CURRENT_USER,
   CREATE_COMMENT_FAILURE,
   CREATE_COMMENT_REQUEST,
   CREATE_COMMENT_SUCCESS,
   INVALIDATE_COMMENT,
-  COMMENTS_REQUEST,
-  COMMENTS_SUCCESS,
-  COMMENTS_FAILURE,
-  USER_REQUEST,
-  USER_SUCCESS,
-  USER_FAILURE
 } from '../constants/actiontypes';
 
 const InitialState = Record({
@@ -66,7 +58,7 @@ const InitialState = Record({
   }))
 });
 
-const initialState = new InitialState;
+const initialState = new InitialState();
 
 export default function userReducer(state = initialState, action = {}) {
   switch (action.type) {

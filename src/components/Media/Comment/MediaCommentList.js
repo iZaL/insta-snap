@@ -1,11 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import { Image, StyleSheet, Text, TouchableHighlight, View, ListView, ScrollView } from 'react-native';
+import { Image, StyleSheet, Text, View, ListView } from 'react-native';
 
 export default class MediaCommentList extends Component {
-
-  static propTypes = {
-    comments: PropTypes.array.isRequired
-  }
 
   constructor(props) {
     super(props);
@@ -13,7 +9,7 @@ export default class MediaCommentList extends Component {
   }
 
   renderRow(comment) {
-    if(comment.user) {
+    if (comment.user) {
       return (
         <View style={styles.cellContainer}>
           <View style={styles.cellWrapper}>
@@ -30,17 +26,17 @@ export default class MediaCommentList extends Component {
             </View>
           </View>
         </View>
-      )
+      );
     } else {
       return (
         <View/>
-      )
+      );
     }
   }
 
   render() {
     const {comments} = this.props;
-    let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2})
+    let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     let dataSource = ds.cloneWithRows(comments);
     return (
       <ListView
@@ -51,18 +47,20 @@ export default class MediaCommentList extends Component {
         renderSeparator={(sectionID, rowID) => <View key={`${sectionID}-${rowID}`} style={styles.separator}/> }
         enableEmptySections={true}
       />
-    )
+    );
   }
 }
+
+MediaCommentList.propTypes = {
+  comments: PropTypes.array.isRequired
+};
 
 var styles = StyleSheet.create({
   container: {
     backgroundColor: '#FFFFFD',
     margin:10
   },
-  cellContainer:{
-
-  },
+  cellContainer:{},
   cellWrapper: {
     flexDirection:'row',
     flex:1,
@@ -71,12 +69,12 @@ var styles = StyleSheet.create({
     marginBottom:10
   },
   imageContainer: {
-    flex:1,
+    flex:1
   },
   image: {
     height: 36,
     width: 36,
-    borderRadius: 18,
+    borderRadius: 18
   },
   titleContainer: {
     flex:4,
@@ -85,7 +83,7 @@ var styles = StyleSheet.create({
   title: {
     fontSize: 15,
     textAlign: 'left',
-    color: '#DA552F',
+    color: '#DA552F'
   },
   comment: {
     fontSize:13,
@@ -95,5 +93,4 @@ var styles = StyleSheet.create({
     height:1,
     backgroundColor:'#E8E8E8'
   }
-
 });
