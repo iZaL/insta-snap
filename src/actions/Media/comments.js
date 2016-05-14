@@ -1,5 +1,5 @@
 import { API_ROOT } from './../../constants/config';
-import { normalize, Schema, arrayOf } from 'normalizr';
+import { normalize } from 'normalizr';
 import { Schemas } from './../../utils/schema';
 import { getUserToken } from './../../utils/storage';
 
@@ -35,7 +35,7 @@ function commentSaved() {
 export function fetchComments(mediaID) {
   return (dispatch) => {
     dispatch({type:COMMENTS_REQUEST});
-    const url = API_ROOT + `/medias/${mediaID}/comments`;
+    const url = `${API_ROOT}/medias/${mediaID}/comments`;
     return fetch(url)
       .then(response => response.json())
       .then(json => {
@@ -55,7 +55,7 @@ export function commentMedia(mediaID,comment) {
       media: mediaID
     };
     return getUserToken().then((token) => {
-      const url = API_ROOT + `/medias/comment?api_token=${token}`;
+      const url = `${API_ROOT}/medias/comment?api_token=${token}`;
       return fetch(url, {
         method: 'POST',
         body: JSON.stringify(params)

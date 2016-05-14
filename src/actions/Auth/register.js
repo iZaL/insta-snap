@@ -29,13 +29,13 @@ function registerFailure(errors) {
 export function register(inputs, cb = false) {
   return dispatch => {
     dispatch(registerRequest());
-    return fetch(API_ROOT + '/Auth/register', {
+    return fetch(`${API_ROOT}/Auth/register`, {
       method: 'POST',
       body: JSON.stringify(inputs)
     })
       .then(response => response.json())
       .then(json => {
-        if (json.success == false) {
+        if (json.success === false) {
           dispatch(registerFailure(json.errors));
         } else {
           dispatch(registerSuccess());

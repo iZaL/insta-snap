@@ -1,5 +1,5 @@
 import { API_ROOT } from './../../constants/config';
-import { normalize, Schema, arrayOf } from 'normalizr';
+import { normalize } from 'normalizr';
 import { Schemas } from './../../utils/schema';
 import { getUserToken } from './../../utils/storage';
 import union from 'lodash/union';
@@ -7,14 +7,13 @@ import union from 'lodash/union';
 import {
   MEDIA_DOWNLOADS_REQUEST,
   MEDIA_DOWNLOADS_SUCCESS,
-  MEDIA_DOWNLOADS_FAILURE,
-  MEDIA_DOWNLOAD,
+  MEDIA_DOWNLOADS_FAILURE
 } from '../../constants/actiontypes';
 
 
 function updateUserDownloads(user,media) {
   const downloads = user.downloads ? user.downloads : [];
-  user.downloads = media.isDownloaded ? downloads.filter((download) => download != media.id) : union(downloads,[media.id]);
+  user.downloads = media.isDownloaded ? downloads.filter((download) => download !== media.id) : union(downloads,[media.id]);
   const normalized = normalize(user,Schemas.USER);
   return {
     type: MEDIA_DOWNLOADS_SUCCESS,
@@ -24,7 +23,7 @@ function updateUserDownloads(user,media) {
 
 function updateMediaDownloads(user,media) {
   const downloads = media.downloads ? media.downloads : [];
-  media.downloads = media.isDownloaded ? downloads.filter((download) => download != user.id) : union(downloads,[user.id]);
+  media.downloads = media.isDownloaded ? downloads.filter((download) => download !== user.id) : union(downloads,[user.id]);
   media.isDownloaded = !media.isDownloaded;
   media.unDownloaded = media.isDownloaded ? false : true;
   const normalized = normalize(media,Schemas.MEDIA);
@@ -66,11 +65,11 @@ function mediaDownloadsFailure(mediaID,err) {
 export function fetchMediaDownloads(mediaID, forceLoad = false ) {
   return (dispatch,getState) => {
     const {
-      nextPageUrl = API_ROOT + `/medias/${mediaID}/downloads`,
+      nextPageUrl = `${API_ROOT}/medias/${mediaID}/downloads`,
       pageCount = 0
       } = getState().pagination.mediaDownloads[mediaID] || {};
 
-    if (nextPageUrl == null || (pageCount > 0 && !forceLoad)) {
+    if (nextPageUrl === null || (pageCount > 0 && !forceLoad)) {
       return null;
     }
 
@@ -101,7 +100,7 @@ export function downloadMedia(mediaID) {
     dispatch(updateMediaDownloads(user,media));
 
     return getUserToken().then((token) => {
-      const url = API_ROOT + `/medias/download?api_token=${token}`;
+      const url = `${API_ROOT}/medias/download?api_token=${token}`;
       return fetch(url, {
         method: 'POST',
         body: JSON.stringify(params)
