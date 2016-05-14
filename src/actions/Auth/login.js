@@ -1,7 +1,7 @@
-import { API_ROOT, API_TOKEN } from './../../constants/config'
-import { setUserToken,getUserToken,forgetItem } from './../../utils/storage';
-import { Schemas } from './../../utils/schema';
-import { normalize } from 'normalizr';
+import {API_ROOT,API_TOKEN} from './../../constants/config';
+import {setUserToken,getUserToken,forgetItem} from './../../utils/storage';
+import {Schemas} from './../../utils/schema';
+import {normalize} from 'normalizr';
 
 import {
   LOGIN_REQUEST,
@@ -34,7 +34,7 @@ function loginFailure(message) {
 }
 
 export function login(credentials) {
-  const url = API_ROOT + '/auth/login';
+  const url = `${API_ROOT}/auth/login`;
   return dispatch => {
     dispatch(loginRequest());
     return fetch(url, {
@@ -53,7 +53,7 @@ export function login(credentials) {
         }
       })
       .catch((err)=> dispatch(loginFailure(err)));
-  }
+  };
 }
 
 export function loginUserByToken() {
@@ -61,7 +61,7 @@ export function loginUserByToken() {
     dispatch(loginRequest());
     return getUserToken()
       .then((token) => {
-        const url = API_ROOT + `/auth/login/token`;
+        const url = `${API_ROOT}/auth/login/token`;
         return fetch(url, {
           method: 'POST',
           body: JSON.stringify({
@@ -77,13 +77,13 @@ export function loginUserByToken() {
               dispatch(loginFailure(json.message));
               return false;
             }
-          })
+          });
       })
       .catch((err)=> {
         dispatch(loginFailure(err));
         return false;
       });
-  }
+  };
 }
 
 export function onLoginFormFieldChange(field,value) {
@@ -96,6 +96,6 @@ export function onLoginFormFieldChange(field,value) {
 export function logoutUser() {
   forgetItem(API_TOKEN);
   return (dispatch) => {
-    dispatch({type:LOGOUT_USER})
-  }
+    dispatch({type:LOGOUT_USER});
+  };
 }
