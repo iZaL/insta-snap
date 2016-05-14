@@ -4,14 +4,16 @@
   "parserOptions": {
     "sourceType": "module",
     "ecmaFeatures": {
+      "modules":true,
       "jsx": true,
-      "spread" : true
+      "spread" : true,
+      "restParams" : true
     },
   },
 
   "env": {
     "es6": true,
-    "jasmine": true,
+    "jasmine": true
   },
 
   "plugins": [

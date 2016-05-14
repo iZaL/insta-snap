@@ -30,6 +30,8 @@ class UserDownloads extends Component {
   }
 
   render() {
+    console.log('rendering user downloads');
+
     const { medias,userReducer,mediasReducer } = this.props;
     if(!userReducer.isAuthenticated) {
       return <LoginDialog message="Please Login to view and manage your Favorites"/>

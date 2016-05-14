@@ -29,6 +29,7 @@ class UserMedias extends Component {
   }
 
   render() {
+    console.log('rendering user medias');
 
     const { medias,userReducer,mediasReducer } = this.props;
     return (

@@ -5,6 +5,8 @@ import { Actions } from 'react-native-router-flux';
 import { fetchMedias } from './../../actions/Media/medias';
 import MediaList from './../../components/Media/MediaList';
 import reverse from 'lodash/reverse';
+import { createSelector } from 'reselect';
+
 class Medias extends Component {
 
   constructor(props) {
@@ -31,6 +33,7 @@ class Medias extends Component {
   }
 
   render() {
+    console.log('rendering medias');
 
     const { medias,mediasReducer } = this.props;
 
@@ -47,13 +50,30 @@ class Medias extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  const { entities,mediasReducer,userReducer } = state;
-  return {
-    medias:entities.medias ? reverse(entities.medias.filter((media) => media !== undefined )) : [],
-    mediasReducer,
-    userReducer
-  };
-}
+const getAllMedias = () => {
+  return createSelector(
+    (state) => state.entities,
+    (entities) => {
+      console.log(Object.keys(entities.medias));
+      if(entities.medias) {
+        console.log('waaaa');
+        return reverse(entities.medias.filter((media) => media !== undefined ));
+      }
+      return [];
+    }
+  );
+};
 
-export default connect(mapStateToProps)(Medias);
+const makeMapStateToProps = () => {
+  const getMedias = getAllMedias();
+  const mapStateToProps = (state, props) => {
+    return {
+      medias: getMedias(state, props),
+      mediasReducer:state.mediasReducer
+    }
+  };
+  return mapStateToProps;
+};
+
+
+export default connect(makeMapStateToProps)(Medias);

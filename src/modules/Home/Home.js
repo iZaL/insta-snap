@@ -36,6 +36,7 @@ class Home extends Component {
   }
 
   render() {
+    console.log('rendering home');
 
     const {homeReducer,liveMedias,followerMedias } = this.props;
 
@@ -48,12 +49,12 @@ class Home extends Component {
       >
         { homeReducer.isFetching && <LoadingIndicator /> }
 
-        <MediaGrid medias={liveMedias}  title="المباشر"
+        <MediaGrid medias={liveMedias}  title="الشركات"
                    favoriteMedia={this.favoriteMedia.bind(this)}
                    downloadMedia={this.downloadMedia.bind(this)}
         />
         <MediaGrid medias={followerMedias} title="الخاص"/>
-        <MediaGrid medias={liveMedias} title="Live"/>
+        <MediaGrid medias={liveMedias} title="العام"/>
         <MediaGrid medias={liveMedias} title="Live"/>
       </ScrollView>
     );
@@ -68,7 +69,6 @@ function mapStateToProps(state) {
     liveMedias:state.homeReducer.liveMedias ? state.homeReducer.liveMedias.map((media) => state.entities.medias[media]) : [],
     companyMedias:state.homeReducer.companyMedias ? state.homeReducer.companyMedias.map((media) => state.entities.medias[media]) : [],
     followerMedias:state.homeReducer.followerMedias ? state.homeReducer.followerMedias.map((media) => state.entities.medias[media]) : [],
-
   };
 }
 

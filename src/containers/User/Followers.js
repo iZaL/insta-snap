@@ -44,6 +44,8 @@ class Followers extends Component {
   }
 
   render() {
+    console.log('rendering followers');
+
     const { users,userReducer } = this.props;
     return (
       <ScrollView contentInset={{bottom:40}} contentContainerStyle={{ paddingTop:64}}>

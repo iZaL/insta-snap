@@ -33,6 +33,8 @@ class MediaDownloads extends Component {
   }
 
   render() {
+    console.log('rendering media download');
+
     const {users,userReducer} = this.props;
     return (
       <ScrollView contentContainerStyle={{top:64}}>

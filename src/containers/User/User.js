@@ -64,6 +64,7 @@ class User extends Component {
   }
 
   render() {
+    console.log('rendering user');
 
     const {userReducer,user, medias,mediasReducer} = this.props;
 

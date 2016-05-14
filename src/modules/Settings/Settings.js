@@ -35,6 +35,9 @@ class Settings extends Component {
   }
 
   render() {
+
+    console.log('rendering settings');
+
     return (
       <ScrollView contentContainerStyle={{backgroundColor: '#f0f5f5',paddingTop:64}}>
         <SettingsCell icon="ion|power" title="Logout" callback={()=>this.logout()} />
