@@ -1,5 +1,5 @@
 {
-  "name": "InstaSnap",
+  "name": "Moshtaraiaty",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -15,7 +15,6 @@
     "react-native-button": "^1.6.0",
     "react-native-camera": "git://github.com/lwansbrough/react-native-camera.git#master",
     "react-native-code-push": "^1.11.0-beta",
-    "react-native-icons": "^0.7.1",
     "react-native-lightbox": "^0.6.0",
     "react-native-modalbox": "^1.3.3",
     "react-native-router-flux": "^3.26.1",

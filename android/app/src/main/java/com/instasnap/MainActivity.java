@@ -5,6 +5,10 @@ import com.brentvatne.RCTVideo.ReactVideoPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.smixx.reactnativeicons.ReactNativeIcons;
 import com.lwansbrough.RCTCamera.RCTCameraPackage;
+import com.brentvatne.RCTVideo.ReactVideoPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.smixx.reactnativeicons.ReactNativeIcons;
+import com.lwansbrough.RCTCamera.RCTCameraPackage;
 import com.microsoft.codepush.react.CodePush;
 import com.microsoft.codepush.react.CodePush;
 import com.brentvatne.RCTVideo.ReactVideoPackage;
@@ -44,6 +48,10 @@ public class MainActivity extends ReactActivity {
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
+            new ReactVideoPackage(),
+            new VectorIconsPackage(),
+            new ReactNativeIcons(),
+            new RCTCameraPackage(),
             new ReactVideoPackage(),
             new VectorIconsPackage(),
             new ReactNativeIcons(),
