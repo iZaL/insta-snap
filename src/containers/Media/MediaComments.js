@@ -46,7 +46,6 @@ class MediaComments extends Component {
   }
 
   render() {
-    console.log('rendering media comment');
 
     const {comments} = this.props;
 

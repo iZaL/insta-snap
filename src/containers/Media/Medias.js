@@ -25,15 +25,12 @@ class Medias extends Component {
   }
 
   loadMore() {
-    console.log('loading more');
     if (!this.props.mediasReducer.isFetching) {
-      console.log('fired loading more');
       this.props.dispatch(fetchMedias(true));
     }
   }
 
   render() {
-    console.log('rendering medias');
 
     const { medias,mediasReducer } = this.props;
 
@@ -50,25 +47,19 @@ class Medias extends Component {
   }
 }
 
+const entities = (state) => state.entities.medias;
 const getAllMedias = () => {
   return createSelector(
-    (state) => state.entities,
-    (entities) => {
-      console.log(Object.keys(entities.medias));
-      if(entities.medias) {
-        console.log('waaaa');
-        return reverse(entities.medias.filter((media) => media !== undefined ));
-      }
-      return [];
-    }
+    [entities],
+    (medias) => medias ? medias : []
   );
 };
 
 const makeMapStateToProps = () => {
   const getMedias = getAllMedias();
-  const mapStateToProps = (state, props) => {
+  const mapStateToProps = (state) => {
     return {
-      medias: getMedias(state, props),
+      medias: getMedias(state),
       mediasReducer:state.mediasReducer
     }
   };

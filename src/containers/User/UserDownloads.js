@@ -30,7 +30,6 @@ class UserDownloads extends Component {
   }
 
   render() {
-    console.log('rendering user downloads');
 
     const { medias,userReducer,mediasReducer } = this.props;
     if(!userReducer.isAuthenticated) {

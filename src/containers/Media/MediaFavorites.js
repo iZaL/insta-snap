@@ -37,7 +37,6 @@ class MediaFavorites extends Component {
   }
 
   render() {
-    console.log('rendering media favorites');
 
     const {users,userReducer,favorites} = this.props;
     return (

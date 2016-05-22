@@ -36,7 +36,6 @@ class Home extends Component {
   }
 
   render() {
-    console.log('rendering home');
 
     const {homeReducer,liveMedias,followerMedias } = this.props;
 

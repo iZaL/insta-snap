@@ -80,7 +80,6 @@ class MediaCapture extends Component {
   }
 
   render() {
-    console.log('rendering media capture');
 
     return (
       <MediaCaptureScene

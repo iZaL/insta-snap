@@ -45,8 +45,6 @@ class Register extends Component {
   }
 
   render() {
-    console.log('rendering register');
-
     const { register } = this.props;
 
     if (register.form.error != null) {

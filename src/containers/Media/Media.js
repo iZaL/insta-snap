@@ -75,7 +75,6 @@ class Media extends Component {
   }
 
   render() {
-    console.log('rendering media');
 
     const {mediaReducer,media,user} = this.props;
 

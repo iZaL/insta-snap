@@ -32,7 +32,6 @@ class UserFavorites extends Component {
 
   render() {
 
-    console.log('rendering user favorites');
 
     const { medias,userReducer,mediasReducer } = this.props;
     if(!userReducer.isAuthenticated) {

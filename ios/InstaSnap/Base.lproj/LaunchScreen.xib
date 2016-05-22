@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,25 +12,28 @@
             <rect key="frame" x="0.0" y="0.0" width="630" height="753"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Splash" translatesAutoresizingMaskIntoConstraints="NO" id="GmK-hw-vOQ">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Splash.png" translatesAutoresizingMaskIntoConstraints="NO" id="5LC-cn-d0c">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="375" id="wd9-T8-2WM"/>
+                        <constraint firstAttribute="width" secondItem="5LC-cn-d0c" secondAttribute="height" multiplier="375:667" id="wcc-Hi-qqW"/>
                     </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="GmK-hw-vOQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="6qw-qT-QvJ"/>
-                <constraint firstAttribute="bottom" secondItem="GmK-hw-vOQ" secondAttribute="bottom" constant="86" id="hFn-zv-qQU"/>
-                <constraint firstItem="GmK-hw-vOQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="lcA-lN-alC"/>
+                <constraint firstItem="5LC-cn-d0c" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="E9l-Ov-rY9"/>
+                <constraint firstItem="5LC-cn-d0c" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="QjV-Kf-fsL"/>
+                <constraint firstItem="5LC-cn-d0c" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="XTr-0R-xje"/>
+                <constraint firstItem="5LC-cn-d0c" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="zu0-Ez-CoZ"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="548" y="454.5"/>
+            <point key="canvasLocation" x="675" y="497.5"/>
         </view>
     </objects>
     <resources>
-        <image name="Splash" width="750" height="1334"/>
+        <image name="Splash.png" width="375" height="667"/>
     </resources>
 </document>

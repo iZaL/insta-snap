@@ -9,7 +9,7 @@ export default class Root extends Component {
 
   componentDidMount() {
     console.disableYellowBox = true;
-    //CodePush.sync();
+    CodePush.sync();
   }
 
   render() {

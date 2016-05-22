@@ -42,7 +42,6 @@ class Followings extends Component {
   }
 
   render() {
-    console.log('rendering followings');
 
     const { users,userReducer } = this.props;
     return (

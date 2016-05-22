@@ -56,7 +56,6 @@ export function fetchMedia(mediaID,requiredFields = []) {
 export function saveMedia(uri) {
   return (dispatch) => {
 
-    console.log('saving media with uri ',uri);
     dispatch({type:MEDIA_SAVE_REQUEST});
 
     var xhr = new XMLHttpRequest();

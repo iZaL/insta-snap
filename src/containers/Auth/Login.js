@@ -45,7 +45,6 @@ export default class Login extends Component {
 
   render() {
     const { login } = this.props;
-    console.log('rendering login');
     return (
       <ScrollView style={{paddingTop: 64,flex:1}}>
         <LoginScene
