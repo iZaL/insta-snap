@@ -1,6 +1,10 @@
 package com.instasnap;
 
 import com.facebook.react.ReactActivity;
+import com.brentvatne.RCTVideo.ReactVideoPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.smixx.reactnativeicons.ReactNativeIcons;
+import com.lwansbrough.RCTCamera.RCTCameraPackage;
 import com.microsoft.codepush.react.CodePush;
 import com.microsoft.codepush.react.CodePush;
 import com.brentvatne.RCTVideo.ReactVideoPackage;
@@ -40,6 +44,10 @@ public class MainActivity extends ReactActivity {
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
+            new ReactVideoPackage(),
+            new VectorIconsPackage(),
+            new ReactNativeIcons(),
+            new RCTCameraPackage(),
             new CodePush(null, this, BuildConfig.DEBUG),
             new CodePush("CdymXklporg-HZxPJ8XRUwxBxc_XV11xDbpZe", this, BuildConfig.DEBUG),
             new ReactVideoPackage(),

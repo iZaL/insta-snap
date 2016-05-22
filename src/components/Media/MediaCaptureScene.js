@@ -1,6 +1,6 @@
 import React, {PropTypes,Component} from 'react';
 import { Image, StyleSheet, TouchableHighlight, View, Dimensions, TouchableWithoutFeedback } from 'react-native';
-import { Icon } from 'react-native-icons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import Camera from 'react-native-camera';
 import Video from 'react-native-video';
 
@@ -68,7 +68,7 @@ export default class MediaCaptureScene extends Component {
           <View style={styles.topLeftButton}>
             <TouchableHighlight underlayColor="transparent" onPress={() => this.retake()}>
               <Icon
-                name="ion|close-round"
+                name="close-round"
                 size={30}
                 color={'white'}
                 style={styles.closeButton}
@@ -78,7 +78,7 @@ export default class MediaCaptureScene extends Component {
           <View style={[styles.topRightButton,{top:5}]}>
             <TouchableHighlight underlayColor="transparent" onPress={() => this.saveMedia(mediaUri)}>
               <Icon
-                name="ion|ios-checkmark"
+                name="ios-checkmark"
                 size={45}
                 color={'white'}
                 style={styles.checkMarkButton}
@@ -124,7 +124,7 @@ export default class MediaCaptureScene extends Component {
                     onPressOut={()=> this.pauseVideoRecording()}
                   >
                     <Icon
-                      name="ion|ios-circle-filled"
+                      name="ios-circle-filled"
                       size={70}
                       color={isRecording ? 'red' : 'white'}
                       style={styles.cameraCaptureButton}
@@ -133,7 +133,7 @@ export default class MediaCaptureScene extends Component {
                   :
                   <TouchableHighlight onPress={()=> this.takePhoto() } underlayColor="transparent">
                     <Icon
-                      name="ion|ios-circle-filled"
+                      name="ios-circle-filled"
                       size={70}
                       color="white"
                       style={styles.cameraCaptureButton}
@@ -149,7 +149,7 @@ export default class MediaCaptureScene extends Component {
             <View style={styles.topLeftButton}>
               <TouchableHighlight underlayColor="transparent" onPress={() => this.returnBack()}>
                 <Icon
-                  name="ion|chevron-left"
+                  name="chevron-left"
                   size={30}
                   color={'white'}
                   style={styles.closeButton}
@@ -160,7 +160,7 @@ export default class MediaCaptureScene extends Component {
             <View style={styles.topRightButton}>
               <TouchableHighlight onPress={()=> this.switchCameraType() } underlayColor="transparent">
                 <Icon
-                  name="ion|ios-reverse-camera-outline"
+                  name="ios-reverse-camera-outline"
                   name={cameraType === 'back' ? 'ion|ios-reverse-camera-outline' : 'ion|ios-reverse-camera'}
                   size={30}
                   color={'white'}

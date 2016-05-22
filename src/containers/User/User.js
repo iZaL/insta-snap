@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { fetchUser } from './../../actions/User/user';
 import { followUser } from './../../actions/User/user';
-import { Icon } from 'react-native-icons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import UserScene from './../../components/User/UserScene';
 import LoadingIndicator from './../../components/LoadingIndicator';
 import MediaList from './../../components/Media/MediaList';

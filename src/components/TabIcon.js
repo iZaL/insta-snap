@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import {  StyleSheet, Navigator, Text, View, Image  } from 'react-native';
-import { Icon } from 'react-native-icons';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 export default class TabIcon extends Component {
 

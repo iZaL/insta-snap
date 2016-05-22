@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Image, StyleSheet, Text, TouchableHighlight, View, ListView} from 'react-native';
-import { Icon } from 'react-native-icons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { getExtension } from './../../utils/functions';
 import VideoPlayer from './../VideoPlayer';
 

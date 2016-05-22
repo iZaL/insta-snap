@@ -1,6 +1,5 @@
 import React from 'react';
-import { AppRegistry } from 'react-native';
+import ReactNative, { AppRegistry } from 'react-native';
 import Root from './src/Root';
 //delete GLOBAL.XMLHttpRequest;
-
 AppRegistry.registerComponent('mushtryati', () => Root);
