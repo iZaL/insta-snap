@@ -23,7 +23,7 @@ export default class SettingsCell extends Component {
                 name={this.props.icon}
                 size={20}
                 color={'red'}
-                style={{width:20,height:20,alignSelf:'center',fontWeight:100}}
+                style={{width:20,height:20,alignSelf:'center',fontWeight:'100'}}
               />
             </View>
             <View style={styles.middleCol}>
@@ -31,7 +31,7 @@ export default class SettingsCell extends Component {
             </View>
             <View style={styles.rightCol}>
               <Icon
-                name='ion|chevron-right'
+                name='md-arrow-back'
                 size={20}
                 color={'#f0f5f5'}
                 style={{width:20,height:20,alignSelf:'flex-end',fontWeight:'200'}}

@@ -14,7 +14,7 @@ class Settings extends Component {
 
   performLogout() {
     this.props.dispatch(logoutUser());
-    Actions.home();
+    return Actions.home();
   }
 
   loadScene(name){
@@ -38,8 +38,8 @@ class Settings extends Component {
 
     return (
       <ScrollView contentContainerStyle={{backgroundColor: '#f0f5f5',paddingTop:64}}>
-        <SettingsCell icon="ion|power" title="Logout" callback={()=>this.logout()} />
-        <SettingsCell icon="ion|person" title="Profile" callback={()=>this.loadScene('profile')} />
+        <SettingsCell icon="ios-power" title="Logout" callback={()=>this.logout()} />
+        <SettingsCell icon="ios-person" title="Profile" callback={()=>this.loadScene('profile')} />
       </ScrollView>
     );
 
