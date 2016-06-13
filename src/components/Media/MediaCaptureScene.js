@@ -20,17 +20,24 @@ export default class MediaCaptureScene extends Component {
   }
 
   startVideoRecording() {
+
     this.camera.stopCapture();
     this.props.startRecording();
     this._captureMedia();
+
+    setTimeout(() => {
+        this.pauseVideoRecording();
+    },10000);
   }
 
   pauseVideoRecording() {
-    this.props.pauseRecording();
-    this.camera.stopCapture();
+    if(this.props.isRecording) {
+      this.props.pauseRecording();
+      this.camera.stopCapture();
+    }
   }
 
-  switchCameraMode(mode = null) {
+  switchCameraMode() {
     return this.props.switchCameraMode();
   }
 
@@ -132,14 +139,12 @@ export default class MediaCaptureScene extends Component {
                   </TouchableWithoutFeedback>
                   :
                   <TouchableHighlight onPress={()=> this.takePhoto() }  underlayColor="transparent">
-                    <View>
-                      <Icon
-                        name="md-radio-button-off"
-                        size={70}
-                        color={isRecording ? 'red' : 'white'}
-                        style={styles.cameraCaptureButton}
-                      />
-                    </View>
+                    <Icon
+                      name="md-radio-button-off"
+                      size={70}
+                      color={'white'}
+                      style={styles.cameraCaptureButton}
+                    />
                   </TouchableHighlight>
                 }
               </View>
