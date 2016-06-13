@@ -1,17 +1,9 @@
-import React, { PropTypes, Component } from 'react';
-import { StyleSheet, Text, View, TouchableHighlight, TextInput,Image } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import React, {PropTypes, Component} from 'react';
+import {StyleSheet, Text, View, TouchableHighlight, TextInput, Image} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default class UserScene extends Component {
 
-  static propTypes = {
-    authUserID : PropTypes.number.isRequired,
-    user:PropTypes.object.isRequired,
-    followUser:PropTypes.func.isRequired,
-    loadFollowers:PropTypes.func.isRequired,
-    loadUserMedias:PropTypes.func.isRequired,
-    loadFollowings:PropTypes.func.isRequired,
-  }
 
   render() {
     const {user} = this.props;
@@ -44,29 +36,29 @@ export default class UserScene extends Component {
           <Text style={styles.username}>
             {user.name}
           </Text>
-          { user.id == this.props.authUserID ? <View/> :
+          { user.id === this.props.authUserID ? <View/> :
             <TouchableHighlight onPress={()=>this.props.followUser(user)} underlayColor="transparent">
-                { user.isFollowing ?
-              <View style={styles.followingWrapperFollowing}>
-                <Icon
-                  name='ion|android-done'
-                  size={18}
-                  color='white'
-                  style={styles.checked}
-                />
-                <Text style={[styles.following]}> Following </Text>
-              </View>
-              :
-              <View style={styles.followingWrapperFollow}>
-                <Icon
-                  name='ion|plus'
-                  size={18}
-                  color='white'
-                  style={styles.checked}
-                />
-                <Text style={[styles.following]}> Follow </Text>
-              </View>
-            }
+              { user.isFollowing ?
+                <View style={styles.followingWrapperFollowing}>
+                  <Icon
+                    name="done"
+                    size={18}
+                    color="white"
+                    style={styles.checked}
+                  />
+                  <Text style={[styles.following]}> Following </Text>
+                </View>
+                :
+                <View style={styles.followingWrapperFollow}>
+                  <Icon
+                    name="add-circle"
+                    size={18}
+                    color="white"
+                    style={styles.checked}
+                  />
+                  <Text style={[styles.following]}> Follow </Text>
+                </View>
+              }
             </TouchableHighlight>
           }
 
@@ -78,10 +70,20 @@ export default class UserScene extends Component {
 
 }
 
+UserScene.propTypes = {
+  authUserID : PropTypes.number.isRequired,
+  user:PropTypes.object.isRequired,
+  followUser:PropTypes.func.isRequired,
+  loadFollowers:PropTypes.func.isRequired,
+  loadUserMedias:PropTypes.func.isRequired,
+  loadFollowings:PropTypes.func.isRequired
+};
+
+
 var styles = StyleSheet.create({
   container:{
     flexDirection:'row',
-    padding:10,
+    padding:10
 
   },
   imageWrapper:{
@@ -103,7 +105,7 @@ var styles = StyleSheet.create({
   },
   infoWrapper:{
     flexDirection:'column',
-    justifyContent:'flex-start',
+    justifyContent:'flex-start'
   },
   count: {
     fontSize:14,
@@ -153,7 +155,7 @@ var styles = StyleSheet.create({
   add :{
     color:'#5BC3BE',
     width:20,
-    height:20,
+    height:20
   },
   checked: {
     width:20,

@@ -22,14 +22,13 @@ import LoginDialog from './components/LoginDialog';
 
 export const scenes = Actions.create(
 
-  <Scene key="root" component={Modal}>
-
-      <Scene key="tabBar" tabs={true} hideNavBar={true}
-             navigationBarStyle={{backgroundColor: '#343459',borderBottomColor: '#343459'}}
-             tabBarStyle={{backgroundColor:'#343459', justifyContent:'center', alignItems:'center', alignSelf:'center', height:40, paddingTop:10}}
+  <Scene key="modal" component={Modal} >
+    <Scene key="root" hideNavBar={true} >
+      <Scene key="tabBar" tabs={true}
+             tabBarStyle={{backgroundColor:'#343459', justifyContent:'center', alignItems:'center', alignSelf:'center', height:40}}
       >
 
-        <Scene key="settingsTab"  icon={TabIcon} selectedTabIcon="ion|ios-gear" tabIcon="ion|ios-gear-outline"
+        <Scene key="settingsTab"  icon={TabIcon} selectedTabIcon="settings" tabIcon="settings"
                navigationBarStyle={{backgroundColor: '#343459',borderBottomColor: '#343459'}}
                titleStyle={{ color:'white', fontSize:17}}
                barButtonTextStyle={{ fontSize:17, color:'white' }}
@@ -38,7 +37,7 @@ export const scenes = Actions.create(
           <Scene key="settingsScene" component={Settings} />
         </Scene>
 
-        <Scene key="downloadsTab"  icon={TabIcon} selectedTabIcon="ion|android-star" tabIcon="ion|android-star-outline"
+        <Scene key="downloadsTab"  icon={TabIcon} selectedTabIcon="star" tabIcon="star-border"
                navigationBarStyle={{backgroundColor: '#343459',borderBottomColor: '#343459'}}
                titleStyle={{ color:'white', fontSize:17}}
                barButtonTextStyle={{ fontSize:17, color:'white' }}
@@ -46,7 +45,7 @@ export const scenes = Actions.create(
           <Scene key="downloadsScene" component={UserDownloads}/>
         </Scene>
 
-        <Scene key="favoritesTab"  icon={TabIcon} selectedTabIcon="ion|android-favorite" tabIcon="ion|android-favorite-outline"
+        <Scene key="favoritesTab"  icon={TabIcon} selectedTabIcon="favorite" tabIcon="favorite-border"
                navigationBarStyle={{backgroundColor: '#343459',borderBottomColor: '#343459'}}
                titleStyle={{ color:'white', fontSize:17}}
                barButtonTextStyle={{ fontSize:17, color:'white' }}
@@ -54,42 +53,33 @@ export const scenes = Actions.create(
           <Scene key="favoritesScene" component={UserFavorites} />
         </Scene>
 
-        <Scene  key="mediasRouter" icon={TabIcon} selectedTabIcon="ion|briefcase" tabIcon="ion|briefcase"
+        <Scene  key="mediasRouter" icon={TabIcon} selectedTabIcon="work" tabIcon="work"
                 navigationBarStyle={{backgroundColor: '#343459',borderBottomColor: '#343459'}}
                 titleStyle={{ color:'white', fontSize:17}}
                 barButtonTextStyle={{ fontSize:17, color:'white' }}
         >
-          <Scene key="mediasScene"  component={Medias} rightTitle="+" onRight={() => Actions.mediaCapture()}
-          />
-          <Scene key="mediaScene" component={Media}
-          />
-          <Scene key="mediaCommentsScene" component={MediaComments} title="Comment"
-          />
-          <Scene key="mediaFavoritesScene" component={MediaFavorites} title="Favorites"
-          />
-          <Scene key="mediaDownloadsScene" component={MediaDownloads} title="Downloads"
-          />
-          <Scene key="userMediasScene" component={UserMedias} title="Downloads"
-          />
-          <Scene key="followersScene" component={Followers} title="Followers"
-          />
-          <Scene key="followingsScene" component={Followings} title="Followings"
-          />
-          <Scene key="userScene" component={User}
-          />
-
+          <Scene key="mediasScene"  component={Medias} rightTitle="+" onRight={() => Actions.mediaCapture()}/>
+          <Scene key="mediaScene" component={Media}/>
+          <Scene key="mediaCommentsScene" component={MediaComments} title="Comment"/>
+          <Scene key="mediaFavoritesScene" component={MediaFavorites} title="Favorites"/>
+          <Scene key="mediaDownloadsScene" component={MediaDownloads} title="Downloads"/>
+          <Scene key="userMediasScene" component={UserMedias} title="Downloads"/>
+          <Scene key="followersScene" component={Followers} title="Followers"/>
+          <Scene key="followingsScene" component={Followings} title="Followings"/>
+          <Scene key="userScene" component={User}/>
+          <Scene key="mediaCapture" component={MediaCapture} hideNavBar={true} component={MediaCapture} hideTabBar={true}  />
         </Scene>
 
-        <Scene key="home" initial={true}  icon={TabIcon} selectedTabIcon="ion|ios-home" tabIcon="ion|ios-home-outline" >
+        <Scene key="home" initial={true}  icon={TabIcon} selectedTabIcon="home" tabIcon="home" >
           <Scene key="homeScene" component={Home} hideNavBar={true}/>
         </Scene>
 
-        <Scene key="login"  component={Login} hideNavBar={true} component={Login}  />
-        <Scene key="mediaCapture" component={MediaCapture} hideNavBar={true} component={MediaCapture} hideTabBar={true}  />
-        <Scene key="loginDialog"  component={LoginDialog} hideNavBar={true}  component={LoginDialog} />
-        <Scene key="register" component={Register} hideNavBar={true} title="تسجيل الدخول"   />
-
       </Scene>
+
+      <Scene key="login"  component={Login} hideNavBar={true} component={Login}  />
+      <Scene key="loginDialog"  component={LoginDialog} hideNavBar={true}  component={LoginDialog} />
+      <Scene key="register" component={Register} hideNavBar={true} title="تسجيل الدخول"   />
+    </Scene>
 
   </Scene>
 

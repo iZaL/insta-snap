@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 import FormButton from './../FormButton';
 import LoadingIndicator from './../../components/LoadingIndicator';
-import t from 'tcomb-form-native/lib';
-import stylesheet from './../../assets/style/form';
-const Form = t.form.Form;
+//import t from 'tcomb-form-native/lib';
+//import stylesheet from './../../assets/style/form';
+//const Form = t.form.Form;
 
 export default class LoginScene extends Component {
 
@@ -22,7 +22,7 @@ export default class LoginScene extends Component {
 
   render() {
 
-    Form.stylesheet = stylesheet;
+    //Form.stylesheet = stylesheet;
 
     const {login} = this.props;
 
@@ -45,49 +45,50 @@ export default class LoginScene extends Component {
       error: 'Must have 6-12 numbers, letters or special characters'
     };
 
-    const loginForm = t.struct({
-      email: t.String,
-      password: t.String
-    });
-
-    const options = {
-      fields: {
-        email: email,
-        password: password
-      }
-    };
+    //const loginForm = t.struct({
+    //  email: t.String,
+    //  password: t.String
+    //});
+    //
+    //const options = {
+    //  fields: {
+    //    email: email,
+    //    password: password
+    //  }
+    //};
 
     return (
-      <View style={styles.container}>
-
-
-        {login.isFetching ? <LoadingIndicator /> : <View />}
-
-        <Form ref="form"
-              type={loginForm}
-              options={options}
-              value={this.props.credentials}
-              onChange={this.props.onChange}
-        />
-
-        <FormButton
-          isDisabled={login.isFetching}
-          onPress={this.handleLogin.bind(this)}
-          buttonText="Login"
-        />
-
-        <TouchableHighlight onPress={this.handleRegisterRoutePress.bind(this)} underlayColor="transparent"
-                            style={[styles.center,styles.mTop20]}
-        >
-          <Text style={[styles.label,styles.textUnderline]}>Dont have an account? Register</Text>
-        </TouchableHighlight>
-
-        <TouchableHighlight onPress={this.handleForgotPasswordRoutePress.bind(this)} style={[styles.center,styles.mTop20]}
-                            underlayColor="transparent" >
-          <Text style={[styles.label,styles.textUnderline]}>Forgot your password ?</Text>
-        </TouchableHighlight>
-
-      </View>
+      //<View style={styles.container}>
+      //
+      //
+      //  {login.isFetching ? <LoadingIndicator /> : <View />}
+      //
+      //  <Form ref="form"
+      //        type={loginForm}
+      //        options={options}
+      //        value={this.props.credentials}
+      //        onChange={this.props.onChange}
+      //  />
+      //
+      //  <FormButton
+      //    isDisabled={login.isFetching}
+      //    onPress={this.handleLogin.bind(this)}
+      //    buttonText="Login"
+      //  />
+      //
+      //  <TouchableHighlight onPress={this.handleRegisterRoutePress.bind(this)} underlayColor="transparent"
+      //                      style={[styles.center,styles.mTop20]}
+      //  >
+      //    <Text style={[styles.label,styles.textUnderline]}>Dont have an account? Register</Text>
+      //  </TouchableHighlight>
+      //
+      //  <TouchableHighlight onPress={this.handleForgotPasswordRoutePress.bind(this)} style={[styles.center,styles.mTop20]}
+      //                      underlayColor="transparent" >
+      //    <Text style={[styles.label,styles.textUnderline]}>Forgot your password ?</Text>
+      //  </TouchableHighlight>
+      //
+      //</View>
+      <View/>
 
     );
   }

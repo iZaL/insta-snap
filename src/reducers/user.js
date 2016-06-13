@@ -24,8 +24,8 @@ import {
 } from '../constants/actiontypes';
 
 const InitialState = Record({
-  isAuthenticated :false,
-  authUserID:null, // authenticated user ID
+  isAuthenticated :true,
+  authUserID:1, // authenticated user ID
   isFetching:false,
   favorites:new (Record({
     isFetching:false,

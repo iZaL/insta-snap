@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { View, Text, TouchableHighlight, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default class MediaFavoriteIcon extends Component {
 
@@ -22,8 +22,8 @@ export default class MediaFavoriteIcon extends Component {
         }
         <TouchableHighlight onPress={() => this.props.favoriteMedia()} underlayColor="transparent">
           <Icon
-            name={media.isFavorited ? 'ion|android-favorite' : 'ion|android-favorite-outline'}
-            size={25}
+            name={media.isFavorited ? 'favorite' : 'favorite-border'}
+            size={22}
             color={'red'}
             style={styles.favoriteImg}
           />
@@ -35,8 +35,8 @@ export default class MediaFavoriteIcon extends Component {
 
 const styles = StyleSheet.create({
   favoriteImg: {
-    width: 25,
-    height: 20,
+    width: 22,
+    height: 22,
     alignSelf:'center'
   },
   count: {

@@ -22,42 +22,16 @@
 
   // Map from global var to bool specifying if it can be redefined
   "globals": {
-    "__BUNDLE_START_TIME__": false,
-    "__DEV__": true,
-    "__dirname": false,
-    "__filename": false,
-    "__fbBatchedBridgeConfig": false,
-    "alert": false,
-    "cancelAnimationFrame": false,
-    "clearImmediate": true,
-    "clearInterval": false,
-    "clearTimeout": false,
-    "console": false,
-    "document": false,
-    "escape": false,
-    "exports": false,
-    "global": false,
-    "jest": false,
-    "pit": false,
-    "Map": true,
-    "module": false,
-    "navigator": false,
-    "process": false,
-    "Promise": false,
-    "requestAnimationFrame": true,
-    "require": false,
-    "Set": true,
-    "setImmediate": true,
-    "setInterval": false,
-    "setTimeout": false,
-    "window": false,
-    "FormData": true,
-    "XMLHttpRequest": false,
+    "__DEV__": false,
 
-    // Flow "known-globals" annotations:
-    "ReactElement": false,
     "ReactClass": false,
-    "Class": false
+    "ReactPropsCheckType": false,
+    "ReactPropsChainableTypeChecker": false,
+    "ReactPropTypes": false,
+    "SyntheticEvent": false,
+
+    "Observable": false,
+    "Subscription": false,
   },
 
   "rules": {

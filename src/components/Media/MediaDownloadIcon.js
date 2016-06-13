@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { View, Text, TouchableHighlight, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default class MediaDownloadIcon extends Component {
 
@@ -21,8 +21,8 @@ export default class MediaDownloadIcon extends Component {
         }
         <TouchableHighlight onPress={() => this.props.downloadMedia()} underlayColor="transparent">
           <Icon
-            name={media.isDownloaded ? 'ion|android-star' : 'ion|android-star-outline'}
-            size={28}
+            name={media.isDownloaded ? 'star' : 'star-border'}
+            size={22}
             color={'gold'}
             style={styles.favoriteImg}
           />
@@ -34,8 +34,8 @@ export default class MediaDownloadIcon extends Component {
 
 const styles = StyleSheet.create({
   favoriteImg: {
-    width: 28,
-    height: 24
+    width: 22,
+    height: 22
   },
   count: {
     fontSize:12,

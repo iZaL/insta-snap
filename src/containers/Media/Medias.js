@@ -51,7 +51,7 @@ const entities = (state) => state.entities.medias;
 const getAllMedias = () => {
   return createSelector(
     [entities],
-    (medias) => medias ? medias : []
+    (medias) => medias ? medias.filter((media) => media != undefined) : []
   );
 };
 

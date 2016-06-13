@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import { View, Text, TouchableHighlight, StyleSheet, ListView, Image } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default class UserList extends Component {
 
@@ -35,14 +35,14 @@ export default class UserList extends Component {
               <TouchableHighlight onPress={() => this.props.followUser(user)} underlayColor="transparent">
                 {user.isFollowing  ?
                   <Icon
-                    name='ion|checkmark-circled'
+                    name='done'
                     size={30}
                     color={'green'}
                     style={styles.followIcon}
                   />
                   :
                   <Icon
-                    name='ion|plus-circled'
+                    name='add-circle'
                     size={30}
                     color={'gray'}
                     style={styles.followIcon}

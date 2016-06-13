@@ -30,7 +30,7 @@ export default class MediaCaptureScene extends Component {
     this.camera.stopCapture();
   }
 
-  switchCameraMode() {
+  switchCameraMode(mode = null) {
     return this.props.switchCameraMode();
   }
 
@@ -68,7 +68,7 @@ export default class MediaCaptureScene extends Component {
           <View style={styles.topLeftButton}>
             <TouchableHighlight underlayColor="transparent" onPress={() => this.retake()}>
               <Icon
-                name="close-round"
+                name="ios-close"
                 size={30}
                 color={'white'}
                 style={styles.closeButton}
@@ -109,7 +109,7 @@ export default class MediaCaptureScene extends Component {
               <View style={styles.rightCol}>
                 <TouchableHighlight onPress={()=> this.switchCameraMode() } underlayColor="transparent">
                   <Icon
-                    name={cameraMode === 'video' ? 'fontawesome|camera' : 'fontawesome|video-camera'}
+                    name={cameraMode === 'video' ? 'ios-camera' : 'md-videocam'}
                     size={25}
                     color="white"
                     style={styles.videoCameraButton}
@@ -124,20 +124,22 @@ export default class MediaCaptureScene extends Component {
                     onPressOut={()=> this.pauseVideoRecording()}
                   >
                     <Icon
-                      name="ios-circle-filled"
+                      name="md-radio-button-off"
                       size={70}
                       color={isRecording ? 'red' : 'white'}
                       style={styles.cameraCaptureButton}
                     />
                   </TouchableWithoutFeedback>
                   :
-                  <TouchableHighlight onPress={()=> this.takePhoto() } underlayColor="transparent">
-                    <Icon
-                      name="ios-circle-filled"
-                      size={70}
-                      color="white"
-                      style={styles.cameraCaptureButton}
-                    />
+                  <TouchableHighlight onPress={()=> this.takePhoto() }  underlayColor="transparent">
+                    <View>
+                      <Icon
+                        name="md-radio-button-off"
+                        size={70}
+                        color={isRecording ? 'red' : 'white'}
+                        style={styles.cameraCaptureButton}
+                      />
+                    </View>
                   </TouchableHighlight>
                 }
               </View>
@@ -149,7 +151,7 @@ export default class MediaCaptureScene extends Component {
             <View style={styles.topLeftButton}>
               <TouchableHighlight underlayColor="transparent" onPress={() => this.returnBack()}>
                 <Icon
-                  name="chevron-left"
+                  name="md-arrow-back"
                   size={30}
                   color={'white'}
                   style={styles.closeButton}
@@ -161,7 +163,7 @@ export default class MediaCaptureScene extends Component {
               <TouchableHighlight onPress={()=> this.switchCameraType() } underlayColor="transparent">
                 <Icon
                   name="ios-reverse-camera-outline"
-                  name={cameraType === 'back' ? 'ion|ios-reverse-camera-outline' : 'ion|ios-reverse-camera'}
+                  name={cameraType === 'back' ? 'ios-reverse-camera-outline' : 'ios-reverse-camera'}
                   size={30}
                   color={'white'}
                   style={styles.closeButton}

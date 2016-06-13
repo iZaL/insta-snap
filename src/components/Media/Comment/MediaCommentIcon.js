@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { View, Text, TouchableHighlight, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 export default class MediaCommentIcon extends Component {
 
   render() {
@@ -10,8 +10,8 @@ export default class MediaCommentIcon extends Component {
           <View style={{flexDirection:'row'}}>
             <Text style={styles.count}>Comments</Text>
             <Icon
-              name="ios-chatbubble-outline"
-              size={24}
+              name="chat"
+              size={22}
               color={'gray'}
               style={styles.commentImg}
             />
@@ -28,8 +28,8 @@ MediaCommentIcon.propTypes = {
 
 const styles = StyleSheet.create({
   commentImg: {
-    width: 24,
-    height: 20,
+    width: 22,
+    height: 22,
   },
   count: {
     fontSize:12,

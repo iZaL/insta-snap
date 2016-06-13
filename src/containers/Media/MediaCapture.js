@@ -35,7 +35,7 @@ class MediaCapture extends Component {
   switchCameraType() {
     return this.setState({
       cameraType: this.state.cameraType == 'back' ? 'front' : 'back'
-    })
+    });
   }
 
   switchCameraMode() {
@@ -76,7 +76,7 @@ class MediaCapture extends Component {
   }
 
   returnBack() {
-    return Actions.home();
+    return Actions.pop();
   }
 
   render() {
