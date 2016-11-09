@@ -70,13 +70,13 @@ export const scenes = Actions.create(
           <Scene key="mediaCapture" component={MediaCapture} hideNavBar={true} hideTabBar={true}  />
         </Scene>
 
-        <Scene key="home"   icon={TabIcon} selectedTabIcon="home" tabIcon="home" >
+        <Scene initial={true} key="home" icon={TabIcon} selectedTabIcon="home" tabIcon="home" >
           <Scene key="homeScene" component={Home} hideNavBar={true}/>
           <Scene key="homeScene" component={Home} hideNavBar={true}/>
         </Scene>
       </Scene>
 
-      <Scene key="login"  initial={true} component={Login} hideNavBar={true}  />
+      <Scene key="login" initial={true} component={Login} hideNavBar={true}  />
       <Scene key="loginDialog"  component={LoginDialog} hideNavBar={true}  />
       <Scene key="register" component={Register} hideNavBar={true} title="تسجيل الدخول"   />
     </Scene>

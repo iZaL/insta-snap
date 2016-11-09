@@ -26,7 +26,7 @@ class Login extends Component {
     this.props.dispatch(login(credentials))
       .then((success)=> {
         if(success) {
-          Actions.home();
+          Actions.tabBar();
         } else {
           alert('Wrong Credentials, Try again');
         }
