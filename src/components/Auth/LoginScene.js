@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
-import {  StyleSheet, Text, View, Image, TouchableHighlight, TextInput } from 'react-native';
+import {  StyleSheet, Text, View, Image, TouchableHighlight, TextInput, Button } from 'react-native';
 import FormButton from './../FormButton';
 import LoadingIndicator from './../../components/LoadingIndicator';
 
 export default class LoginScene extends Component {
 
   static propTypes = {
-    handleLogin:PropTypes.func.isRequired,
+    loginUser:PropTypes.func.isRequired,
     onForgotPasswordRoutePress:PropTypes.func.isRequired,
     onRegisterRoutePress:PropTypes.func.isRequired,
     login:PropTypes.object.isRequired,
@@ -16,13 +16,14 @@ export default class LoginScene extends Component {
 
   render() {
 
-    const { email, password, onFieldChange, loginReducer, loginUser, handleRegisterRoute, handleForgotPasswordRoute } = this.props;
+    const { email, password, onFieldChange, loginUser, handleRegisterRoute, handleForgotPasswordRoute } = this.props;
 
     return (
       <View style={styles.container}>
 
-        {loginReducer.isFetching && <LoadingIndicator /> }
+        <Text style={styles.title}>Log in</Text>
 
+        <Text style={styles.label}>EMAIL</Text>
         <TextInput
           style={[styles.textInput]}
           onChangeText={(value) => onFieldChange('email',value)}
@@ -30,30 +31,34 @@ export default class LoginScene extends Component {
           maxLength={40}
           placeholderTextColor="gray"
         />
+        <View style={styles.separator}/>
 
+        <Text style={styles.label}>PASSWORD</Text>
         <TextInput
           style={[styles.textInput]}
           onChangeText={(value) => onFieldChange('password',value)}
           value={password}
           maxLength={40}
           placeholderTextColor="gray"
+          secureTextEntry={true}
         />
+        <View style={styles.separator}/>
 
-        <FormButton
-          disabled={loginReducer.isFetching}
-          onPress={()=>loginUser()}
-          buttonText='Login'
-        />
-
-        <TouchableHighlight onPress={()=>handleRegisterRoute()} underlayColor='transparent'
-                            style={[styles.center,styles.mTop20]}
-        >
-          <Text style={[styles.label,styles.textUnderline]}>Dont have an account? Register</Text>
+        <TouchableHighlight onPress={()=>handleForgotPasswordRoute()} style={[styles.textCenter]}
+                            underlayColor='transparent' >
+          <Text style={[styles.link,styles.textUnderline]}>Forgot your password ?</Text>
         </TouchableHighlight>
 
-        <TouchableHighlight onPress={()=>handleForgotPasswordRoute()} style={[styles.center,styles.mTop20]}
-                            underlayColor='transparent' >
-          <Text style={[styles.label,styles.textUnderline]}>Forgot your password ?</Text>
+        <TouchableHighlight onPress={()=>loginUser()} title="Login" style={[styles.button,{marginTop:50}]} underlayColor='transparent' >
+          <Text style={styles.buttonText}>Login</Text>
+        </TouchableHighlight>
+
+        <TouchableHighlight onPress={()=>handleRegisterRoute()} underlayColor='transparent'
+                            style={[styles.center,{marginTop:30}]}
+        >
+          <Text style={[styles.link,styles.textCenter]}>
+            Don't have an account? Register
+          </Text>
         </TouchableHighlight>
 
       </View>
@@ -66,35 +71,59 @@ export default class LoginScene extends Component {
 var styles = StyleSheet.create({
 
   container:{
-    padding:10
+    flex:1,
+    margin:40,
+    marginTop:100
   },
   label: {
-    fontSize: 14,
-    color: '#888888',
+    fontSize: 13,
+    color: '#CCCCCC',
+    marginTop:10,
+    marginBottom:5
   },
-  textUnderline: {
-    textDecorationLine: 'underline'
-  },
-  ltr: {
-    alignSelf: 'flex-start'
-  },
-  rtl: {
-    alignSelf: 'flex-end'
-  },
-  center: {
+  textCenter: {
     alignSelf: 'center'
   },
   mTop20: {
-    marginTop: 50
+    marginTop: 20
   },
   textInput:{
-    height: 40,
-    borderColor: 'black',
-    borderWidth: 1,
-    marginBottom:20,
-    fontSize:15,
-    paddingLeft:10,
-
+    height: 25,
+    borderRightColor:'transparent',
+    borderTopColor:'transparent',
+    borderBottomColor: '#CCCCCC',
+    borderBottomWidth:1,
+    fontSize:14,
   },
+  title:{
+    fontSize:20,
+    fontWeight:'700',
+    textAlign:'center',
+    marginBottom:20
+  },
+  separator:{
+    height:1,
+    backgroundColor:'#CCCCCC',
+  },
+  link :{
+    marginTop:20,
+    color:'#1B82F9',
+    fontSize:14
+  },
+  button : {
+    backgroundColor:'#98599D',
+    borderRadius:30,
+    padding:10,
+    height:40,
+    marginTop:20,
+    width:200,
+    alignSelf:'center'
+  },
+  buttonText:{
+    color:'white',
+    textAlign:'center',
+    fontSize:17,
+    fontWeight:'700',
+  }
 });
 

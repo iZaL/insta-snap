@@ -3,7 +3,7 @@ var React = require('React');
 import { Scene, Modal, Actions } from 'react-native-router-flux';
 import TabIcon from './components/TabIcon';
 import Home from './modules/Home/Home';
-import Login from './containers/Auth/Login';
+import Login from './modules/Auth/Login';
 import Register from './containers/Auth/Register';
 import User from './containers/User/User';
 import UserFavorites from './containers/User/UserFavorites';
@@ -70,13 +70,14 @@ export const scenes = Actions.create(
           <Scene key="mediaCapture" component={MediaCapture} hideNavBar={true} hideTabBar={true}  />
         </Scene>
 
-        <Scene key="home" initial={true}  icon={TabIcon} selectedTabIcon="home" tabIcon="home" >
+        <Scene key="home"   icon={TabIcon} selectedTabIcon="home" tabIcon="home" >
+          <Scene key="homeScene" component={Home} hideNavBar={true}/>
           <Scene key="homeScene" component={Home} hideNavBar={true}/>
         </Scene>
 
       </Scene>
 
-      <Scene key="login"  component={Login} hideNavBar={true}  />
+      <Scene key="login"  initial={true} component={Login} hideNavBar={true}  />
       <Scene key="loginDialog"  component={LoginDialog} hideNavBar={true}  />
       <Scene key="register" component={Register} hideNavBar={true} title="تسجيل الدخول"   />
     </Scene>

@@ -1,10 +1,9 @@
-'use strict';
 import React, { Component, PropTypes } from 'react';
 import { ScrollView, View, Image } from 'react-native';
 import { login } from '../../actions/Auth/login';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import LoginScene from './../../components/Auth/LoginScene';
+import LoginScene from '../../components/Auth/LoginScene';
 
 class Login extends Component {
 
@@ -53,7 +52,7 @@ class Login extends Component {
       <ScrollView contentContainerStyle={{flex:1,paddingTop: 64,backgroundColor:'white'}}>
         <LoginScene
           {...this.state}
-          loginReducer={loginReducer}
+          loginReducer={login}
           loginUser={this.loginUser}
           handleRegisterRoute={this.handleRegisterRoute}
           handleForgotPasswordRoute={this.handleForgotPasswordRoute}
@@ -66,7 +65,7 @@ class Login extends Component {
 
 function mapStateToProps(state) {
   return {
-    loginReducer : state.loginReducer
+    login : state.loginReducer
   }
 }
 
