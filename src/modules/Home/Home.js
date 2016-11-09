@@ -62,7 +62,7 @@ class Home extends Component {
 }
 
 function mapStateToProps(state) {
-
+  console.log('state',state);
   return {
     homeReducer:state.homeReducer,
     liveMedias:state.homeReducer.liveMedias ? state.homeReducer.liveMedias.map((media) => state.entities.medias[media]) : [],

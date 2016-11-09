@@ -8,7 +8,7 @@ export default class LoginScene extends Component {
   static propTypes = {
     handleForgotPasswordRoute:PropTypes.func.isRequired,
     handleRegisterRoute:PropTypes.func.isRequired,
-    loginUser:PropTypes.func.isRequired,
+    handleLogin:PropTypes.func.isRequired,
     onFieldChange:PropTypes.func.isRequired,
     email:PropTypes.string.isRequired,
     password:PropTypes.string.isRequired,
@@ -16,7 +16,7 @@ export default class LoginScene extends Component {
 
   render() {
 
-    const { email, password, onFieldChange, loginUser, handleRegisterRoute, handleForgotPasswordRoute } = this.props;
+    const { email, password, onFieldChange, handleLogin, handleRegisterRoute, handleForgotPasswordRoute } = this.props;
 
     return (
       <View style={styles.container}>
@@ -49,7 +49,7 @@ export default class LoginScene extends Component {
           <Text style={[styles.link,styles.textUnderline]}>Forgot your password ?</Text>
         </TouchableHighlight>
 
-        <TouchableHighlight onPress={()=>loginUser()} title="Login" style={[styles.button,{marginTop:50}]} underlayColor='transparent' >
+        <TouchableHighlight onPress={()=>handleLogin()} title="Login" style={[styles.button,{marginTop:50}]} underlayColor='transparent' >
           <Text style={styles.buttonText}>Login</Text>
         </TouchableHighlight>
 

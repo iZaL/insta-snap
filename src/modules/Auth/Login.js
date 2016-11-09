@@ -4,6 +4,7 @@ import { login } from '../../actions/Auth/login';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import LoginScene from '../../components/Auth/LoginScene';
+import LoadingIndicator from './../../components/LoadingIndicator';
 
 class Login extends Component {
 
@@ -16,16 +17,16 @@ class Login extends Component {
     };
 
     this.onFieldChange = this.onFieldChange.bind(this);
-    this.loginUser = this.loginUser.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
   };
 
-  loginUser() {
+  handleLogin() {
     const credentials = { email:this.state.email,password:this.state.password};
 
     this.props.dispatch(login(credentials))
       .then((success)=> {
         if(success) {
-          Actions.main();
+          Actions.home();
         } else {
           alert('Wrong Credentials, Try again');
         }
@@ -47,17 +48,20 @@ class Login extends Component {
   }
 
   render() {
-    const { login } = this.props;
+    const { loginReducer } = this.props;
     return (
       <View style={{flex:1}}>
-        <LoginScene
-          {...this.state}
-          loginReducer={login}
-          loginUser={this.loginUser}
-          handleRegisterRoute={this.handleRegisterRoute}
-          handleForgotPasswordRoute={this.handleForgotPasswordRoute}
-          onFieldChange={this.onFieldChange}
-        />
+        { login.isFetching ?
+          <LoadingIndicator /> :
+          <LoginScene
+            {...this.state}
+            loginReducer={loginReducer}
+            handleLogin={this.handleLogin}
+            handleRegisterRoute={this.handleRegisterRoute}
+            handleForgotPasswordRoute={this.handleForgotPasswordRoute}
+            onFieldChange={this.onFieldChange}
+          />
+        }
       </View>
     );
   }
@@ -65,7 +69,7 @@ class Login extends Component {
 
 function mapStateToProps(state) {
   return {
-    login : state.login
+    loginReducer : state.loginReducer
   }
 }
 

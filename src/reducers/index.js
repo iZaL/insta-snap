@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
 import entities from './entities';
-import login from './login';
+import loginReducer from './login';
 import register from './register';
 import userReducer from './user';
 import mediasReducer from './medias';
@@ -11,7 +11,7 @@ import pagination from './paginate';
 
 const rootReducer = combineReducers({
   entities,
-  login,
+  loginReducer,
   register,
   userReducer,
   mediasReducer,
