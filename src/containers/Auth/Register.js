@@ -1,10 +1,10 @@
+'use strict';
 import React, { Component, PropTypes } from 'react';
-import { View, ScrollView } from 'react-native';
-import { connect } from '../../../node_modules/react-redux';
+import { View, ScrollView,AlertIOS } from 'react-native';
+import { connect } from 'react-redux';
+import { signup } from '../../actions/Auth/register';
 import { Actions } from 'react-native-router-flux';
-import { register, onRegisterFormFieldChange } from '../../actions/Auth/register';
 import RegisterScene from './../../components/Auth/RegisterScene';
-import LoadingIndicator from './../../components/LoadingIndicator';
 
 class Register extends Component {
 
@@ -12,30 +12,31 @@ class Register extends Component {
 
     super(props);
 
-    const {fields} = this.props.register.form;
-
     this.state = {
-      fields: {
-        name: fields.name,
-        email: fields.email,
-        password: fields.password,
-        passwordConfirmation: fields.passwordConfirmation,
-        mobile: fields.mobile
-      }
+      name: '',
+      email: '',
+      password: '',
+      passwordConfirmation: '',
+      mobile: ''
     };
+
+    this.onFieldChange  = this.onFieldChange.bind(this);
+    this.registerUser  = this.registerUser.bind(this);
   }
 
-  onFieldChange(value, field) {
-    let changedField = field[0];
-    const { dispatch } = this.props;
-    dispatch(onRegisterFormFieldChange(changedField, value[changedField]));
-    this.setState({fields: value});
+  onFieldChange(field,value) {
+    this.setState({[field]: value});
   }
 
-  handleRegister() {
-    const {dispatch} = this.props;
-    const fields = this.state.fields;
-    dispatch(register(fields, (cb)=> {
+  registerUser() {
+    const fields = {...this.state};
+
+    this.props.dispatch(signup(fields, (cb)=> {
+
+      if(!cb.success) {
+        return AlertIOS.alert(`Error occured while Registration.`, cb.errorMessage, [{text: 'Try Again'}]);
+      }
+
       return Actions.login();
     }));
   }
@@ -45,24 +46,19 @@ class Register extends Component {
   }
 
   render() {
-    const { register } = this.props;
-
-    if (register.form.error != null) {
-      alert('Error, Please try again');
-    }
+    const { registerReducer } = this.props;
 
     return (
 
-      <ScrollView style={{flex:1,padding:10,paddingTop: 64}}>
+      <ScrollView contentContainerStyle={{flex:1,backgroundColor:'white',paddingTop: 64}}>
 
-        {register.isFetching ? <LoadingIndicator style={{ marginTop:10}} /> : <View />}
 
         <RegisterScene
-          register={register}
-          fields={this.state.fields}
-          onRegisterPress={this.handleRegister.bind(this)}
-          onLoginRoutePress={this.handleLoginRoute.bind(this)}
-          onChange={this.onFieldChange.bind(this)}
+          {...this.state}
+          registerReducer={registerReducer}
+          registerUser={this.registerUser}
+          handleLoginRoute={this.handleLoginRoute}
+          onFieldChange={this.onFieldChange}
         />
 
       </ScrollView>
@@ -72,11 +68,10 @@ class Register extends Component {
 }
 
 function mapStateToProps(state) {
-  const { register } = state;
+  const { registerReducer } = state;
   return {
-    ...state,
-    register
+    registerReducer
   }
 }
 
-export default connect(mapStateToProps)(Register);
+export default connect(mapStateToProps)(Register)

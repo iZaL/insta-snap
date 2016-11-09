@@ -67,7 +67,7 @@ export const scenes = Actions.create(
           <Scene key="followersScene" component={Followers} title="Followers"/>
           <Scene key="followingsScene" component={Followings} title="Followings"/>
           <Scene key="userScene" component={User}/>
-          <Scene key="mediaCapture" component={MediaCapture} hideNavBar={true} component={MediaCapture} hideTabBar={true}  />
+          <Scene key="mediaCapture" component={MediaCapture} hideNavBar={true} hideTabBar={true}  />
         </Scene>
 
         <Scene key="home" initial={true}  icon={TabIcon} selectedTabIcon="home" tabIcon="home" >
@@ -76,8 +76,8 @@ export const scenes = Actions.create(
 
       </Scene>
 
-      <Scene key="login"  component={Login} hideNavBar={true} component={Login}  />
-      <Scene key="loginDialog"  component={LoginDialog} hideNavBar={true}  component={LoginDialog} />
+      <Scene key="login"  component={Login} hideNavBar={true}  />
+      <Scene key="loginDialog"  component={LoginDialog} hideNavBar={true}  />
       <Scene key="register" component={Register} hideNavBar={true} title="تسجيل الدخول"   />
     </Scene>
 

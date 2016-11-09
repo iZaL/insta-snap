@@ -26,7 +26,7 @@ function registerFailure(errors) {
   };
 }
 
-export function register(inputs, cb = false) {
+export function signup(inputs, cb = false) {
   return dispatch => {
     dispatch(registerRequest());
     return fetch(`${API_ROOT}/Auth/register`, {

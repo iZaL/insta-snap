@@ -1,131 +1,98 @@
-import React, { Component, PropTypes } from 'react';
-import { StyleSheet, Text, View,  TouchableHighlight } from 'react-native';
+import React, {Component,PropTypes} from 'react';
+import {  StyleSheet, Text, View,  TouchableHighlight, TextInput } from 'react-native';
 import FormButton from './../FormButton';
-//import stylesheet from './../../assets/style/form';
-//import t from 'tcomb-form-native';
-//const Form = t.form.Form;
+import LoadingIndicator from './../../components/LoadingIndicator';
 
 export default class RegisterScene extends Component {
 
-  handleRegister() {
-    this.props.onRegisterPress();
-  }
-
-  handleLoginRoutePress() {
-    this.props.onLoginRoutePress();
-  }
+  static propTypes = {
+    onRegisterPress:PropTypes.func.isRequired,
+    onLoginRoutePress:PropTypes.func.isRequired,
+    register:PropTypes.object.isRequired,
+    fields:PropTypes.object.isRequired,
+    onChange:PropTypes.func.isRequired
+  };
 
   render() {
 
-    //Form.stylesheet = stylesheet;
-    //
-    //const {register} = this.props;
-    //
-    //let name = {
-    //  label: 'Name',
-    //  placeholder: 'Name',
-    //  editable: !register.isFetching,
-    //  hasError: register.form.fields.nameHasError,
-    //  error: 'Please enter valid name',
-    //};
-    //
-    //let email = {
-    //  label: 'Email',
-    //  placeholder: 'Email',
-    //  keyboardType: 'email-address',
-    //  editable: !register.isFetching,
-    //  hasError: register.form.fields.emailHasError,
-    //  error: 'Please enter valid email',
-    //};
-    //
-    //let password = {
-    //  label: 'Password',
-    //  placeholder: 'Password',
-    //  maxLength: 12,
-    //  secureTextEntry: true,
-    //  editable: !register.isFetching,
-    //  hasError: register.form.fields.passwordHasError,
-    //  error: 'Must have 6-12 numbers, letters or special characters',
-    //};
-    //
-    //let passwordConfirmation = {
-    //  label: 'Confirm Password',
-    //  placeholder: 'Confirm Password',
-    //  maxLength: 12,
-    //  secureTextEntry: true,
-    //  editable: !register.isFetching,
-    //  hasError: register.form.fields.passwordConfirmationHasError,
-    //  error: 'Password does not match',
-    //};
-    //
-    //let mobile = {
-    //  label: 'Mobile',
-    //  placeholder: 'Mobile',
-    //  maxLength: 8,
-    //  editable: !register.isFetching,
-    //  hasError: register.form.fields.mobileHasError,
-    //  error: '8 digit phone number',
-    //  help: register.form.fields.mobileHasError ? '' : '8 digit phone number'
-    //};
-    //
-    //const registerForm = t.struct({
-    //  name: t.String,
-    //  email: t.String,
-    //  password: t.String,
-    //  passwordConfirmation: t.String,
-    //  mobile: t.String
-    //});
-    //
-    //const options = {
-    //  fields: {
-    //    name: name,
-    //    email: email,
-    //    password: password,
-    //    passwordConfirmation: passwordConfirmation,
-    //    mobile: mobile
-    //  }
-    //};
+    const { name,email,password,passwordConfirmation,mobile,registerReducer, registerUser, handleLoginRoute,onFieldChange } = this.props;
 
     return (
-      //<View style={{paddingTop:20, flex:1}}>
-      //
-      //  <Form ref="form"
-      //        type={registerForm}
-      //        options={options}
-      //        value={this.props.fields}
-      //        onChange={this.props.onChange}
-      //  />
-      //
-      //  <FormButton
-      //    onPress={this.handleRegister.bind(this)}
-      //    buttonText="Register"
-      //  />
-      //
-      //  <TouchableHighlight
-      //    onPress={this.handleLoginRoutePress.bind(this)}
-      //    style={styles.center}
-      //    underlayColor="transparent"
-      //  >
-      //    <Text style={[styles.label,styles.textUnderline, styles.mTop20]}>have an account ? Login </Text>
-      //  </TouchableHighlight>
-      //
-      //</View>
-      <View/>
+
+      <View style={styles.container}>
+
+        {registerReducer.isFetching && <LoadingIndicator style={{ marginTop:10}} /> }
+
+        <TextInput
+          style={[styles.textInput]}
+          onChangeText={(value) => onFieldChange('name',value)}
+          value={name}
+          maxLength={40}
+          placeholderTextColor="gray"
+          placeholder="Name"
+        />
+
+        <TextInput
+          style={[styles.textInput]}
+          onChangeText={(value) => onFieldChange('email',value)}
+          value={email}
+          maxLength={40}
+          placeholderTextColor="gray"
+          placeholder="Email"
+        />
+
+        <TextInput
+          style={[styles.textInput]}
+          onChangeText={(value) => onFieldChange('password',value)}
+          value={password}
+          maxLength={40}
+          placeholderTextColor="gray"
+          placeholder="Password"
+          secureTextEntry={true}
+        />
+        <TextInput
+          style={[styles.textInput]}
+          onChangeText={(value) => onFieldChange('passwordConfirmation',value)}
+          value={passwordConfirmation}
+          maxLength={40}
+          placeholderTextColor="gray"
+          placeholder="Password Confirmation"
+          secureTextEntry={true}
+
+        />
+        <TextInput
+          style={[styles.textInput]}
+          onChangeText={(value) => onFieldChange('mobile',value)}
+          value={mobile}
+          maxLength={40}
+          placeholderTextColor="gray"
+          placeholder="Mobile"
+        />
+
+
+        <FormButton
+          onPress={()=> registerUser()}
+          buttonText='Register'/>
+
+        <TouchableHighlight
+          onPress={()=>handleLoginRoute()}
+          style={styles.center}
+          underlayColor='transparent'
+        >
+          <Text style={[styles.label,styles.textUnderline, styles.mTop20]}>have an account ? Login </Text>
+        </TouchableHighlight>
+
+      </View>
     );
 
   }
 
 }
 
-RegisterScene.propTypes = {
-  onRegisterPress:PropTypes.func.isRequired,
-  onLoginRoutePress:PropTypes.func.isRequired,
-  register:PropTypes.object.isRequired,
-  fields:PropTypes.object.isRequired,
-  onChange:PropTypes.func.isRequired
-};
-
-const styles = StyleSheet.create({
+var styles = StyleSheet.create({
+  container: {
+    padding:10
+  },
   buttonGreen: {
     height: 50,
     backgroundColor: '#5BC3BE',
@@ -158,5 +125,14 @@ const styles = StyleSheet.create({
   },
   center: {
     alignSelf: 'center'
-  }
+  },
+  textInput:{
+    height: 40,
+    borderColor: 'black',
+    borderWidth: 1,
+    marginBottom:20,
+    fontSize:15,
+    paddingLeft:10,
+  },
 });
+
