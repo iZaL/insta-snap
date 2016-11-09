@@ -47,9 +47,9 @@ class Login extends Component {
   }
 
   render() {
-    const { loginReducer } = this.props;
+    const { login } = this.props;
     return (
-      <ScrollView contentContainerStyle={{flex:1,paddingTop: 64,backgroundColor:'white'}}>
+      <View style={{flex:1}}>
         <LoginScene
           {...this.state}
           loginReducer={login}
@@ -58,14 +58,14 @@ class Login extends Component {
           handleForgotPasswordRoute={this.handleForgotPasswordRoute}
           onFieldChange={this.onFieldChange}
         />
-      </ScrollView>
+      </View>
     );
   }
 }
 
 function mapStateToProps(state) {
   return {
-    login : state.loginReducer
+    login : state.login
   }
 }
 

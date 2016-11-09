@@ -73,7 +73,7 @@ var styles = StyleSheet.create({
   container:{
     flex:1,
     margin:40,
-    marginTop:100
+    marginTop:170
   },
   label: {
     fontSize: 13,

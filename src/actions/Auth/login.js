@@ -52,7 +52,10 @@ export function login(credentials) {
           return false;
         }
       })
-      .catch((err)=> dispatch(loginFailure(err)));
+      .catch((err)=> {
+        dispatch(loginFailure(err));
+        return false;
+      });
   };
 }
 
