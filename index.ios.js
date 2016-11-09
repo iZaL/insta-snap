@@ -7,6 +7,6 @@ const _XHR = GLOBAL.originalXMLHttpRequest ?
   GLOBAL.XMLHttpRequest
 
 XMLHttpRequest = _XHR;
-console.disableYellowBox= true;
+// console.disableYellowBox= true;
 StatusBar.setBarStyle('light-content');
 AppRegistry.registerComponent('Moshtaraiaty', () => Root);

@@ -6,12 +6,12 @@ import LoadingIndicator from './../../components/LoadingIndicator';
 export default class LoginScene extends Component {
 
   static propTypes = {
+    handleForgotPasswordRoute:PropTypes.func.isRequired,
+    handleRegisterRoute:PropTypes.func.isRequired,
     loginUser:PropTypes.func.isRequired,
-    onForgotPasswordRoutePress:PropTypes.func.isRequired,
-    onRegisterRoutePress:PropTypes.func.isRequired,
-    login:PropTypes.object.isRequired,
-    onChange:PropTypes.func.isRequired,
-    credentials:PropTypes.object.isRequired
+    onFieldChange:PropTypes.func.isRequired,
+    email:PropTypes.string.isRequired,
+    password:PropTypes.string.isRequired,
   };
 
   render() {
@@ -76,10 +76,10 @@ var styles = StyleSheet.create({
     marginTop:170
   },
   label: {
-    fontSize: 13,
+    fontSize: 12,
     color: '#CCCCCC',
-    marginTop:10,
-    marginBottom:5
+    marginTop:15,
+    marginBottom:2
   },
   textCenter: {
     alignSelf: 'center'
@@ -102,13 +102,13 @@ var styles = StyleSheet.create({
     marginBottom:20
   },
   separator:{
-    height:1,
+    height:0.5,
     backgroundColor:'#CCCCCC',
   },
   link :{
     marginTop:20,
     color:'#1B82F9',
-    fontSize:14
+    fontSize:13
   },
   button : {
     backgroundColor:'#98599D',
