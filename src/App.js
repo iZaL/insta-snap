@@ -7,7 +7,7 @@ import { scenes } from './scenes';
 class App extends Component {
 
   componentDidMount() {
-    // this.props.dispatch(loginUserByToken());
+    this.props.dispatch(loginUserByToken());
   }
 
   render() {

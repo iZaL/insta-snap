@@ -56,9 +56,9 @@ class User extends Component {
   }
 
   loadMore() {
-    console.log('loading more');
+    // console.log('loading more');
     //if(!this.props.mediasReducer.isFetching) {
-      console.log('fired loading more');
+    //   console.log('fired loading more');
       //this.props.dispatch(fetchUserMedias(true));
     //}
   }

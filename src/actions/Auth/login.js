@@ -1,6 +1,6 @@
 import {API_ROOT,API_TOKEN} from './../../constants/config';
 import {setUserToken,getUserToken,forgetItem} from './../../utils/storage';
-import {Schemas} from './../../utils/schema';
+import {Schemas} from '../../schemas/schema';
 import {normalize} from 'normalizr';
 
 import {
@@ -64,6 +64,7 @@ export function loginUserByToken() {
     dispatch(loginRequest());
     return getUserToken()
       .then((token) => {
+        console.log('token',token);
         const url = `${API_ROOT}/auth/login/token`;
         return fetch(url, {
           method: 'POST',

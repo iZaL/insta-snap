@@ -1,6 +1,6 @@
 import { API_ROOT } from './../../constants/config';
 import { normalize } from 'normalizr';
-import { Schemas } from './../../utils/schema';
+import { Schemas } from '../../schemas/schema';
 import { getUserToken } from './../../utils/storage';
 
 import {
@@ -47,6 +47,8 @@ export function fetchUserFavorites(userID,requiredFields = []) {
       return fetch(url)
         .then(response => response.json())
         .then(json => {
+
+          console.log('jsin',json);
           if (json.success) {
             dispatch(userFavoritesSuccess(json));
           } else {

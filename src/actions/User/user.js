@@ -1,6 +1,6 @@
 import { API_ROOT } from './../../constants/config';
 import { normalize } from 'normalizr';
-import { Schemas } from './../../utils/schema';
+import { Schemas } from '../../schemas/schema';
 import { getUserToken } from './../../utils/storage';
 import union from 'lodash/union';
 
