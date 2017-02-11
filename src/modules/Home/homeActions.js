@@ -19,24 +19,26 @@ function mediasSuccess(payload) {
 
 function liveMediasSuccess(payload) {
   const normalized = normalize(payload, [Schemas.MEDIA_ARRAY]);
+  let result = normalized.result[0];
   return {
     type: HOME_SUCCESS,
     entities:normalized.entities,
-    liveMedias:normalized.result.data
+    liveMedias:result
   };
 }
 
 function followerMediasSuccess(payload) {
   const normalized = normalize(payload, [Schemas.MEDIA_ARRAY]);
+  let result = normalized.result[0];
   return {
     type: HOME_SUCCESS,
     entities:normalized.entities,
-    followerMedias:normalized.result.data
+    followerMedias:result
   };
 }
 
 function companyMediasSuccess(payload) {
-  const normalized = normalize(payload, [Schemas.MEDIA_ARRAY]);
+  const normalized = normalize(payload, Schemas.MEDIA_ARRAY);
   return {
     type: HOME_SUCCESS,
     entities:normalized.entities,

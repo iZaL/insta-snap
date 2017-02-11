@@ -22,9 +22,9 @@ export default function homeReducer(state = initialState, action = {}) {
       return merge({}, state, {
         isFetching: false,
         liveMedias:union(state.liveMedias, action.liveMedias),
-        followerMedias:union(state.followerMedias, action.followerMedias),
-        companyMedias:union(state.companyMedias, action.companyMedias),
-        medias:union(state.medias, action.medias)
+        // followerMedias:union(state.followerMedias, action.followerMedias),
+        // companyMedias:union(state.companyMedias, action.companyMedias),
+        // medias:union(state.medias, action.medias)
       });
     case HOME_FAILURE:
       return {...state,isFetching:false};

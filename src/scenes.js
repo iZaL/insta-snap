@@ -28,29 +28,9 @@ export const scenes = Actions.create(
              tabBarStyle={{backgroundColor:'#343459', justifyContent:'center', alignItems:'center', alignSelf:'center', height:40}}
       >
 
-        <Scene key="settingsTab"  icon={TabIcon} selectedTabIcon="settings" tabIcon="settings"
-               navigationBarStyle={{backgroundColor: '#343459',borderBottomColor: '#343459'}}
-               titleStyle={{ color:'white', fontSize:17}}
-               barButtonTextStyle={{ fontSize:17, color:'white' }}
-               title="Settings"
-        >
-          <Scene key="settingsScene" component={Settings} />
-        </Scene>
-
-        <Scene key="downloadsTab"  icon={TabIcon} selectedTabIcon="star" tabIcon="star-border"
-               navigationBarStyle={{backgroundColor: '#343459',borderBottomColor: '#343459'}}
-               titleStyle={{ color:'white', fontSize:17}}
-               barButtonTextStyle={{ fontSize:17, color:'white' }}
-        >
-          <Scene key="downloadsScene" component={UserDownloads}/>
-        </Scene>
-
-        <Scene key="favoritesTab"  icon={TabIcon} selectedTabIcon="favorite" tabIcon="favorite-border"
-               navigationBarStyle={{backgroundColor: '#343459',borderBottomColor: '#343459'}}
-               titleStyle={{ color:'white', fontSize:17}}
-               barButtonTextStyle={{ fontSize:17, color:'white' }}
-        >
-          <Scene key="favoritesScene" component={UserFavorites} />
+        <Scene initial={true} key="home" icon={TabIcon} selectedTabIcon="home" tabIcon="home" >
+          <Scene key="homeScene" component={Home} hideNavBar={true}/>
+          <Scene key="homeScene" component={Home} hideNavBar={true}/>
         </Scene>
 
         <Scene  key="mediasRouter" icon={TabIcon} selectedTabIcon="work" tabIcon="work"
@@ -70,13 +50,39 @@ export const scenes = Actions.create(
           <Scene key="mediaCapture" component={MediaCapture} hideNavBar={true} hideTabBar={true}  />
         </Scene>
 
-        <Scene initial={true} key="home" icon={TabIcon} selectedTabIcon="home" tabIcon="home" >
-          <Scene key="homeScene" component={Home} hideNavBar={true}/>
-          <Scene key="homeScene" component={Home} hideNavBar={true}/>
+
+        <Scene key="favoritesTab"  icon={TabIcon} selectedTabIcon="favorite" tabIcon="favorite-border"
+               navigationBarStyle={{backgroundColor: '#343459',borderBottomColor: '#343459'}}
+               titleStyle={{ color:'white', fontSize:17}}
+               barButtonTextStyle={{ fontSize:17, color:'white' }}
+        >
+          <Scene key="favoritesScene" component={UserFavorites} />
         </Scene>
+
+        <Scene key="downloadsTab"  icon={TabIcon} selectedTabIcon="star" tabIcon="star-border"
+               navigationBarStyle={{backgroundColor: '#343459',borderBottomColor: '#343459'}}
+               titleStyle={{ color:'white', fontSize:17}}
+               barButtonTextStyle={{ fontSize:17, color:'white' }}
+        >
+          <Scene key="downloadsScene" component={UserDownloads}/>
+        </Scene>
+
+
+        <Scene key="settingsTab"  icon={TabIcon} selectedTabIcon="settings" tabIcon="settings"
+               navigationBarStyle={{backgroundColor: '#343459',borderBottomColor: '#343459'}}
+               titleStyle={{ color:'white', fontSize:17}}
+               barButtonTextStyle={{ fontSize:17, color:'white' }}
+               title="Settings"
+        >
+          <Scene key="settingsScene" component={Settings} />
+        </Scene>
+
+
+
+
       </Scene>
 
-      <Scene key="login" component={Login} hideNavBar={true}  />
+      <Scene initial={true} key="login" component={Login} hideNavBar={true}  />
       <Scene key="loginDialog"  component={LoginDialog} hideNavBar={true}  />
       <Scene key="register" component={Register} hideNavBar={true} title="تسجيل الدخول"   />
     </Scene>

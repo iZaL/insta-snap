@@ -7,6 +7,8 @@ import { favoriteMedia } from './../../actions/Media/favorites';
 import { downloadMedia } from './../../actions/Media/downloads';
 import MediaGrid from './Components/MediaGrid';
 import LoadingIndicator from './../../components/LoadingIndicator';
+import map from 'lodash/map';
+
 
 class Home extends Component {
 
@@ -49,13 +51,11 @@ class Home extends Component {
       >
         { homeReducer.isFetching && <LoadingIndicator /> }
 
-        <MediaGrid medias={liveMedias}  title="الشركات"
+        <MediaGrid medias={liveMedias}  title="Live"
                    favoriteMedia={this.favoriteMedia.bind(this)}
                    downloadMedia={this.downloadMedia.bind(this)}
         />
-        <MediaGrid medias={followerMedias} title="الخاص"/>
-        <MediaGrid medias={liveMedias} title="العام"/>
-        <MediaGrid medias={liveMedias} title="Live"/>
+        <MediaGrid medias={followerMedias} title="Followers"/>
       </ScrollView>
     );
 
@@ -63,11 +63,9 @@ class Home extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('state',state);
   return {
     homeReducer:state.homeReducer,
-    liveMedias:state.homeReducer.liveMedias ? state.homeReducer.liveMedias.map((media) => state.entities.medias[media]) : [],
-    companyMedias:state.homeReducer.companyMedias ? state.homeReducer.companyMedias.map((media) => state.entities.medias[media]) : [],
+    liveMedias:state.homeReducer.liveMedias ? state.homeReducer.liveMedias.map((media) =>  state.entities.medias[media]) : [],
     followerMedias:state.homeReducer.followerMedias ? state.homeReducer.followerMedias.map((media) => state.entities.medias[media]) : [],
   };
 }

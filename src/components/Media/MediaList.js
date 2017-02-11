@@ -38,6 +38,7 @@ export default class MediaList extends Component {
 
     return (
       <ListView
+        container={{flex:1}}
         contentContainerStyle={styles.list}
         dataSource={dataSource}
         renderRow={this.renderRow.bind(this)}
@@ -54,22 +55,16 @@ export default class MediaList extends Component {
   }
 }
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   list: {
-    flex:1,
-    justifyContent: 'center',
     flexDirection: 'row',
     flexWrap: 'wrap',
     paddingVertical:20,
   },
   row: {
-    flex:1,
-    justifyContent: 'center',
     padding: 5,
-    margin: 3,
     width: 100,
     height: 100,
-    alignItems: 'center',
     borderRadius:50
   },
   thumbnail: {

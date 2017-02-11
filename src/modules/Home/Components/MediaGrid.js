@@ -99,7 +99,6 @@ const styles = StyleSheet.create({
     height: 100,
   },
   thumbnail: {
-    backgroundColor:'gray',
     width: 80,
     height: 80,
     borderRadius:40
