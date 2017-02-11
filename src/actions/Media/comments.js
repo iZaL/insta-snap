@@ -1,6 +1,6 @@
 import { API_ROOT } from './../../constants/config';
 import { normalize } from 'normalizr';
-import { Schemas } from '../../schemas/schema';
+import mediaSchema from '../../schemas/schema';
 import { getUserToken } from './../../utils/storage';
 
 import {
@@ -13,7 +13,7 @@ import {
 } from '../../constants/actiontypes';
 
 function commentsSuccess(payload) {
-  const normalized = normalize(payload.data, Schemas.MEDIA);
+  const normalized = normalize(payload.data, mediaSchema);
   return {
     type: COMMENTS_SUCCESS,
     entities: normalized.entities

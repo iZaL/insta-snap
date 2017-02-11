@@ -1,6 +1,6 @@
 import { API_ROOT } from './../../constants/config';
 import { normalize } from 'normalizr';
-import { Schemas } from '../../schemas/schema';
+import mediaSchema from '../../schemas/mediaSchema';
 import { getUserToken } from './../../utils/storage';
 import { getExtension, getMediaName } from './../../utils/functions';
 
@@ -14,7 +14,7 @@ import {
 } from '../../constants/actiontypes';
 
 function mediaSaveSuccess(payload) {
-  const normalized = normalize(payload.data, Schemas.MEDIA);
+  const normalized = normalize(payload.data, mediaSchema);
   return {
     type: MEDIA_SAVE_SUCCESS,
     entities: normalized.entities
@@ -22,7 +22,7 @@ function mediaSaveSuccess(payload) {
 }
 
 function mediaSuccess(payload) {
-  const normalized = normalize(payload.data, Schemas.MEDIA);
+  const normalized = normalize(payload.data, mediaSchema);
   return {
     type: MEDIA_SUCCESS,
     entities: normalized.entities

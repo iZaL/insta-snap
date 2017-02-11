@@ -1,6 +1,6 @@
 import {API_ROOT,API_TOKEN} from './../../constants/config';
 import {setUserToken,getUserToken,forgetItem} from './../../utils/storage';
-import {Schemas} from '../../schemas/schema';
+import userSchema from '../../schemas/userSchema';
 import {normalize} from 'normalizr';
 
 import {
@@ -18,7 +18,7 @@ function loginRequest() {
 }
 
 function loginSuccess(payload) {
-  const normalized = normalize(payload.data,Schemas.USER);
+  const normalized = normalize(payload.data,userSchema);
   return {
     type: LOGIN_SUCCESS,
     userID:payload.data.id,

@@ -1,11 +1,11 @@
 import { API_ROOT } from './../../constants/config';
 import { normalize } from 'normalizr';
-import { Schemas } from '../../schemas/schema';
+import mediaSchema from '../../schemas/mediaSchema';
 import { getUserToken } from './../../utils/storage';
 import { MEDIAS_SUCCESS, MEDIAS_REQUEST, MEDIAS_FAILURE } from '../../constants/actiontypes';
 
 function mediasSuccess(payload) {
-  const normalized = normalize(payload, [Schemas.MEDIA_ARRAY]);
+  const normalized = normalize(payload.data, [mediaSchema]);
   return {
     type: MEDIAS_SUCCESS,
     entities:normalized.entities,

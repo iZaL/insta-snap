@@ -7,7 +7,6 @@ const userSchema = new schema.Entity('users',{
   medias:[mediaSchema],
   comments:[commentSchema],
   favorites:[mediaSchema],
-  downloads:[mediaSchema],
   followers:[userSchema], //@fix
   followings:[userSchema], //@fix
 });

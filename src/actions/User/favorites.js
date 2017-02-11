@@ -1,6 +1,6 @@
 import { API_ROOT } from './../../constants/config';
 import { normalize } from 'normalizr';
-import { Schemas } from '../../schemas/schema';
+import userSchema from '../../schemas/userSchema';
 import { getUserToken } from './../../utils/storage';
 
 import {
@@ -16,7 +16,7 @@ function userFavoritesRequest() {
 }
 
 function userFavoritesSuccess(payload) {
-  const normalized = normalize(payload.data,Schemas.USER);
+  const normalized = normalize(payload.data,userSchema);
   return {
     type: USER_FAVORITES_SUCCESS,
     entities: normalized.entities
@@ -48,7 +48,6 @@ export function fetchUserFavorites(userID,requiredFields = []) {
         .then(response => response.json())
         .then(json => {
 
-          console.log('jsin',json);
           if (json.success) {
             dispatch(userFavoritesSuccess(json));
           } else {

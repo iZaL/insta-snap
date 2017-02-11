@@ -1,6 +1,7 @@
 import { API_ROOT } from './../../constants/config';
 import { normalize } from 'normalizr';
-import { Schemas } from '../../schemas/schema';
+import mediaSchema from '../../schemas/mediaSchema';
+import userSchema from '../../schemas/userSchema';
 import { getUserToken } from './../../utils/storage';
 import union from 'lodash/union';
 
@@ -14,7 +15,7 @@ import {
 function updateUserFavorites(user,media) {
   const favorites = user.favorites ? user.favorites : [];
   user.favorites = media.isFavorited ? favorites.filter((fav) => fav !== media.id) : union(favorites,[media.id]);
-  const normalized = normalize(user,Schemas.USER);
+  const normalized = normalize(user,userSchema);
   return {
     type: MEDIA_FAVORITES_SUCCESS,
     entities: normalized.entities
@@ -26,7 +27,7 @@ function updateMediaFavorites(user,media) {
   media.favorites = media.isFavorited ? favorites.filter((fav) => fav !== user.id) : union(favorites,[user.id]);
   media.unFavorited = media.isFavorited ? true : false;
   media.isFavorited = !media.isFavorited;
-  const normalized = normalize(media,Schemas.MEDIA);
+  const normalized = normalize(media,mediaSchema);
   return {
     type: MEDIA_FAVORITES_SUCCESS,
     entities: normalized.entities
@@ -41,7 +42,7 @@ function mediaFavoritesRequest(mediaID) {
 }
 
 function mediaFavoritesSuccess(mediaID,payload) {
-  const normalized = normalize(payload.data,Schemas.USER_ARRAY);
+  const normalized = normalize(payload.data,[userSchema]);
   return {
     type: MEDIA_FAVORITES_SUCCESS,
     entities: normalized.entities,

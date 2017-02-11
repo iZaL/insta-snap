@@ -7,12 +7,10 @@ import Login from './modules/Auth/Login';
 import Register from './containers/Auth/Register';
 import User from './containers/User/User';
 import UserFavorites from './containers/User/UserFavorites';
-import UserDownloads from './containers/User/UserDownloads';
 import Media from './containers/Media/Media';
 import Medias from './containers/Media/Medias';
 import MediaComments from './containers/Media/MediaComments';
 import MediaFavorites from './containers/Media/MediaFavorites';
-import MediaDownloads from './containers/Media/MediaDownloads';
 import MediaCapture from './containers/Media/MediaCapture';
 import UserMedias from './containers/User/UserMedias';
 import Followers from './containers/User/Followers';
@@ -42,7 +40,6 @@ export const scenes = Actions.create(
           <Scene key="mediaScene" component={Media}/>
           <Scene key="mediaCommentsScene" component={MediaComments} title="Comment"/>
           <Scene key="mediaFavoritesScene" component={MediaFavorites} title="Favorites"/>
-          <Scene key="mediaDownloadsScene" component={MediaDownloads} title="Downloads"/>
           <Scene key="userMediasScene" component={UserMedias} title="Downloads"/>
           <Scene key="followersScene" component={Followers} title="Followers"/>
           <Scene key="followingsScene" component={Followings} title="Followings"/>
@@ -58,15 +55,6 @@ export const scenes = Actions.create(
         >
           <Scene key="favoritesScene" component={UserFavorites} />
         </Scene>
-
-        <Scene key="downloadsTab"  icon={TabIcon} selectedTabIcon="star" tabIcon="star-border"
-               navigationBarStyle={{backgroundColor: '#343459',borderBottomColor: '#343459'}}
-               titleStyle={{ color:'white', fontSize:17}}
-               barButtonTextStyle={{ fontSize:17, color:'white' }}
-        >
-          <Scene key="downloadsScene" component={UserDownloads}/>
-        </Scene>
-
 
         <Scene key="settingsTab"  icon={TabIcon} selectedTabIcon="settings" tabIcon="settings"
                navigationBarStyle={{backgroundColor: '#343459',borderBottomColor: '#343459'}}

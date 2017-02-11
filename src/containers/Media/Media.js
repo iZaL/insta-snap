@@ -3,7 +3,6 @@ import { Image, StyleSheet, Text, TouchableHighlight, View, ListView, ScrollView
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { favoriteMedia } from './../../actions/Media/favorites';
-import { downloadMedia } from './../../actions/Media/downloads';
 import { fetchMedia } from './../../actions/Media/media';
 import MediaItem from './../../components/Media/MediaItem';
 import MediaCommentIcon from './../../components/Media/Comment/MediaCommentIcon';
@@ -23,6 +22,7 @@ class Media extends Component {
 
     this.state = {
       videoPaused:false,
+      videoMuted:false
     }
 
     this.pauseVideo = this.pauseVideo.bind(this);
@@ -51,13 +51,6 @@ class Media extends Component {
     });
   }
 
-  loadDownloads() {
-    this.pauseVideo();
-    return Actions.mediaDownloadsScene({
-      mediaID:this.props.mediaID
-    });
-  }
-
   loadUser(user) {
     this.pauseVideo();
     return Actions.userScene({
@@ -68,10 +61,6 @@ class Media extends Component {
 
   favoriteMedia() {
     this.props.dispatch(favoriteMedia(this.props.mediaID));
-  }
-
-  downloadMedia() {
-    this.props.dispatch(downloadMedia(this.props.mediaID));
   }
 
   render() {
@@ -98,15 +87,6 @@ class Media extends Component {
               media={media}
               favoriteMedia={() => this.favoriteMedia()}
               loadFavorites={() => this.loadFavorites()}
-            />
-          }
-
-          {
-            media.downloads &&
-            <MediaDownloadIcon
-              media={media}
-              downloadMedia={() => this.downloadMedia()}
-              loadDownloads={() => this.loadDownloads()}
             />
           }
 

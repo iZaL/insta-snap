@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { fetchLiveMedias,fetchFollowerMedias } from './homeActions';
 import { favoriteMedia } from './../../actions/Media/favorites';
-import { downloadMedia } from './../../actions/Media/downloads';
 import MediaGrid from './Components/MediaGrid';
 import LoadingIndicator from './../../components/LoadingIndicator';
 import map from 'lodash/map';
@@ -33,9 +32,6 @@ class Home extends Component {
     this.props.dispatch(favoriteMedia(this.props.mediaID));
   }
 
-  downloadMedia() {
-    this.props.dispatch(downloadMedia(this.props.mediaID));
-  }
 
   render() {
 
@@ -53,7 +49,6 @@ class Home extends Component {
 
         <MediaGrid medias={liveMedias}  title="Live"
                    favoriteMedia={this.favoriteMedia.bind(this)}
-                   downloadMedia={this.downloadMedia.bind(this)}
         />
         <MediaGrid medias={followerMedias} title="Followers"/>
       </ScrollView>

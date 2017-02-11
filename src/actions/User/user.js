@@ -1,6 +1,6 @@
 import { API_ROOT } from './../../constants/config';
 import { normalize } from 'normalizr';
-import { Schemas } from '../../schemas/schema';
+import userSchema from '../../schemas/userSchema';
 import { getUserToken } from './../../utils/storage';
 import union from 'lodash/union';
 
@@ -20,7 +20,7 @@ import {
 } from './../../constants/actiontypes';
 
 function userSuccess(payload) {
-  const normalized = normalize(payload.data, Schemas.USER);
+  const normalized = normalize(payload.data, userSchema);
   return {
     type: USER_SUCCESS,
     entities: normalized.entities
@@ -28,7 +28,7 @@ function userSuccess(payload) {
 }
 
 function userMediasSuccess(payload) {
-  const normalized = normalize(payload.data, Schemas.USER);
+  const normalized = normalize(payload.data, userSchema);
   return {
     type: USER_MEDIAS_SUCCESS,
     entities: normalized.entities
@@ -36,7 +36,7 @@ function userMediasSuccess(payload) {
 }
 
 function userFollowingsSuccess(payload) {
-  const normalized = normalize(payload.data, Schemas.USER);
+  const normalized = normalize(payload.data, userSchema);
   return {
     type: USER_FOLLOWINGS_SUCCESS,
     entities: normalized.entities
@@ -44,7 +44,7 @@ function userFollowingsSuccess(payload) {
 }
 
 function userFollowersSuccess(payload) {
-  const normalized = normalize(payload.data, Schemas.USER);
+  const normalized = normalize(payload.data, userSchema);
   return {
     type: USER_FOLLOWERS_SUCCESS,
     entities: normalized.entities
@@ -85,6 +85,7 @@ export function fetchUserMedias(userID,requiredFields = []) {
         return fetch(url)
           .then(response => response.json())
           .then(json => {
+            console.log('json',json);
             dispatch(userMediasSuccess(json));
           });
       })
@@ -150,6 +151,7 @@ function updateFollower(authUser,followee) {
 }
 
 function updateFollowee(authUser,followee) {
+  // optimistic update
   // if the auth auth user is already in followers list, remove the follower from the followings list
   // else, add the auth user to the followers list
   const followers = followee.followers ? followee.followers : [];
