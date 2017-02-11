@@ -1,34 +1,70 @@
-import { Schema, arrayOf } from 'normalizr';
-const mediaSchema = new Schema('medias');
-const userSchema = new Schema('users');
-const commentSchema = new Schema('comments');
-
-mediaSchema.define({
-  user:userSchema,
-  comments:arrayOf(commentSchema),
-  downloads:arrayOf(userSchema),
-  favorites:arrayOf(userSchema),
+import { schema } from 'normalizr';
+const userSchema = new schema.Entity('users',{
+  medias:[mediaSchema],
+  comments:[commentSchema],
+  favorites:[mediaSchema],
+  downloads:[mediaSchema],
+  followers:[userSchema],
+  followings:[userSchema],
 });
 
-userSchema.define({
-  medias:arrayOf(mediaSchema),
-  comments:arrayOf(commentSchema),
-  favorites:arrayOf(mediaSchema),
-  downloads:arrayOf(mediaSchema),
-  followers:arrayOf(userSchema),
-  followings:arrayOf(userSchema),
-});
-
-commentSchema.define({
+const commentSchema = new schema.Entity('comments',{
   user:userSchema,
   media:mediaSchema
 });
 
+const mediaSchema = new schema.Entity('medias',{
+  user:userSchema,
+  comments:[commentSchema],
+  downloads:[userSchema],
+  favorites:[userSchema],
+});
+
+// mediaSchema.define({
+//   user:userSchema,
+//   comments:[commentSchema],
+//   downloads:[userSchema],
+//   favorites:[userSchema],
+// });
+
+// userSchema.define({
+//   medias:[mediaSchema],
+//   comments:[commentSchema],
+//   favorites:[mediaSchema],
+//   downloads:[mediaSchema],
+//   followers:[userSchema],
+//   followings:[userSchema],
+// });
+
+// commentSchema.define({
+//   user:userSchema,
+//   media:mediaSchema
+// });
+
 export const Schemas = {
   MEDIA:mediaSchema,
-  MEDIA_ARRAY:arrayOf(mediaSchema),
+  MEDIA_ARRAY:[mediaSchema],
   USER:userSchema,
-  USER_ARRAY:arrayOf(userSchema),
+  USER_ARRAY:[userSchema],
   COMMENT:commentSchema,
-  COMMENT_ARRAY:arrayOf(commentSchema)
+  COMMENT_ARRAY:[commentSchema]
 };
+
+
+// import { schema } from 'normalizr';
+//
+// export const buffetsPackageSchema = new schema.Entity('packages');
+//
+// export const buffetsSchema = new schema.Entity('buffets',{
+//   packages:[buffetsPackageSchema]
+// });
+//
+// export const BUFFET_SCHEMA = {
+//   BUFFET:buffetsSchema,
+//   BUFFET_ARRAY:[buffetsSchema]
+// };
+//
+// export const BUFFET_PACKAGE_SCHEMA = {
+//   BUFFET_PACKAGE:buffetsPackageSchema,
+//   BUFFET_PACKAGE_ARRAY:[buffetsPackageSchema]
+// };

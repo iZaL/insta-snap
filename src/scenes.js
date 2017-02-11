@@ -76,7 +76,7 @@ export const scenes = Actions.create(
         </Scene>
       </Scene>
 
-      <Scene key="login" initial={true} component={Login} hideNavBar={true}  />
+      <Scene key="login" component={Login} hideNavBar={true}  />
       <Scene key="loginDialog"  component={LoginDialog} hideNavBar={true}  />
       <Scene key="register" component={Register} hideNavBar={true} title="تسجيل الدخول"   />
     </Scene>

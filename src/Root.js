@@ -6,10 +6,6 @@ const store = configureStore();
 
 export default class Root extends Component {
 
-  componentDidMount() {
-    //CodePush.sync();
-  }
-
   render() {
     return (
       <Provider store={store}>

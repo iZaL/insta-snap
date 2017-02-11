@@ -167,7 +167,6 @@ export default class MediaCaptureScene extends Component {
             <View style={styles.topRightButton}>
               <TouchableHighlight onPress={()=> this.switchCameraType() } underlayColor="transparent">
                 <Icon
-                  name="ios-reverse-camera-outline"
                   name={cameraType === 'back' ? 'ios-reverse-camera-outline' : 'ios-reverse-camera'}
                   size={30}
                   color={'white'}

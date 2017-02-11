@@ -1,5 +1,5 @@
 import { API_ROOT } from './../../constants/config';
-import { normalize, arrayOf } from 'normalizr';
+import { normalize } from 'normalizr';
 import { Schemas } from './../../utils/schema';
 import { getUserToken } from './../../utils/storage';
 
@@ -9,7 +9,7 @@ export const HOME_FAILURE = 'HOME_FAILURE';
 
 
 function mediasSuccess(payload) {
-  const normalized = normalize(payload, arrayOf(Schemas.MEDIA_ARRAY));
+  const normalized = normalize(payload, [Schemas.MEDIA_ARRAY]);
   return {
     type: HOME_SUCCESS,
     entities:normalized.entities,
@@ -18,7 +18,7 @@ function mediasSuccess(payload) {
 }
 
 function liveMediasSuccess(payload) {
-  const normalized = normalize(payload, arrayOf(Schemas.MEDIA_ARRAY));
+  const normalized = normalize(payload, [Schemas.MEDIA_ARRAY]);
   return {
     type: HOME_SUCCESS,
     entities:normalized.entities,
@@ -27,7 +27,7 @@ function liveMediasSuccess(payload) {
 }
 
 function followerMediasSuccess(payload) {
-  const normalized = normalize(payload, arrayOf(Schemas.MEDIA_ARRAY));
+  const normalized = normalize(payload, [Schemas.MEDIA_ARRAY]);
   return {
     type: HOME_SUCCESS,
     entities:normalized.entities,
@@ -36,7 +36,7 @@ function followerMediasSuccess(payload) {
 }
 
 function companyMediasSuccess(payload) {
-  const normalized = normalize(payload, arrayOf(Schemas.MEDIA_ARRAY));
+  const normalized = normalize(payload, [Schemas.MEDIA_ARRAY]);
   return {
     type: HOME_SUCCESS,
     entities:normalized.entities,

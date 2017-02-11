@@ -56,12 +56,14 @@ export default class MediaList extends Component {
 
 var styles = StyleSheet.create({
   list: {
+    flex:1,
     justifyContent: 'center',
     flexDirection: 'row',
     flexWrap: 'wrap',
     paddingVertical:20,
   },
   row: {
+    flex:1,
     justifyContent: 'center',
     padding: 5,
     margin: 3,

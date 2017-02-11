@@ -45,6 +45,7 @@ class Home extends Component {
         contentContainerStyle={{paddingTop:64}}
         automaticallyAdjustContentInsets={false}
         showsVerticalScrollIndicator={false}
+        style={{flex:1}}
       >
         { homeReducer.isFetching && <LoadingIndicator /> }
 
