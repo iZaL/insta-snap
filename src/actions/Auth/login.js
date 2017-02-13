@@ -18,7 +18,7 @@ function loginRequest() {
 }
 
 function loginSuccess(payload) {
-  const normalized = normalize(payload.data,userSchema);
+  const normalized = normalize({users:payload.data},[userSchema]);
   return {
     type: LOGIN_SUCCESS,
     userID:payload.data.id,
@@ -44,8 +44,8 @@ export function login(credentials) {
       .then(response => response.json())
       .then(json => {
         if (json.success) {
-          dispatch(loginSuccess(json));
           setUserToken(json.data.api_token);
+          dispatch(loginSuccess(json));
           return true;
         } else {
           dispatch(loginFailure(json.message));
@@ -70,7 +70,11 @@ export function loginUserByToken() {
           method: 'POST',
           body: JSON.stringify({
             api_token:token
-          })
+          }),
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
         })
           .then(response => response.json())
           .then(json => {

@@ -16,7 +16,9 @@ function userFavoritesRequest() {
 }
 
 function userFavoritesSuccess(payload) {
+  console.log('payload',payload);
   const normalized = normalize(payload.data,userSchema);
+  console.log('n',normalized);
   return {
     type: USER_FAVORITES_SUCCESS,
     entities: normalized.entities

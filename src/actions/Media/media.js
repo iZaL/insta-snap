@@ -22,7 +22,7 @@ function mediaSaveSuccess(payload) {
 }
 
 function mediaSuccess(payload) {
-  const normalized = normalize(payload.data, mediaSchema);
+  const normalized = normalize({medias:payload.data}, [mediaSchema]);
   return {
     type: MEDIA_SUCCESS,
     entities: normalized.entities

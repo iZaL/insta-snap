@@ -20,7 +20,7 @@ import {
 } from './../../constants/actiontypes';
 
 function userSuccess(payload) {
-  const normalized = normalize(payload.data, userSchema);
+  const normalized = normalize({users:payload.data},[userSchema]);
   return {
     type: USER_SUCCESS,
     entities: normalized.entities
@@ -28,7 +28,7 @@ function userSuccess(payload) {
 }
 
 function userMediasSuccess(payload) {
-  const normalized = normalize(payload.data, userSchema);
+  const normalized = normalize({users:payload.data}, [userSchema]);
   return {
     type: USER_MEDIAS_SUCCESS,
     entities: normalized.entities
@@ -143,7 +143,7 @@ function updateFollower(authUser,followee) {
   const followings = authUser.followings ? authUser.followings : [];
   // if the action was unfollow, then remove the user from followings list, but if the action follow, then add the user to the followings list
   authUser.followings = followee.isFollowing ? followings.filter((followingID) => followingID !== followee.id) : union(followings,[followee.id]);
-  const normalized = normalize(authUser,Schemas.USER);
+  const normalized = normalize(authUser,userSchema);
   return {
     type: USER_FOLLOWINGS_SUCCESS,
     entities: normalized.entities
@@ -158,7 +158,7 @@ function updateFollowee(authUser,followee) {
   followee.followers = followee.isFollowing ?  followers.filter((followerID) => followerID !== authUser.id) : union(followers,[authUser.id]);
   // if the action was unfollow then set isFollowing to false, this is just a flag to update the UI, since the entities only merges the list, doesnt remove the value
   followee.isFollowing = !followee.isFollowing; // toggle the followees isFollowing (follower = auth user)
-  const normalized = normalize(followee,Schemas.USER);
+  const normalized = normalize(followee,userSchema);
   return {
     type: USER_FOLLOWERS_SUCCESS,
     entities: normalized.entities
