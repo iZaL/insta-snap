@@ -44,21 +44,8 @@ export default class LoginScene extends Component {
         />
         <View style={styles.separator}/>
 
-        <TouchableHighlight onPress={()=>handleForgotPasswordRoute()} style={[styles.textCenter]}
-                            underlayColor='transparent' >
-          <Text style={[styles.link,styles.textUnderline]}>Forgot your password ?</Text>
-        </TouchableHighlight>
-
         <TouchableHighlight onPress={()=>handleLogin()} title="Login" style={[styles.button,{marginTop:50}]} underlayColor='transparent' >
           <Text style={styles.buttonText}>Login</Text>
-        </TouchableHighlight>
-
-        <TouchableHighlight onPress={()=>handleRegisterRoute()} underlayColor='transparent'
-                            style={[styles.center,{marginTop:30}]}
-        >
-          <Text style={[styles.link,styles.textCenter]}>
-            Don't have an account? Register
-          </Text>
         </TouchableHighlight>
 
       </View>
